@@ -36,7 +36,7 @@ public partial class TravelCompanyDbContext : DbContext
     public virtual DbSet<TouristGroup> TouristGroups { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=TravelCompanyDB;Trusted_Connection=True;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlite("Data Source=TravelCompany.db;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
