@@ -5,12 +5,17 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                
                 <!-- Views -->
                 <ResourceDictionary Source="Resources/Templates/Views.xaml" />
                 
                 <!-- Styles -->
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
 
                 <!-- Templates -->
+                <ResourceDictionary Source="Resources/Templates/Buttons/Control/CloseButton.xaml"/>
+                <ResourceDictionary Source="Resources/Templates/Buttons/Control/MinimizeButton.xaml"/>
                 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

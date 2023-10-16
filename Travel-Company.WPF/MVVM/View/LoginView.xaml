@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Travel_Company.WPF.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <StackPanel>
         <TextBlock>Login View</TextBlock>
-    </Grid>
+        <Button>Log in</Button>
+    </StackPanel>
 </UserControl>

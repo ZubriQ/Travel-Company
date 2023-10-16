@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="Success">#6EC76C</Color>
+    <Color x:Key="SuccessLight">#88F485</Color>
+    <Color x:Key="SuccessDark">#397237</Color>
+    
+    <SolidColorBrush x:Key="SuccessBrush"
+                     Color="{StaticResource Success}" />
+    <SolidColorBrush x:Key="SuccessLightBrush"
+                     Color="{StaticResource SuccessLight}" />
+    <SolidColorBrush x:Key="SuccessDarkBrush"
+                     Color="{StaticResource SuccessDark}" />
+</ResourceDictionary>
