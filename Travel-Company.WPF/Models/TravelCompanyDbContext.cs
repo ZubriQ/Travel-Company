@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Travel_Company.WPF.Models.Users;
+using Object = Travel_Company.WPF.Models.Users.Object;
 
 namespace Travel_Company.WPF.Models;
 
@@ -15,25 +17,31 @@ public partial class TravelCompanyDbContext : DbContext
     {
     }
 
-    public virtual DbSet<Client> Clients { get; set; }
+    public virtual DbSet<Client> Clients { get; set; } = null!;
 
-    public virtual DbSet<Country> Countries { get; set; }
+    public virtual DbSet<Country> Countries { get; set; } = null!;
 
-    public virtual DbSet<Hotel> Hotels { get; set; }
+    public virtual DbSet<Hotel> Hotels { get; set; } = null!;
 
-    public virtual DbSet<Penalty> Penalties { get; set; }
+    public virtual DbSet<Penalty> Penalties { get; set; } = null!;
 
-    public virtual DbSet<PopulatedPlace> PopulatedPlaces { get; set; }
+    public virtual DbSet<PopulatedPlace> PopulatedPlaces { get; set; } = null!;
 
-    public virtual DbSet<Route> Routes { get; set; }
+    public virtual DbSet<Route> Routes { get; set; } = null!;
 
-    public virtual DbSet<RoutesPopulatedPlace> RoutesPopulatedPlaces { get; set; }
+    public virtual DbSet<RoutesPopulatedPlace> RoutesPopulatedPlaces { get; set; } = null!;
 
-    public virtual DbSet<Street> Streets { get; set; }
+    public virtual DbSet<Street> Streets { get; set; } = null!;
 
-    public virtual DbSet<TourGuide> TourGuides { get; set; }
+    public virtual DbSet<TourGuide> TourGuides { get; set; } = null!;
 
-    public virtual DbSet<TouristGroup> TouristGroups { get; set; }
+    public virtual DbSet<TouristGroup> TouristGroups { get; set; } = null!;
+
+    public virtual DbSet<User> Users { get; set; } = null!;
+
+    public virtual DbSet<Object> Objects { get; set; } = null!;
+
+    public virtual DbSet<UserObject> UsersObjects { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlite("Data Source=TravelCompany.db;");
@@ -267,6 +275,38 @@ public partial class TravelCompanyDbContext : DbContext
                 .HasForeignKey(d => d.TourGuideId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_TouristGroup_TourGuide");
+        });
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.ToTable("Users");
+        });
+        
+        modelBuilder.Entity<Object>(entity =>
+        {
+            entity.ToTable("Objects");
+        });
+        
+        modelBuilder.Entity<UserObject>(entity =>
+        {
+            entity.ToTable("UsersObjects");
+
+            entity.HasKey(e => new { e.ObjectId, e.UserId });
+
+            entity.Property(e => e.CanRead).HasColumnName("can_read");
+            entity.Property(e => e.CanCreate).HasColumnName("can_create");
+            entity.Property(e => e.CanDelete).HasColumnName("can_delete");
+            entity.Property(e => e.CanUpdate).HasColumnName("can_update");
+            
+            entity.HasOne(o => o.Object).WithMany(p => p.UsersObjects)
+                .HasForeignKey(o => o.ObjectId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_UsersObjects_Objects");
+
+            entity.HasOne(u => u.User).WithMany(p => p.UsersObjects)
+                .HasForeignKey(u => u.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_UsersObjects_Users");
         });
 
         OnModelCreatingPartial(modelBuilder);

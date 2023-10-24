@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Travel_Company.WPF.Models;
 
@@ -10,9 +11,11 @@ using Travel_Company.WPF.Models;
 namespace Travel_Company.WPF.Migrations
 {
     [DbContext(typeof(TravelCompanyDbContext))]
-    partial class TravelCompanyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231024163251_AddUserRules")]
+    partial class AddUserRules
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.12");
