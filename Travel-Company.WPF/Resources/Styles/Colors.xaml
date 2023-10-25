@@ -11,7 +11,7 @@
     <Color x:Key="Primary6">#6ebef7</Color>
     <Color x:Key="Primary7">#8bcbf9</Color>
     <Color x:Key="Primary8">#a5d5f8</Color>
-    <Color x:Key="Primary9">#c5e5fc</Color>
+    <Color x:Key="Primary9">#cceaff</Color>
     <Color x:Key="Primary10">#ebf7ff</Color>
     
     <!-- Headings -->
@@ -24,7 +24,7 @@
     <Color x:Key="Grey6">#829ab0</Color>
     <Color x:Key="Grey7">#9eb2c7</Color>
     <Color x:Key="Grey8">#bcccdc</Color>
-    <Color x:Key="Grey9">#dae2ec</Color>
+    <Color x:Key="Grey9">#d4eeff</Color>
     <Color x:Key="Grey10">#f1f5f8</Color>
 
     <!-- Dark Shades -->

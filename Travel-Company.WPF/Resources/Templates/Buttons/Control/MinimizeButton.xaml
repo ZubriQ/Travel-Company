@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ControlTemplate TargetType="Button"
                      x:Key="MinimizeButton">
-        <Border x:Name="BtnMinimize"
+        <Border x:Name="ButtonMinimize"
                 BorderThickness="0"
                 Background="Transparent">
             <Viewbox>
@@ -10,7 +10,7 @@
                         Height="24"
                         Margin="6">
                     <Path x:Name="vectorImage"
-                          Fill="{DynamicResource SuccessBrush}"
+                          Fill="{DynamicResource Primary10Brush}"
                           Data="M19,13H5V11H19V13Z"/>
                 </Canvas>
             </Viewbox>
@@ -19,19 +19,19 @@
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver"
                      Value="True">
-                <Setter TargetName="BtnMinimize"
+                <Setter TargetName="ButtonMinimize"
                         Property="Background"
-                        Value="{DynamicResource SuccessLightBrush}" />
+                        Value="{DynamicResource Primary2Brush}" />
                 <Setter TargetName="vectorImage"
                         Property="Fill"
-                        Value="{DynamicResource SuccessBrush}" />
+                        Value="{DynamicResource Primary8Brush}" />
             </Trigger>
         
             <Trigger Property="IsPressed"
                      Value="True">
-                <Setter TargetName="BtnMinimize"
+                <Setter TargetName="ButtonMinimize"
                         Property="Background"
-                        Value="{DynamicResource SuccessDarkBrush}"/>
+                        Value="{DynamicResource Primary3Brush}"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

@@ -2,10 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ControlTemplate TargetType="{x:Type RadioButton}"
                      x:Key="MainMenuRadioButton">
-        <Border x:Name="ButtonBorder">
+        <Border x:Name="ButtonBorder"
+                CornerRadius="8">
             <Border.Background>
                 <SolidColorBrush x:Name="ButtonBorderBackground"
-                                 Color="{StaticResource SuccessDark}" />
+                                 Color="{StaticResource Primary9}" />
             </Border.Background>
 
             <ContentControl Content="{TemplateBinding Content}"
@@ -26,7 +27,7 @@
                 <MultiTrigger.Setters>
                     <Setter TargetName="ButtonBorder"
                             Property="Background"
-                            Value="{StaticResource SuccessBrush}" />
+                            Value="{StaticResource Primary8Brush}" />
                     <Setter Property="Cursor"
                             Value="Hand" />
                 </MultiTrigger.Setters>
@@ -39,7 +40,7 @@
                         <Storyboard>
                             <ColorAnimation Storyboard.TargetName="ButtonBorderBackground"
                                             Storyboard.TargetProperty="Color"
-                                            To="{StaticResource Success}"
+                                            To="{StaticResource Primary8}"
                                             Duration="0:0:0.25" />
                         </Storyboard>
                     </BeginStoryboard>
@@ -49,7 +50,7 @@
                         <Storyboard>
                             <ColorAnimation Storyboard.TargetName="ButtonBorderBackground"
                                             Storyboard.TargetProperty="Color"
-                                            To="{StaticResource SuccessDark}"
+                                            To="{StaticResource Primary9}"
                                             Duration="0:0:0.25" />
                         </Storyboard>
                     </BeginStoryboard>

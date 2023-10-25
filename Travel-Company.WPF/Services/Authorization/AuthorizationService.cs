@@ -15,11 +15,8 @@ public class AuthorizationService : IAuthorizationService
     
     public User? LogIn(string username, string password)
     {
-        if (_context.Users.FirstOrDefault(u => u.Username == username) is User user && user.Password == password)
-        {
-            return user;
-        }
-
-        return null!;
+        return (_context.Users.FirstOrDefault(u => u.Username == username) is User user && user.Password == password) 
+            ? user
+            : null;
     }
 }

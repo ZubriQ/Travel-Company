@@ -4,10 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Travel_Company.WPF.MVVM.View"
+             xmlns:component="clr-namespace:Travel_Company.WPF.Resources.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <TextBlock>Login View</TextBlock>
-        <Button>Log in</Button>
+    <StackPanel 
+                Margin="20">
+        <TextBlock Text="Login"
+                   HorizontalAlignment="Center" 
+                   FontSize="24"
+                   FontFamily="Sans-serif"
+                   FontWeight="Bold"
+                   Foreground="{StaticResource Grey1Brush}"
+                   Margin="30"/>
+        <StackPanel>
+            <Grid Width="260"
+                  Margin="10">
+                <component:Input ComponentName="Username" />
+            </Grid>
+            <Grid Width="260" 
+                  Margin="10">
+                <component:Password />
+            </Grid>
+            <Grid Width="260"
+                  Margin="10">
+                <Button>
+                    Enter
+                </Button>
+            </Grid>
+        </StackPanel>
     </StackPanel>
 </UserControl>
