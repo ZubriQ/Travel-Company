@@ -13,9 +13,10 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
 
-                <!-- Templates -->
+                <!-- Control Templates -->
                 <ResourceDictionary Source="Resources/Templates/Buttons/Control/CloseButton.xaml"/>
                 <ResourceDictionary Source="Resources/Templates/Buttons/Control/MinimizeButton.xaml"/>
+                <ResourceDictionary Source="Resources/Templates/RadioButtons/MainMenuButton.xaml"/>
                 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

@@ -24,4 +24,18 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
+
+    #region General Buttons
+    private void BorderTitleBar_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        if (e.LeftButton == MouseButtonState.Pressed)
+        {
+            DragMove();
+        }
+    }
+
+    private void ButtonClose_Click(object sender, RoutedEventArgs e) => App.Current.Shutdown();
+
+    private void ButtonMinimize_Click(object sender, RoutedEventArgs e) => WindowState = WindowState.Minimized;
+    #endregion
 }

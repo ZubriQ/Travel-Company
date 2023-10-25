@@ -9,11 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Fonts\Inter-Regular.ttf" />
-    <None Remove="Resources\Fonts\Roboto-Regular.ttf" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.12">
       <PrivateAssets>all</PrivateAssets>
@@ -24,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Resources\Images\" />
+    <Folder Include="Resources\Components\" />
   </ItemGroup>
 
   <ItemGroup>
