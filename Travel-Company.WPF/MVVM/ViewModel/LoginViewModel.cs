@@ -53,21 +53,21 @@ public sealed class LoginViewModel : Core.ViewModel
         NavigateToEmployeesCommand = new RelayCommand(
             execute: _ =>
             {
-                Authorize();
+                HandleAuthorization();
             },
             canExecute: _ => true);
     }
 
-    private void Authorize()
+    private void HandleAuthorization()
     {
         if (_authorizationService.LogIn(Username, Password) is User user)
         {
-            SaveUser(user);
+            SaveAuthorizedUserData(user);
             Navigation.NavigateTo<EmployeesViewModel>();
         }
     }
 
-    private static void SaveUser(User user)
+    private static void SaveAuthorizedUserData(User user)
     {
         App.Settings.User = user;
         App.Settings.IsAuthorized = true;
