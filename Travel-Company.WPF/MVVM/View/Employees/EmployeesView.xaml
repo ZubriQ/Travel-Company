@@ -6,7 +6,60 @@
              xmlns:local="clr-namespace:Travel_Company.WPF.MVVM.View.Employees"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock>In Employees Page</TextBlock>
+
+    <UserControl.Resources>
+        <Geometry x:Key="GeoMagnifiedSearch">
+            M9.5,4C13.09,4 16,6.91 16,10.5C16,12.12 15.41,13.6 14.43,14.73L20.08,20.38L19.37,21.09L13.72,15.44C12.59,16.41 11.11,17 9.5,17C5.91,17 3,14.09 3,10.5C3,6.91 5.91,4 9.5,4M9.5,5C6.46,5 4,7.46 4,10.5C4,13.54 6.46,16 9.5,16C12.54,16 15,13.54 15,10.5C15,7.46 12.54,5 9.5,5Z
+        </Geometry>
+    </UserControl.Resources>
+    
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <!-- Page Header-->
+        <TextBlock Grid.Row="0"
+                   Text="Employees"
+                   Style="{StaticResource PageHeader}"/>
+        
+        <!-- Search Bar -->
+        <Grid Grid.Row="1"
+              Margin="5">
+            <TextBox x:Name="SearchBarComponent"
+                     BorderBrush="Transparent"
+                     VerticalContentAlignment="Center"
+                     FontSize="14" />
+            <TextBlock x:Name="SearchBarPlaceholder"
+                       VerticalAlignment="Center"
+                       Margin="12"
+                       Foreground="{StaticResource Grey5Brush}"
+                       IsHitTestVisible="False"
+                       FontSize="14" />
+            <Path Data="{StaticResource GeoMagnifiedSearch}"
+                  Stroke="{StaticResource Grey5Brush}"
+                  StrokeThickness="1"
+                  HorizontalAlignment="Right"
+                  VerticalAlignment="Center"
+                  Margin="10" />
+        </Grid>
+        
+        <!-- Data -->
+        <DataGrid Grid.Row="2"
+                  Margin="5">
+            
+        </DataGrid>
+        
+        <!-- Buttons -->
+        <DockPanel Grid.Row="3"
+                   Margin="5">
+            <Button Content="New employee" />
+            <Button Content="Edit"/>
+            <Button Content="Delete" />
+            <Button Content="Show fired" HorizontalAlignment="Left"/>
+        </DockPanel>
+
     </Grid>
 </UserControl>
