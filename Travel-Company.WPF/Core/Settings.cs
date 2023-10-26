@@ -6,5 +6,5 @@ public class Settings
 {
     public bool IsAuthorized { get; set; } = false;
     public User? User { get; set; }
-    public string? UserName { get; set; }
+    public string UserName { get; set; } = string.Empty;
 }

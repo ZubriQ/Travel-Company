@@ -1,9 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows;
 using Travel_Company.WPF.Core;
+using Travel_Company.WPF.Models;
 using Travel_Company.WPF.MVVM.View;
 using Travel_Company.WPF.MVVM.ViewModel;
+using Travel_Company.WPF.MVVM.ViewModel.Clients;
+using Travel_Company.WPF.MVVM.ViewModel.Employees;
 using Travel_Company.WPF.Services.Authorization;
 using Travel_Company.WPF.Services.Navigation;
 
@@ -21,6 +25,8 @@ namespace Travel_Company.WPF
         {
             IServiceCollection services = new ServiceCollection();
 
+            services.AddDbContext<TravelCompanyDbContext>(options => options.UseSqlite("Data Source=TravelCompany.db;"));
+
             services.AddSingleton(provider => new MainWindow()
             {
                 DataContext = provider.GetRequiredService<MainViewModel>()
@@ -30,13 +36,19 @@ namespace Travel_Company.WPF
                 serviceProvider => viewModelType => (ViewModel)serviceProvider.GetRequiredService(viewModelType));
             InitializeViewModels(services);
             InitializeDbServices(services);
+
             _serviceProvider = services.BuildServiceProvider();
+
+            var navigationService = _serviceProvider.GetRequiredService<INavigationService>() as NavigationService;
+            navigationService?.Initialize();
         }
 
         private static void InitializeViewModels(IServiceCollection services)
         {
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<LoginViewModel>();
+            services.AddSingleton<EmployeesViewModel>();
+            services.AddSingleton<ClientsViewModel>();
         }
         
         private static void InitializeDbServices(IServiceCollection services)

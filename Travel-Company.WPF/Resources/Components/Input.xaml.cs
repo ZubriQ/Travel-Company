@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Travel_Company.WPF.Resources.Components;
@@ -8,6 +9,18 @@ namespace Travel_Company.WPF.Resources.Components;
 /// </summary>
 public partial class Input : UserControl
 {
+    public string Text
+    {
+        get => (string)GetValue(TextProperty);
+        set 
+        { 
+            SetValue(TextProperty, value);
+        }
+    }
+
+    public static readonly DependencyProperty TextProperty =
+        DependencyProperty.Register("Text", typeof(string), typeof(Input), new PropertyMetadata(""));
+
     public string? ComponentName { get; set; }
 
     protected override void OnInitialized(EventArgs e)

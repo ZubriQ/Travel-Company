@@ -19,17 +19,19 @@
         <StackPanel>
             <Grid Width="260"
                   Margin="10">
-                <component:Input ComponentName="Username" />
+                <component:Input ComponentName="Username"
+                                 Text="{Binding Username, Mode=TwoWay}" />
             </Grid>
             <Grid Width="260" 
                   Margin="10">
-                <component:Password />
+                <component:Password PasswordText="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </Grid>
             <Grid Width="260"
                   Margin="10,10,10,50">
-                <Button Template="{StaticResource ButtonLogIn}">
-                    Enter
-                </Button>
+                <Button x:Name="ButtonLogIn"
+                        Template="{StaticResource ButtonLogIn}"
+                        Command="{Binding Path=NavigateToEmployeesCommand}"
+                        Content="Enter" />
             </Grid>
         </StackPanel>
     </StackPanel>

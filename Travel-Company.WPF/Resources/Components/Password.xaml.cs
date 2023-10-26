@@ -9,6 +9,22 @@ namespace Travel_Company.WPF.Resources.Components;
 /// </summary>
 public partial class Password : UserControl
 {
+    public string PasswordText
+    {
+        get => (string)GetValue(PasswordProperty);
+        set 
+        { 
+            SetValue(PasswordProperty, value); 
+        }
+    }
+
+    public static readonly DependencyProperty PasswordProperty =
+        DependencyProperty.Register(
+            "PasswordText", 
+            typeof(string),  
+            typeof(Password),
+            new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
     private readonly string _componentName = "Password";
 
     protected override void OnInitialized(EventArgs e)
@@ -20,6 +36,8 @@ public partial class Password : UserControl
 
     private void ComponentPassword_PasswordChanged(object sender, RoutedEventArgs e)
     {
+        PasswordText = ComponentPassword.Password;
+
         if (ComponentPassword.Password.Length > 0)
         {
             Placeholder.Text = string.Empty;
@@ -27,4 +45,5 @@ public partial class Password : UserControl
         }
         Placeholder.Text = _componentName;
     }
+
 }

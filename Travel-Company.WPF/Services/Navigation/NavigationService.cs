@@ -21,6 +21,10 @@ public class NavigationService : ObservableObject, INavigationService
     public NavigationService(Func<Type, ViewModel> viewModelFactory)
     {
         _viewModelFactory = viewModelFactory;
+    }
+
+    public void Initialize()
+    {
         _currentView = App.GetStartupView();
     }
 
