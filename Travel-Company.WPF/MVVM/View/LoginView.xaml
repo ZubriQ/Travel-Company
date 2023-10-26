@@ -27,7 +27,7 @@
             </Grid>
             <Grid Width="260"
                   Margin="10">
-                <Button>
+                <Button Template="{StaticResource ButtonLogIn}">
                     Enter
                 </Button>
             </Grid>
