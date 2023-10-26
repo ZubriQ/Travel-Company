@@ -47,9 +47,79 @@
         </Grid>
         
         <!-- Data -->
-        <DataGrid Grid.Row="2"
+        <DataGrid Style="{DynamicResource DataGridStyle1}" 
+                  CellStyle="{DynamicResource DataGridCellStyle1}" 
+                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                  RowStyle="{DynamicResource DataGridRowStyle1}" 
+                  x:Name="DataGridEmployees"
+                  Grid.Row="2"
                   Margin="5">
-            
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn CanUserResize="False" 
+                                        Width="auto">
+                    <DataGridCheckBoxColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox />
+                        </DataTemplate>
+                    </DataGridCheckBoxColumn.HeaderTemplate>
+                </DataGridCheckBoxColumn>
+
+                <DataGridTextColumn Header="#"
+                                    IsReadOnly="True"
+                                    CanUserResize="False" />
+ 
+                <!-- Fields -->
+                <DataGridTemplateColumn Header="Employee" IsReadOnly="True" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="25" 
+                                        Height="25" 
+                                        CornerRadius="50" 
+                                        Margin="0 0 10 0" 
+                                        Background="Red">
+                                    <TextBlock Text="..." 
+                                               VerticalAlignment="Center" 
+                                               HorizontalAlignment="Center"
+                                               Foreground="White"
+                                               Margin="0 0 0 1"/>
+                                </Border>
+
+                                <TextBlock Text="..." VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="Street"
+                                    IsReadOnly="True"
+                                    Width="*"/>
+                <DataGridTextColumn Header="Birthdate"
+                                    IsReadOnly="True"
+                                    Width="*" />
+                <DataGridTextColumn Header="Salary"
+                                    IsReadOnly="True"
+                                    Width="*" />
+
+                <!-- Operations -->
+                <DataGridTemplateColumn Header="Operations"
+                                        IsReadOnly="True"
+                                        Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Edit"
+                                        Height="10"
+                                        Width="10"/>
+                                <Button Content="Fire"
+                                        Height="10"
+                                        Width="10" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+            </DataGrid.Columns>
         </DataGrid>
         
         <!-- Buttons -->
