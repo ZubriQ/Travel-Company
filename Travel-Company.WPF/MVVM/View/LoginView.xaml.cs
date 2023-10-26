@@ -13,16 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Travel_Company.WPF.MVVM.View
+namespace Travel_Company.WPF.MVVM.View;
+
+/// <summary>
+/// Interaction logic for LoginView.xaml
+/// </summary>
+public partial class LoginView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for LoginView.xaml
-    /// </summary>
-    public partial class LoginView : UserControl
+    public LoginView()
     {
-        public LoginView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

@@ -15,7 +15,7 @@
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             Foreground="{StaticResource WhiteBrush}"
                             FontFamily="/Resources/Fonts/#Inter"
-                            FontSize="14"
+                            FontSize="16"
                             FontWeight="Normal"
                             VerticalContentAlignment="Center"
                             Focusable="False" />

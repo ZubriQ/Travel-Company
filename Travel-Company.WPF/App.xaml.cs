@@ -15,6 +15,7 @@ namespace Travel_Company.WPF
     public partial class App : Application
     {
         private static ServiceProvider _serviceProvider = null!;
+        public static Settings Settings { get; set; } = new();
 
         public App()
         {
@@ -29,7 +30,6 @@ namespace Travel_Company.WPF
                 serviceProvider => viewModelType => (ViewModel)serviceProvider.GetRequiredService(viewModelType));
             InitializeViewModels(services);
             InitializeDbServices(services);
-
             _serviceProvider = services.BuildServiceProvider();
         }
 
