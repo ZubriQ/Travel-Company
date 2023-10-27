@@ -10,6 +10,9 @@
     <UserControl.Resources>
         <Geometry x:Key="GeoMagnifiedSearch">
             M9.5,4C13.09,4 16,6.91 16,10.5C16,12.12 15.41,13.6 14.43,14.73L20.08,20.38L19.37,21.09L13.72,15.44C12.59,16.41 11.11,17 9.5,17C5.91,17 3,14.09 3,10.5C3,6.91 5.91,4 9.5,4M9.5,5C6.46,5 4,7.46 4,10.5C4,13.54 6.46,16 9.5,16C12.54,16 15,13.54 15,10.5C15,7.46 12.54,5 9.5,5Z
+        </Geometry> 
+        <Geometry x:Key="GeoGridEditButton">
+            M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z
         </Geometry>
     </UserControl.Resources>
     
@@ -45,7 +48,7 @@
                   VerticalAlignment="Center"
                   Margin="10" />
         </Grid>
-        
+
         <!-- Data -->
         <DataGrid Style="{DynamicResource DataGridStyle1}" 
                   CellStyle="{DynamicResource DataGridCellStyle1}" 
@@ -53,7 +56,9 @@
                   RowStyle="{DynamicResource DataGridRowStyle1}" 
                   x:Name="DataGridEmployees"
                   Grid.Row="2"
-                  Margin="5">
+                  Margin="5"
+                  d:ItemsSource="{d:SampleData ItemCount=5}"
+                  AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn CanUserResize="False" 
                                         Width="auto">
@@ -108,12 +113,18 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Edit"
-                                        Height="10"
-                                        Width="10"/>
-                                <Button Content="Fire"
-                                        Height="10"
-                                        Width="10" />
+                                <Button Height="12"
+                                        Width="12"
+                                        Style="{StaticResource GridEditButton}">
+                                    <Path Data="{StaticResource GeoGridEditButton}" 
+                                          Style="{StaticResource GridButtonIcon}"/>
+                                </Button>
+                                <Button Height="12"
+                                        Width="12"
+                                        Style="{StaticResource GridFireButton}">
+                                    <Path Data="{StaticResource GeoGridEditButton}"
+                                          Style="{StaticResource GridButtonIcon}" />
+                                </Button>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -128,7 +139,8 @@
             <Button Content="New employee" />
             <Button Content="Edit"/>
             <Button Content="Delete" />
-            <Button Content="Show fired" HorizontalAlignment="Left"/>
+            <Button Content="Show fired" 
+                    HorizontalAlignment="Left" />
         </DockPanel>
 
     </Grid>
