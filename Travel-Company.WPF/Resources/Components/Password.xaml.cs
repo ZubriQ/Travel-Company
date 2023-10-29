@@ -9,6 +9,8 @@ namespace Travel_Company.WPF.Resources.Components;
 /// </summary>
 public partial class Password : UserControl
 {
+    private readonly string _componentName = "Password";
+
     public string PasswordText
     {
         get => (string)GetValue(PasswordProperty);
@@ -24,8 +26,6 @@ public partial class Password : UserControl
             typeof(string),  
             typeof(Password),
             new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-
-    private readonly string _componentName = "Password";
 
     protected override void OnInitialized(EventArgs e)
     {
@@ -45,5 +45,4 @@ public partial class Password : UserControl
         }
         Placeholder.Text = _componentName;
     }
-
 }

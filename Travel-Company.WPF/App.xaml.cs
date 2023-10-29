@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows;
 using Travel_Company.WPF.Core;
+using Travel_Company.WPF.Data;
 using Travel_Company.WPF.Models;
 using Travel_Company.WPF.MVVM.View;
 using Travel_Company.WPF.MVVM.ViewModel;
@@ -60,6 +61,8 @@ namespace Travel_Company.WPF
         {
             var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();
+
+            DbInitializer.Seed(_serviceProvider);
 
             base.OnStartup(e);
         }
