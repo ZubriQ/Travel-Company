@@ -7,7 +7,7 @@ public class NavigationService : ObservableObject, INavigationService
 {
     private readonly Func<Type, ViewModel> _viewModelFactory;
 
-    private ViewModel _currentView;
+    private ViewModel _currentView = null!;
     public ViewModel CurrentView
     {
         get => _currentView;

@@ -5,9 +5,8 @@
         <Border x:Name="ButtonLogIn"
                 Background="{StaticResource Primary5Brush}"
                 BorderThickness="0"
-                CornerRadius="8"
-                Height="40"
-                Padding="8,0,8,0"
+                CornerRadius="6"
+                Height="36"
                 Cursor="Hand">
             <ContentControl Margin="{TemplateBinding Padding}"
                             Content="{TemplateBinding Content}"

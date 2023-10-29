@@ -20,8 +20,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition />
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!-- Page Header-->
         <TextBlock Grid.Row="0"
@@ -49,99 +48,70 @@
                   Margin="10" />
         </Grid>
 
-        <!-- Data -->
-        <DataGrid Style="{DynamicResource DataGridStyle1}" 
-                  CellStyle="{DynamicResource DataGridCellStyle1}" 
-                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
-                  RowStyle="{DynamicResource DataGridRowStyle1}" 
-                  x:Name="DataGridEmployees"
-                  Grid.Row="2"
-                  Margin="5"
-                  d:ItemsSource="{d:SampleData ItemCount=5}"
-                  AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridCheckBoxColumn CanUserResize="False" 
-                                        Width="auto">
-                    <DataGridCheckBoxColumn.HeaderTemplate>
-                        <DataTemplate>
-                            <CheckBox />
-                        </DataTemplate>
-                    </DataGridCheckBoxColumn.HeaderTemplate>
-                </DataGridCheckBoxColumn>
+        <ScrollViewer Grid.Row="2"
+                      Margin="5 10 0 15">
+            <StackPanel>
+                <!-- Data -->
+                <DataGrid Style="{DynamicResource DataGridStyle1}"
+                          CellStyle="{DynamicResource DataGridCellStyle1}"
+                          ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                          RowStyle="{DynamicResource DataGridRowStyle1}"
+                          x:Name="DataGridEmployees"
+                          Grid.Row="2"
+                          d:ItemsSource="{d:SampleData ItemCount=5}"
+                          ItemsSource="{Binding Employees}"
+                          AutoGenerateColumns="False" Margin="0 0 4 0">
+                    <DataGrid.Columns>
+                        <!-- Fields -->
+                        <DataGridTemplateColumn Header="Full name"
+                                                IsReadOnly="True"
+                                                Width="auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Width="8"
+                                                Height="8"
+                                                CornerRadius="4"
+                                                Margin="0 0 10 0"
+                                                Background="{StaticResource Primary4Brush}">
+                                        </Border>
 
-                <DataGridTextColumn Header="#"
-                                    IsReadOnly="True"
-                                    CanUserResize="False" />
- 
-                <!-- Fields -->
-                <DataGridTemplateColumn Header="Employee" IsReadOnly="True" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Border Width="25" 
-                                        Height="25" 
-                                        CornerRadius="50" 
-                                        Margin="0 0 10 0" 
-                                        Background="Red">
-                                    <TextBlock Text="..." 
-                                               VerticalAlignment="Center" 
-                                               HorizontalAlignment="Center"
-                                               Foreground="White"
-                                               Margin="0 0 0 1"/>
-                                </Border>
+                                        <TextBlock Text="{Binding Path=FullName}"
+                                                   VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
 
-                                <TextBlock Text="..." VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Street"
+                                            IsReadOnly="True"
+                                            Width="*"
+                                            Binding="{Binding Path=Street.Name}" />
+                        <DataGridTextColumn Header="Birthdate"
+                                            IsReadOnly="True"
+                                            Width="*"
+                                            Binding="{Binding Path=Birthdate, StringFormat=dd/MM/yyyy}" />
+                        <DataGridTextColumn Header="Salary"
+                                            IsReadOnly="True"
+                                            Width="*"
+                                            Binding="{Binding Path=Salary}" />
+                    </DataGrid.Columns>
+                </DataGrid>
 
-                <DataGridTextColumn Header="Street"
-                                    IsReadOnly="True"
-                                    Width="*"/>
-                <DataGridTextColumn Header="Birthdate"
-                                    IsReadOnly="True"
-                                    Width="*" />
-                <DataGridTextColumn Header="Salary"
-                                    IsReadOnly="True"
-                                    Width="*" />
-
-                <!-- Operations -->
-                <DataGridTemplateColumn Header="Operations"
-                                        IsReadOnly="True"
-                                        Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Height="12"
-                                        Width="12"
-                                        Style="{StaticResource GridEditButton}">
-                                    <Path Data="{StaticResource GeoGridEditButton}" 
-                                          Style="{StaticResource GridButtonIcon}"/>
-                                </Button>
-                                <Button Height="12"
-                                        Width="12"
-                                        Style="{StaticResource GridFireButton}">
-                                    <Path Data="{StaticResource GeoGridEditButton}"
-                                          Style="{StaticResource GridButtonIcon}" />
-                                </Button>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                
-            </DataGrid.Columns>
-        </DataGrid>
-        
-        <!-- Buttons -->
-        <DockPanel Grid.Row="3"
-                   Margin="5">
-            <Button Content="New employee" />
-            <Button Content="Edit"/>
-            <Button Content="Delete" />
-            <Button Content="Show fired" 
-                    HorizontalAlignment="Left" />
-        </DockPanel>
-
+                <!-- Buttons -->
+                <DockPanel Grid.Row="3"
+                           Margin="0 15 0 0">
+                    <Button x:Name="ButtonAdd"
+                            Content="Add" 
+                            Margin="0 0 10 0"/>
+                    <Button x:Name="ButtonEdit"
+                            Content="Edit"
+                            Margin="0 0 10 0" />
+                    <Button x:Name="ButtonFire"
+                            Content="Fire"
+                            HorizontalAlignment="Left" />
+                </DockPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

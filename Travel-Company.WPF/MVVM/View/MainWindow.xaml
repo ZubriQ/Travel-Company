@@ -7,8 +7,8 @@
         xmlns:viewmodel="clr-namespace:Travel_Company.WPF.MVVM.ViewModel"
         d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" 
-        Height="505" 
+        Title="MainWindow"
+        Height="450" 
         Width="800"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
@@ -16,7 +16,7 @@
         ResizeMode="CanResizeWithGrip"
         AllowsTransparency="True"
         TextElement.FontFamily="/Resources/Fonts/#Inter"
-        MinHeight="505"
+        MinHeight="150"
         MinWidth="660">
     
     <Window.Resources>
@@ -52,7 +52,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="36"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -113,7 +113,7 @@
                              Template="{StaticResource MainMenuRadioButton}"
                              Command="{Binding Path=NavigateToEmployeesCommand}"
                              IsChecked="False"
-                             Margin="2">
+                             Margin="1">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Path Fill="{StaticResource Primary4Brush}"
@@ -133,7 +133,7 @@
                              Template="{StaticResource MainMenuRadioButton}"
                              Command="{Binding Path=NavigateToClientsCommand}"
                              IsChecked="False"
-                             Margin="2">
+                             Margin="1">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Path Fill="{StaticResource Primary4Brush}"
@@ -152,7 +152,7 @@
                              ToolTip="Routes"
                              Template="{StaticResource MainMenuRadioButton}"
                              IsChecked="False"
-                             Margin="2">
+                             Margin="1">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Path Fill="{StaticResource Primary4Brush}"
@@ -171,7 +171,7 @@
                              ToolTip="Groups"
                              Template="{StaticResource MainMenuRadioButton}"
                              IsChecked="False"
-                             Margin="2">
+                             Margin="1">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Path Fill="{StaticResource Primary4Brush}"
@@ -190,7 +190,7 @@
                              ToolTip="Penalties"
                              Template="{StaticResource MainMenuRadioButton}"
                              IsChecked="False"
-                             Margin="2">
+                             Margin="1">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Path Fill="{StaticResource Primary4Brush}"
@@ -212,7 +212,7 @@
                              ToolTip="Countries"
                              Template="{StaticResource MainMenuRadioButton}"
                              IsChecked="False"
-                             Margin="2">
+                             Margin="1">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Path Fill="{StaticResource Primary4Brush}"
@@ -231,7 +231,7 @@
                              ToolTip="Streets"
                              Template="{StaticResource MainMenuRadioButton}"
                              IsChecked="False"
-                             Margin="2">
+                             Margin="1">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Path Fill="{StaticResource Primary4Brush}"
@@ -250,7 +250,7 @@
                              ToolTip="Hotels"
                              Template="{StaticResource MainMenuRadioButton}"
                              IsChecked="False"
-                             Margin="2">
+                             Margin="1">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Path Fill="{StaticResource Primary4Brush}"
@@ -269,7 +269,7 @@
                              ToolTip="Populated Places"
                              Template="{StaticResource MainMenuRadioButton}"
                              IsChecked="False"
-                             Margin="2">
+                             Margin="1">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Path Fill="{StaticResource Primary4Brush}"

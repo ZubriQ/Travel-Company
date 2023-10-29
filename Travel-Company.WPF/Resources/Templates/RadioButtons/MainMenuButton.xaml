@@ -11,7 +11,7 @@
 
             <ContentControl Content="{TemplateBinding Content}"
                             Focusable="False"
-                            Margin="8">
+                            Margin="6">
             </ContentControl>
         </Border>
 

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Travel_Company.WPF.Data.Base;
 
-interface IRepository<TEntity, TId>
+public interface IRepository<TEntity, TId>
 {
     List<TEntity> GetAll();
 
