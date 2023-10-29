@@ -23,8 +23,8 @@ public static class DbInitializer
         // Catalogs
         var countries = SeedCountries(db);
         var streets = SeedStreets(db);
-        SeedHotels(db);
-        SeedPopulatedPlaces(db, countries);
+        var hotels = SeedHotels(db);
+        var places = SeedPopulatedPlaces(db, countries);
 
         // Other entities
         var employees = SeedEmployees(db, streets);
@@ -82,11 +82,11 @@ public static class DbInitializer
         return streets;
     }
 
-    private static void SeedHotels(TravelCompanyDbContext db)
+    private static List<Hotel> SeedHotels(TravelCompanyDbContext db)
     {
         if (db.Hotels.Any())
         {
-            return;
+            return db.Hotels.ToList();
         }
 
         var hotels = new List<Hotel>
@@ -104,13 +104,14 @@ public static class DbInitializer
         };
         db.AddRange(hotels);
         db.SaveChanges();
+        return hotels;
     }
 
-    private static void SeedPopulatedPlaces(TravelCompanyDbContext db, List<Country> countries)
+    private static List<PopulatedPlace> SeedPopulatedPlaces(TravelCompanyDbContext db, List<Country> countries)
     {
         if (db.PopulatedPlaces.Any())
         {
-            return;
+            return db.PopulatedPlaces.ToList();
         }
 
         var populatedPlaces = new List<PopulatedPlace>
@@ -167,6 +168,7 @@ public static class DbInitializer
         };
         db.AddRange(populatedPlaces);
         db.SaveChanges();
+        return populatedPlaces;
     }
 
     #endregion
