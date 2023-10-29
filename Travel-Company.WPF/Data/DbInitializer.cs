@@ -505,4 +505,10 @@ public static class DbInitializer
     }
 
     #endregion
+
+    #region User Object UsersObjects
+
+    // TODO: Seed test user data
+
+    #endregion
 }
