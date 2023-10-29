@@ -21,7 +21,9 @@ namespace Travel_Company.WPF
     public partial class App : Application
     {
         private static ServiceProvider _serviceProvider = null!;
+
         public static Settings Settings { get; set; } = new();
+        public static EventAggregator EventAggregator { get; } = new EventAggregator();
 
         public App()
         {
@@ -51,6 +53,8 @@ namespace Travel_Company.WPF
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<LoginViewModel>();
             services.AddSingleton<EmployeesViewModel>();
+            services.AddSingleton<EmployeesCreateViewModel>();
+            services.AddSingleton<EmployeesUpdateViewModel>();
             services.AddSingleton<ClientsViewModel>();
         }
         

@@ -9,9 +9,17 @@
     <DataTemplate DataType="{x:Type TypeName=viewModels:LoginViewModel}">
         <views:LoginView />
     </DataTemplate>
+    
     <DataTemplate DataType="{x:Type TypeName=employeesVM:EmployeesViewModel}">
         <employeesView:EmployeesView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type TypeName=employeesVM:EmployeesUpdateViewModel}">
+        <employeesView:EmployeesUpdateView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type TypeName=employeesVM:EmployeesCreateViewModel}">
+        <employeesView:EmployeesCreateView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type TypeName=clientsVM:ClientsViewModel}">
         <clientsView:ClientsView />
     </DataTemplate>

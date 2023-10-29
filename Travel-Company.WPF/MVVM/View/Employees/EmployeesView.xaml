@@ -106,7 +106,8 @@
                             Margin="0 0 10 0"/>
                     <Button x:Name="ButtonEdit"
                             Content="Edit"
-                            Margin="0 0 10 0" />
+                            Margin="0 0 10 0"
+                            Command="{Binding NavigateToEmployeesUpdateCommand}"/>
                     <Button x:Name="ButtonFire"
                             Content="Fire"
                             HorizontalAlignment="Left" />
