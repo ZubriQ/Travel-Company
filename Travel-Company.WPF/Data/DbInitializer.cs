@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Travel_Company.WPF.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Travel_Company.WPF.Data;
 
@@ -19,11 +20,17 @@ public static class DbInitializer
 
     private static void SeedAllEntities(TravelCompanyDbContext db)
     {
+        // Catalogs
         var countries = SeedCountries(db);
-        SeedStreets(db);
+        var streets = SeedStreets(db);
         SeedHotels(db);
         SeedPopulatedPlaces(db, countries);
+
+        // Other entities
+        var employees = SeedEmployees(db, streets);
     }
+
+    #region Catalogs
 
     private static List<Country> SeedCountries(TravelCompanyDbContext db)
     {
@@ -50,11 +57,11 @@ public static class DbInitializer
         return countries;
     }
 
-    private static void SeedStreets(TravelCompanyDbContext db)
+    private static List<Street> SeedStreets(TravelCompanyDbContext db)
     {
         if (db.Streets.Any())
         {
-            return;
+            return db.Streets.ToList();
         }
 
         var streets = new List<Street>
@@ -72,6 +79,7 @@ public static class DbInitializer
         };
         db.AddRange(streets);
         db.SaveChanges();
+        return streets;
     }
 
     private static void SeedHotels(TravelCompanyDbContext db)
@@ -160,4 +168,80 @@ public static class DbInitializer
         db.AddRange(populatedPlaces);
         db.SaveChanges();
     }
+
+    #endregion
+
+    #region Other entities
+
+    private static List<TourGuide> SeedEmployees(TravelCompanyDbContext db, List<Street> streets)
+    {
+        if (db.TourGuides.Any())
+        {
+            return db.TourGuides.ToList();
+        }
+
+        var employees = new List<TourGuide>
+        {
+            new TourGuide()
+            {
+                FirstName = "Vladimir",
+                LastName = "Lushukov",
+                Patronymic = "Evgenievich",
+                StreetId = streets.FirstOrDefault(s => s.Name == "Abbey Road")!.Id,
+                Birthdate = AgeGenerator.GetRandomDate(),
+                Salary = 25000,
+                IsFired = false,
+                FiredDate = null,
+            },
+            new TourGuide()
+            {
+                FirstName = "John",
+                LastName = "Doe",
+                Patronymic = "Smith",
+                StreetId = streets.FirstOrDefault(s => s.Name == "Baker Street")!.Id,
+                Birthdate = AgeGenerator.GetRandomDate(),
+                Salary = 30000,
+                IsFired = false,
+                FiredDate = null,
+            },
+            new TourGuide()
+            {
+                FirstName = "Jane",
+                LastName = "Doe",
+                Patronymic = "Smith",
+                StreetId = streets.FirstOrDefault(s => s.Name == "Buckingham Palace Road")!.Id,
+                Birthdate = AgeGenerator.GetRandomDate(),
+                Salary = 35000,
+                IsFired = false,
+                FiredDate = null,
+            },
+            new TourGuide()
+            {
+                FirstName = "Bob",
+                LastName = "Builder",
+                Patronymic = "Smith",
+                StreetId = streets.FirstOrDefault(s => s.Name == "Carlisle Street")!.Id,
+                Birthdate = AgeGenerator.GetRandomDate(),
+                Salary = 20000,
+                IsFired = true,
+                FiredDate = DateTime.Now,
+            },
+            new TourGuide()
+            {
+                FirstName = "Alice",
+                LastName = "Wonderland",
+                Patronymic = "Smith",
+                StreetId = streets.FirstOrDefault(s => s.Name == "Cavendish Square")!.Id,
+                Birthdate = AgeGenerator.GetRandomDate(),
+                Salary = 40000,
+                IsFired = false,
+                FiredDate = null,
+            },
+        };
+        db.AddRange(employees);
+        db.SaveChanges();
+        return employees;
+    }
+
+    #endregion
 }
