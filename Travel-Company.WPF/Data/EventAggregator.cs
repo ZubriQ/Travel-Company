@@ -6,10 +6,12 @@ namespace Travel_Company.WPF.Data;
 public class EventAggregator
 {
     private readonly Dictionary<Type, List<Action<object>>> _eventSubscribers;
+    private readonly Dictionary<Type, object> _lastPublishedMessage;
 
     public EventAggregator()
     {
         _eventSubscribers = new Dictionary<Type, List<Action<object>>>();
+        _lastPublishedMessage = new Dictionary<Type, object>();
     }
 
     public void Publish<TMessage>(TMessage message)
@@ -24,6 +26,8 @@ public class EventAggregator
                 subscriber(message);
             }
         }
+
+        _lastPublishedMessage[messageType] = message;
     }
 
     public void Subscribe<TMessage>(Action<TMessage> action)
@@ -36,6 +40,10 @@ public class EventAggregator
         }
 
         _eventSubscribers[messageType].Add(m => action((TMessage)m));
+
+        if (_lastPublishedMessage.ContainsKey(messageType))
+        {
+            action((TMessage)_lastPublishedMessage[messageType]);
+        }
     }
 }
-
