@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Travel_Company.WPF.Models;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Travel_Company.WPF.Data;
 
@@ -28,6 +27,11 @@ public static class DbInitializer
 
         // Other entities
         var employees = SeedEmployees(db, streets);
+        var routes = SeedRoutes(db, countries);
+        var groups = SeedTouristGroups(db, employees, routes);
+        var tourists = SeedTourists(db, streets, groups);
+        SeedPenalties(db, tourists, employees);
+        SeedRoutesPopulatedPlaces(db, routes, places, hotels);
     }
 
     #region Catalogs
@@ -107,7 +111,8 @@ public static class DbInitializer
         return hotels;
     }
 
-    private static List<PopulatedPlace> SeedPopulatedPlaces(TravelCompanyDbContext db, List<Country> countries)
+    private static List<PopulatedPlace> SeedPopulatedPlaces(
+        TravelCompanyDbContext db, List<Country> countries)
     {
         if (db.PopulatedPlaces.Any())
         {
@@ -243,6 +248,260 @@ public static class DbInitializer
         db.AddRange(employees);
         db.SaveChanges();
         return employees;
+    }
+
+    private static List<Route> SeedRoutes(TravelCompanyDbContext db, List<Country> countries)
+    {
+        if (db.Routes.Any())
+        {
+            return db.Routes.ToList();
+        }
+
+        var routes = new List<Route>
+        {
+            new Route()
+            {
+                Name = "Great Ocean Road",
+                Cost = 500,
+                StartDatetime = DateTime.Now,
+                EndDatetime = DateTime.Now.AddMonths(1),
+                CountryId = countries.FirstOrDefault(c => c.Name == "United Kingdom")!.Id,
+            },
+            new Route()
+            {
+                Name = "Trollstigen",
+                Cost = 1000,
+                StartDatetime = DateTime.Now,
+                EndDatetime = DateTime.Now.AddMonths(2),
+                CountryId = countries.FirstOrDefault(c => c.Name == "Canada")!.Id,
+            },
+            new Route()
+            {
+                Name = "Golden Ring of Russia",
+                Cost = 1500,
+                StartDatetime = DateTime.Now.AddMonths(3),
+                EndDatetime = DateTime.Now.AddMonths(4),
+                CountryId = countries.FirstOrDefault(c => c.Name == "Russia")!.Id,
+            },
+            new Route()
+            {
+                Name = "The Garden Route",
+                Cost = 2000,
+                StartDatetime = DateTime.Now.AddMonths(4),
+                EndDatetime = DateTime.Now.AddMonths(5),
+                CountryId = countries.FirstOrDefault(c => c.Name == "South Africa")!.Id,
+            },
+            new Route()
+            {
+                Name = "The Atlantic Road",
+                Cost = 2000,
+                StartDatetime = DateTime.Now.AddMonths(7),
+                EndDatetime = DateTime.Now.AddMonths(9),
+                CountryId = countries.FirstOrDefault(c => c.Name == "Germany")!.Id,
+            },
+        };
+        db.AddRange(routes);
+        db.SaveChanges();
+        return routes;
+    }
+
+    private static List<TouristGroup> SeedTouristGroups(
+        TravelCompanyDbContext db, List<TourGuide> tourGuides, List<Route> routes)
+    {
+        if (db.TouristGroups.Any())
+        {
+            return db.TouristGroups.ToList();
+        }
+
+        var touristGroups = new List<TouristGroup>
+        {
+            new TouristGroup()
+            {
+                Name = DateTime.Now.Year + " Group 1",
+                TourGuideId = tourGuides.FirstOrDefault(g => g.FirstName == "Vladimir")!.Id,
+                RouteId = routes.FirstOrDefault(r => r.Name == "Golden Ring of Russia")!.Id,
+            },
+            new TouristGroup()
+            {
+                Name = DateTime.Now.Year + " Group 2",
+                TourGuideId = tourGuides.FirstOrDefault(g => g.FirstName == "John")!.Id,
+                RouteId = routes.FirstOrDefault(r => r.Name == "The Garden Route")!.Id,
+            },
+        };
+        db.AddRange(touristGroups);
+        db.SaveChanges();
+        return touristGroups;
+    }
+
+    private static List<Client> SeedTourists(
+        TravelCompanyDbContext db, List<Street> streets, List<TouristGroup> groups)
+    {
+        if (db.Clients.Any())
+        {
+            return db.Clients.ToList();
+        }
+
+        var clients = new List<Client>
+        {
+            new Client()
+            {
+                FirstName = "Evgenii",
+                LastName = "Krasnov",
+                Patronymic = "Antonovich",
+                StreetId = streets.FirstOrDefault(s => s.Name == "Abbey Road")!.Id,
+                Birthdate = AgeGenerator.GetRandomDate(),
+                TouristGroupId = groups.FirstOrDefault(g => g.Name == $"{DateTime.Now.Year} Group 1")!.Id,
+                PassportSeries = "03 11",
+                PassportNumber = "793853",
+                PassportIssueDate = DateTime.Now.AddYears(-18),
+                PassportIssuingAuthority = "Her Majesty’s Passport Office",
+                Photograph = null,
+            },
+            new Client()
+            {
+                FirstName = "Katelyn",
+                LastName = "Brock",
+                Patronymic = "Stevenson",
+                StreetId = streets.FirstOrDefault(s => s.Name == "Baker Street")!.Id,
+                Birthdate = AgeGenerator.GetRandomDate(),
+                TouristGroupId = groups.FirstOrDefault(g => g.Name == $"{DateTime.Now.Year} Group 1")!.Id,
+                PassportSeries = "03 12",
+                PassportNumber = "803954",
+                PassportIssueDate = DateTime.Now.AddYears(-19),
+                PassportIssuingAuthority = "Her Majesty’s Passport Office",
+                Photograph = null,
+            },
+            new Client()
+            {
+                FirstName = "Sami",
+                LastName = "Fleming",
+                Patronymic = "Li",
+                StreetId = streets.FirstOrDefault(s => s.Name == "Buckingham Palace Road")!.Id,
+                Birthdate = AgeGenerator.GetRandomDate(),
+                TouristGroupId = groups.FirstOrDefault(g => g.Name == $"{DateTime.Now.Year} Group 1")!.Id,
+                PassportSeries = "03 13",
+                PassportNumber = "804955",
+                PassportIssueDate = DateTime.Now.AddYears(-23),
+                PassportIssuingAuthority = "Ministry of Internal Affairs",
+                Photograph = null,
+            },
+            new Client()
+            {
+                FirstName = "Denis",
+                LastName = "Mcmillan",
+                Patronymic = "Reeves",
+                StreetId = streets.FirstOrDefault(s => s.Name == "Carlisle Street")!.Id,
+                Birthdate = AgeGenerator.GetRandomDate(),
+                TouristGroupId = groups.FirstOrDefault(g => g.Name == $"{DateTime.Now.Year} Group 2")!.Id,
+                PassportSeries = "03 14",
+                PassportNumber = "805956",
+                PassportIssueDate = DateTime.Now.AddYears(-21),
+                PassportIssuingAuthority = "Ministry of Internal Affairs",
+                Photograph = null,
+            },
+            new Client()
+            {
+                FirstName = "Laura",
+                LastName = "Barret",
+                Patronymic = "Banks",
+                StreetId = streets.FirstOrDefault(s => s.Name == "Cavendish Square")!.Id,
+                Birthdate = AgeGenerator.GetRandomDate(),
+                TouristGroupId = groups.FirstOrDefault(g => g.Name == $"{DateTime.Now.Year} Group 2")!.Id,
+                PassportSeries = "03 15",
+                PassportNumber = "806957",
+                PassportIssueDate = DateTime.Now.AddYears(-21),
+                PassportIssuingAuthority = "Ministry of Internal Affairs",
+                Photograph = null,
+            },
+        };
+        db.AddRange(clients);
+        db.SaveChanges();
+        return clients;
+    }
+
+    private static void SeedPenalties(
+        TravelCompanyDbContext db, List<Client> clients, List<TourGuide> employees)
+    {
+        if (db.Penalties.Any())
+        {
+            return;
+        }
+
+        var penalties = new List<Penalty>
+        {
+            new Penalty()
+            {
+                ClientId = clients.First().Id,
+                TourGuideId = employees.First().Id,
+                CompensationAmount = 5700,
+            },
+        };
+        db.AddRange(penalties);
+        db.SaveChanges();
+    }
+
+    private static void SeedRoutesPopulatedPlaces(
+        TravelCompanyDbContext db, List<Route> routes, List<PopulatedPlace> places, List<Hotel> hotels)
+    {
+        if (db.RoutesPopulatedPlaces.Any())
+        {
+            return;
+        }
+
+        var routesPopulatedPlaces = new List<RoutesPopulatedPlace>
+        {
+            new RoutesPopulatedPlace()
+            {
+                RouteId = routes.FirstOrDefault(r => r.Name == "Great Ocean Road")!.Id,
+                PopulatedPlaceId = places.FirstOrDefault(p => p.Name == "London")!.Id,
+                HotelId = hotels.FirstOrDefault(h => h.Name == "The Royal Crown Hotel")!.Id,
+                StayStartDatetime = DateTime.Now.AddDays(1),
+                StayEndDatetime = DateTime.Now.AddDays(15),
+                ExcursionProgram = "An 8.3-kilometer road.",
+            },
+            new RoutesPopulatedPlace()
+            {
+                RouteId = routes.FirstOrDefault(r => r.Name == "Great Ocean Road")!.Id,
+                PopulatedPlaceId = places.FirstOrDefault(p => p.Name == "Manchester")!.Id,
+                HotelId = hotels.FirstOrDefault(h => h.Name == "Windsor Manor")!.Id,
+                StayStartDatetime = DateTime.Now.AddDays(16),
+                StayEndDatetime = DateTime.Now.AddDays(27),
+                ExcursionProgram = "Beutiful plains.",
+            },
+            new RoutesPopulatedPlace()
+            {
+                RouteId = routes.FirstOrDefault(r => r.Name == "Trollstigen")!.Id,
+                PopulatedPlaceId = places.FirstOrDefault(p => p.Name == "Manchester")!.Id,
+                HotelId = hotels.FirstOrDefault(h => h.Name == "Windsor Manor")!.Id,
+                StayStartDatetime = DateTime.Now.AddDays(1),
+                StayEndDatetime = DateTime.Now.AddMonths(2),
+                ExcursionProgram = "A mountainous road.",
+            },
+            new RoutesPopulatedPlace()
+            {
+                RouteId = routes.FirstOrDefault(r => r.Name == "Golden Ring of Russia")!.Id,
+                PopulatedPlaceId = places.FirstOrDefault(p => p.Name == "Birmingham")!.Id,
+                HotelId = hotels.FirstOrDefault(h => h.Name == "Thamesview Hotel & Spa")!.Id,
+                StayStartDatetime = DateTime.Now.AddMonths(3),
+                StayEndDatetime = DateTime.Now.AddMonths(4),
+                ExcursionProgram = "The Golden Ring of Russia is the main and most popular" +
+                " tourist route around provincial cities of central European Russia.",
+            },
+            new RoutesPopulatedPlace()
+            {
+                RouteId = routes.FirstOrDefault(r => r.Name == "The Garden Route")!.Id,
+                PopulatedPlaceId = places.FirstOrDefault(p => p.Name == "Liverpool")!.Id,
+                HotelId = hotels.FirstOrDefault(h => h.Name == "Thamesview Hotel & Spa")!.Id,
+                StayStartDatetime = DateTime.Now.AddMonths(4),
+                StayEndDatetime = DateTime.Now.AddMonths(5),
+                ExcursionProgram = "Located on the south-western coast of South Africa, The Garden" +
+                " Route is a 300-kilometer-long scenic route between Mossel Bay and Storms River," +
+                " passing through a range of breathtaking landscapes such as lush forests, pristine" +
+                " beaches, towering mountains, and tranquil lagoons.",
+            },
+        };
+        db.AddRange(routesPopulatedPlaces);
+        db.SaveChanges();
     }
 
     #endregion
