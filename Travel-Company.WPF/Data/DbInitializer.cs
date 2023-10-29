@@ -19,9 +19,35 @@ public static class DbInitializer
 
     private static void SeedAllEntities(TravelCompanyDbContext db)
     {
+        var countries = SeedCountries(db);
         SeedStreets(db);
         SeedHotels(db);
-        SeedPopulatedPlaces(db);
+        SeedPopulatedPlaces(db, countries);
+    }
+
+    private static List<Country> SeedCountries(TravelCompanyDbContext db)
+    {
+        if (db.Countries.Any())
+        {
+            return db.Countries.ToList();
+        }
+
+        var countries = new List<Country>
+        {
+            new Country() { Name = "United Kingdom" },
+            new Country() { Name = "Canada" },
+            new Country() { Name = "Russia" },
+            new Country() { Name = "Germany" },
+            new Country() { Name = "France" },
+            new Country() { Name = "Japan" },
+            new Country() { Name = "Australia" },
+            new Country() { Name = "Brazil" },
+            new Country() { Name = "India" },
+            new Country() { Name = "South Africa" },
+        };
+        db.AddRange(countries);
+        db.SaveChanges();
+        return countries;
     }
 
     private static void SeedStreets(TravelCompanyDbContext db)
@@ -57,43 +83,80 @@ public static class DbInitializer
 
         var hotels = new List<Hotel>
         {
-            new Hotel() { Name = "The Royal Crown Hotel" },
-            new Hotel() { Name = "Windsor Manor" },
-            new Hotel() { Name = "Thamesview Hotel & Spa" },
-            new Hotel() { Name = "Highland Retreat" },
-            new Hotel() { Name = "Coastal Haven Inn" },
-            new Hotel() { Name = "Victoria Grand Hotel" },
-            new Hotel() { Name = "Greenwich Park Lodge" },
-            new Hotel() { Name = "The Lakeside Retreat" },
-            new Hotel() { Name = "Cambridge Riverside Inn" },
-            new Hotel() { Name = "Edinburgh Castle Hotel" },
+            new Hotel() { Name = "The Royal Crown Hotel", Class = "Luxury" },
+            new Hotel() { Name = "Windsor Manor", Class = "Budget" },
+            new Hotel() { Name = "Thamesview Hotel & Spa", Class = "Budget" },
+            new Hotel() { Name = "Highland Retreat", Class = "Budget" },
+            new Hotel() { Name = "Coastal Haven Inn", Class = "Resort" },
+            new Hotel() { Name = "Victoria Grand Hotel", Class = "Luxury" },
+            new Hotel() { Name = "Greenwich Park Lodge", Class = "Budget" },
+            new Hotel() { Name = "The Lakeside Retreat", Class = "Luxury" },
+            new Hotel() { Name = "Cambridge Riverside Inn", Class = "Resort" },
+            new Hotel() { Name = "Edinburgh Castle Hotel", Class = "Luxury" },
         };
-
         db.AddRange(hotels);
         db.SaveChanges();
     }
 
-    private static void SeedPopulatedPlaces(TravelCompanyDbContext db)
+    private static void SeedPopulatedPlaces(TravelCompanyDbContext db, List<Country> countries)
     {
-        if (db.Hotels.Any())
+        if (db.PopulatedPlaces.Any())
         {
             return;
         }
 
         var populatedPlaces = new List<PopulatedPlace>
         {
-            new PopulatedPlace() { Name = "London" },
-            new PopulatedPlace() { Name = "Manchester" },
-            new PopulatedPlace() { Name = "Birmingham" },
-            new PopulatedPlace() { Name = "Liverpool" },
-            new PopulatedPlace() { Name = "Glasgow" },
-            new PopulatedPlace() { Name = "Leeds" },
-            new PopulatedPlace() { Name = "Bristol" },
-            new PopulatedPlace() { Name = "Sheffield" },
-            new PopulatedPlace() { Name = "Edinburgh" },
-            new PopulatedPlace() { Name = "Cardiff" },
+            new PopulatedPlace()
+            {
+                Name = "London",
+                CountryId = countries.FirstOrDefault(c => c.Name == "United Kingdom")!.Id
+            },
+            new PopulatedPlace() 
+            { 
+                Name = "Manchester",
+                CountryId = countries.FirstOrDefault(c => c.Name == "Canada")!.Id 
+            },
+            new PopulatedPlace() 
+            { 
+                Name = "Birmingham",
+                CountryId = countries.FirstOrDefault(c => c.Name == "Russia")!.Id 
+            },
+            new PopulatedPlace() 
+            { 
+                Name = "Liverpool", 
+                CountryId = countries.FirstOrDefault(c => c.Name == "Germany")!.Id 
+            },
+            new PopulatedPlace() 
+            { 
+                Name = "Glasgow", 
+                CountryId = countries.FirstOrDefault(c => c.Name == "France")!.Id
+            },
+            new PopulatedPlace() 
+            { 
+                Name = "Leeds", 
+                CountryId = countries.FirstOrDefault(c => c.Name == "Japan")!.Id
+            },
+            new PopulatedPlace() 
+            { Name = "Bristol", 
+                CountryId = countries.FirstOrDefault(c => c.Name == "Australia")!.Id 
+            },
+            new PopulatedPlace() 
+            { 
+                Name = "Sheffield",
+                CountryId = countries.FirstOrDefault(c => c.Name == "Brazil")!.Id 
+            },
+            new PopulatedPlace() 
+            { 
+                Name = "Edinburgh", 
+                CountryId = countries.FirstOrDefault(c => c.Name == "India")!.Id
+            },
+            new PopulatedPlace() 
+            { 
+                Name = "Cardiff", 
+                CountryId = countries.FirstOrDefault(c => c.Name == "South Africa")!.Id
+            },
         };
-
         db.AddRange(populatedPlaces);
         db.SaveChanges();
     }
