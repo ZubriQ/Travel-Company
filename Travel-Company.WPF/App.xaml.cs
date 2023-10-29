@@ -4,6 +4,7 @@ using System;
 using System.Windows;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data;
+using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Models;
 using Travel_Company.WPF.MVVM.View;
 using Travel_Company.WPF.MVVM.ViewModel;
@@ -35,6 +36,7 @@ namespace Travel_Company.WPF
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<Func<Type, ViewModel>>(
                 serviceProvider => viewModelType => (ViewModel)serviceProvider.GetRequiredService(viewModelType));
+            services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
             InitializeViewModels(services);
             InitializeDbServices(services);
 

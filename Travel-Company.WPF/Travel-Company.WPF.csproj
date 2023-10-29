@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Resources\Images\" />
+    <Folder Include="Services\Employees\" />
   </ItemGroup>
 
   <ItemGroup>
