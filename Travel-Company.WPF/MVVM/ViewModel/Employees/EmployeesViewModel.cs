@@ -24,6 +24,28 @@ public sealed class EmployeesViewModel : Core.ViewModel
         }
     }
 
+    private List<TourGuide> _employees;
+    public List<TourGuide> Employees
+    {
+        get => _employees;
+        set
+        {
+            _employees = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private TourGuide _selectedTourGuide = null!;
+    public TourGuide SelectedTourGuide
+    {
+        get => _selectedTourGuide;
+        set
+        {
+            _selectedTourGuide = value;
+            OnPropertyChanged();
+        }
+    }
+
     public RelayCommand NavigateToEmployeesUpdateCommand { get; set; }
 
     public EmployeesViewModel(IRepository<TourGuide, int> repository, INavigationService navigationService)
@@ -39,25 +61,13 @@ public sealed class EmployeesViewModel : Core.ViewModel
         NavigateToEmployeesUpdateCommand = new RelayCommand(
             execute: _ =>
             {
-                var employee = new TourGuide() { FirstName = "SendTest" };
-                if (employee != null)
+                if (SelectedTourGuide is not null)
                 {
-                    var msg = new TourGuideMessage { TourGuide = employee };
-                    App.EventAggregator.Publish(msg);
+                    var message = new TourGuideMessage { TourGuide = SelectedTourGuide };
+                    App.EventAggregator.Publish(message);
+                    Navigation.NavigateTo<EmployeesUpdateViewModel>();
                 }
-                Navigation.NavigateTo<EmployeesUpdateViewModel>();
             },
             canExecute: _ => true);
-    }
-
-    private List<TourGuide> _employees;
-    public List<TourGuide> Employees
-    {
-        get => _employees;
-        set
-        {
-            _employees = value;
-            OnPropertyChanged();
-        }
     }
 }

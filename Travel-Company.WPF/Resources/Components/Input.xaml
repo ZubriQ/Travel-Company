@@ -13,6 +13,7 @@
                  FontSize="14"
                  MaxLength="16"
                  Text="{Binding Text, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:Input}}, UpdateSourceTrigger=PropertyChanged}"
+                 ToolTip="{Binding ComponentName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:Input}}}"
                  TextChanged="Input_TextChanged"/>
         <TextBlock x:Name="Placeholder"
                    VerticalAlignment="Center"

@@ -18,6 +18,8 @@
                 Value="36" />
         <Setter Property="Focusable"
                 Value="False" />
+        <Setter Property="Cursor"
+                Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">

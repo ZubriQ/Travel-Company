@@ -4,9 +4,56 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Travel_Company.WPF.MVVM.View.Employees"
+             xmlns:employees="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Employees"
+             d:DataContext="{d:DesignInstance Type=employees:EmployeesUpdateViewModel}"
+             xmlns:component="clr-namespace:Travel_Company.WPF.Resources.Components"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="{Binding Employee.FirstName}"></TextBlock>
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Edit Employee"
+                   Style="{StaticResource PageHeader}"/>
+
+        <ScrollViewer Padding="0 5 5 5"
+                      Margin="5 10 0 15"
+                      Grid.Row="1">
+            <StackPanel>
+                <component:Input ComponentName="First name"
+                                 Text="{Binding Employee.FirstName, Mode=TwoWay}" 
+                                 Margin="0 0 0 10" />
+                <component:Input ComponentName="Last name"
+                                 Text="{Binding Employee.LastName, Mode=TwoWay}"
+                                 Margin="0 0 0 10" />
+                <component:Input ComponentName="Patronymic"
+                                 Text="{Binding Employee.Patronymic, Mode=TwoWay}"
+                                 Margin="0 0 0 10" />
+                <ComboBox ItemsSource="{Binding Streets}"
+                          SelectedItem="{Binding Employee.Street}"
+                          DisplayMemberPath="Name"
+                          Margin="0 0 0 10" />
+                <DatePicker SelectedDate="{Binding Employee.Birthdate, Mode=TwoWay}"
+                            DisplayDateStart="1/1/1900"
+                            DisplayDateEnd="{x:Static sys:DateTime.Today}"
+                            Margin="0 0 0 10" 
+                            VerticalContentAlignment="Center"/>
+                <component:Input ComponentName="Salary"
+                                 Text="{Binding Employee.Salary, Mode=TwoWay}"
+                                 Margin="0 0 0 10" />
+
+                <DockPanel>
+                    <Button x:Name="ButtonSaveChanges"
+                            Content="Save"
+                            Margin="0 0 15 0" />
+                    <Button x:Name="ButtonCancel"
+                            Content="Cancel"
+                            Margin="0 0 15 0"
+                            HorizontalAlignment="Left" />
+                </DockPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

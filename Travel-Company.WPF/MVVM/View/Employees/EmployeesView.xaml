@@ -60,7 +60,9 @@
                           Grid.Row="2"
                           d:ItemsSource="{d:SampleData ItemCount=5}"
                           ItemsSource="{Binding Employees}"
-                          AutoGenerateColumns="False" Margin="0 0 4 0">
+                          AutoGenerateColumns="False" 
+                          Margin="0 0 4 0"
+                          SelectedItem="{Binding SelectedTourGuide}">
                     <DataGrid.Columns>
                         <!-- Fields -->
                         <DataGridTemplateColumn Header="Full name"
@@ -103,10 +105,10 @@
                            Margin="0 15 0 0">
                     <Button x:Name="ButtonAdd"
                             Content="Add" 
-                            Margin="0 0 10 0"/>
+                            Margin="0 0 15 0"/>
                     <Button x:Name="ButtonEdit"
                             Content="Edit"
-                            Margin="0 0 10 0"
+                            Margin="0 0 15 0"
                             Command="{Binding NavigateToEmployeesUpdateCommand}"/>
                     <Button x:Name="ButtonFire"
                             Content="Fire"
