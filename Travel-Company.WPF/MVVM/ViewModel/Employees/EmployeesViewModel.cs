@@ -47,6 +47,38 @@ public sealed class EmployeesViewModel : Core.ViewModel
         }
     }
 
+    private string _searchText = string.Empty;
+    public string SearchText
+    {
+        get => _searchText;
+        set
+        {
+            _searchText = value;
+            OnPropertyChanged();
+            FilterEmployees();
+        }
+    }
+
+    private void FilterEmployees()
+    {
+        if (string.IsNullOrWhiteSpace(SearchText))
+        {
+            Employees = _employeesRepository
+                .GetQuaryable()
+                .Include(e => e.Street)
+                .ToList();
+        }
+        else
+        {
+            Employees = _employeesRepository
+                .GetQuaryable()
+                .Include(e => e.Street)
+                .AsEnumerable()
+                .Where(e => e.FullName.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+    }
+
     public RelayCommand NavigateToEmployeesUpdateCommand { get; set; }
     public RelayCommand NavigateToEmployeesInsertCommand { get; set; }
     public RelayCommand FireSelectedEmployeeCommand { get; set; }
