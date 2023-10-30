@@ -8,6 +8,7 @@ using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Models;
 using Travel_Company.WPF.MVVM.View;
 using Travel_Company.WPF.MVVM.ViewModel;
+using Travel_Company.WPF.MVVM.ViewModel.Catalogs;
 using Travel_Company.WPF.MVVM.ViewModel.Clients;
 using Travel_Company.WPF.MVVM.ViewModel.Employees;
 using Travel_Company.WPF.Services.Authorization;
@@ -23,7 +24,7 @@ namespace Travel_Company.WPF
         private static ServiceProvider _serviceProvider = null!;
 
         public static Settings Settings { get; set; } = new();
-        public static EventAggregator EventAggregator { get; } = new EventAggregator();
+        public static EventAggregator EventAggregator { get; } = new();
 
         public App()
         {
@@ -51,11 +52,16 @@ namespace Travel_Company.WPF
         private static void InitializeViewModels(IServiceCollection services)
         {
             services.AddSingleton<MainViewModel>();
+            // Pages
             services.AddSingleton<LoginViewModel>();
             services.AddSingleton<EmployeesViewModel>();
             services.AddSingleton<EmployeesCreateViewModel>();
             services.AddSingleton<EmployeesUpdateViewModel>();
             services.AddSingleton<ClientsViewModel>();
+            // Catalogs
+            services.AddTransient<CatalogsViewModel>();
+            services.AddTransient<CatalogsCreateViewModel>();
+            services.AddTransient<CatalogsUpdateViewModel>();
         }
         
         private static void InitializeDbServices(IServiceCollection services)

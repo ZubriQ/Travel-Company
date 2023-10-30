@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using Travel_Company.WPF.Core;
+using Travel_Company.WPF.Data.Dto;
+using Travel_Company.WPF.MVVM.ViewModel.Catalogs;
 using Travel_Company.WPF.MVVM.ViewModel.Clients;
 using Travel_Company.WPF.MVVM.ViewModel.Employees;
 using Travel_Company.WPF.Services.Navigation;
@@ -33,14 +35,27 @@ public sealed class MainViewModel : Core.ViewModel
         }
     }
 
+    // Pages
     public RelayCommand NavigateToEmployeesCommand { get; set; }
     public RelayCommand NavigateToClientsCommand { get; set; }
+
+    // Catalogs
+    public RelayCommand NavigateToCountriesCommand { get; set; }
+    public RelayCommand NavigateToStreetsCommand { get; set; }
+    public RelayCommand NavigateToHotelsCommand { get; set; }
+    public RelayCommand NavigateToPopulatedPlacesCommand { get; set; }
 
     public MainViewModel(INavigationService service)
     {
         Navigation = service;
         //MainMenuVisibility = Visibility.Collapsed;
 
+        InitializePagesCommands();
+        InitializeCatalogsCommands();
+    }
+
+    private void InitializePagesCommands()
+    {
         NavigateToEmployeesCommand = new RelayCommand(
             execute: _ => Navigation.NavigateTo<EmployeesViewModel>(),
             canExecute: _ => true);
@@ -48,4 +63,25 @@ public sealed class MainViewModel : Core.ViewModel
             execute: _ => Navigation.NavigateTo<ClientsViewModel>(),
             canExecute: _ => true);
     }
+
+    private void InitializeCatalogsCommands()
+    {
+        NavigateToCountriesCommand = CreateNavigationCommand(CatalogType.Country);
+        NavigateToStreetsCommand = CreateNavigationCommand(CatalogType.Street);
+        NavigateToHotelsCommand = CreateNavigationCommand(CatalogType.Hotel);
+        NavigateToPopulatedPlacesCommand = CreateNavigationCommand(CatalogType.Place);
+    }
+
+    private RelayCommand CreateNavigationCommand(CatalogType catalogType)
+    {
+        return new RelayCommand(
+            execute: _ =>
+            {
+                var message = new CatalogTypeMessage { CatalogType = catalogType };
+                App.EventAggregator.Publish(message);
+                Navigation.NavigateTo<CatalogsViewModel>();
+            },
+            canExecute: _ => true);
+    }
+
 }

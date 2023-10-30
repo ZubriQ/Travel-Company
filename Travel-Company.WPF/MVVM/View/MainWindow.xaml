@@ -212,7 +212,8 @@
                              ToolTip="Countries"
                              Template="{StaticResource MainMenuRadioButton}"
                              IsChecked="False"
-                             Margin="1">
+                             Margin="1"
+                             Command="{Binding NavigateToCountriesCommand}">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Path Fill="{StaticResource Primary4Brush}"
@@ -231,7 +232,8 @@
                              ToolTip="Streets"
                              Template="{StaticResource MainMenuRadioButton}"
                              IsChecked="False"
-                             Margin="1">
+                             Margin="1"
+                             Command="{Binding NavigateToStreetsCommand}">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Path Fill="{StaticResource Primary4Brush}"
@@ -250,7 +252,8 @@
                              ToolTip="Hotels"
                              Template="{StaticResource MainMenuRadioButton}"
                              IsChecked="False"
-                             Margin="1">
+                             Margin="1"
+                             Command="{Binding NavigateToHotelsCommand}">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Path Fill="{StaticResource Primary4Brush}"
@@ -269,7 +272,8 @@
                              ToolTip="Populated Places"
                              Template="{StaticResource MainMenuRadioButton}"
                              IsChecked="False"
-                             Margin="1">
+                             Margin="1"
+                             Command="{Binding NavigateToPopulatedPlacesCommand}">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Path Fill="{StaticResource Primary4Brush}"

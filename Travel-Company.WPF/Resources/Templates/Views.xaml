@@ -3,24 +3,36 @@
                     xmlns:views="clr-namespace:Travel_Company.WPF.MVVM.View"
                     xmlns:employeesView="clr-namespace:Travel_Company.WPF.MVVM.View.Employees"
                     xmlns:clientsView="clr-namespace:Travel_Company.WPF.MVVM.View.Clients"
+                    xmlns:catalogsView="clr-namespace:Travel_Company.WPF.MVVM.View.Catalogs"
                     xmlns:viewModels="clr-namespace:Travel_Company.WPF.MVVM.ViewModel"
-                    xmlns:employeesVM="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Employees"
-                    xmlns:clientsVM="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Clients">
+                    xmlns:employeesVm="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Employees"
+                    xmlns:clientsVm="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Clients"
+                    xmlns:catalogsVm="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Catalogs">
     <DataTemplate DataType="{x:Type TypeName=viewModels:LoginViewModel}">
         <views:LoginView />
     </DataTemplate>
     
-    <DataTemplate DataType="{x:Type TypeName=employeesVM:EmployeesViewModel}">
+    <DataTemplate DataType="{x:Type TypeName=employeesVm:EmployeesViewModel}">
         <employeesView:EmployeesView />
     </DataTemplate>
-    <DataTemplate DataType="{x:Type TypeName=employeesVM:EmployeesUpdateViewModel}">
+    <DataTemplate DataType="{x:Type TypeName=employeesVm:EmployeesUpdateViewModel}">
         <employeesView:EmployeesUpdateView />
     </DataTemplate>
-    <DataTemplate DataType="{x:Type TypeName=employeesVM:EmployeesCreateViewModel}">
+    <DataTemplate DataType="{x:Type TypeName=employeesVm:EmployeesCreateViewModel}">
         <employeesView:EmployeesCreateView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type TypeName=clientsVM:ClientsViewModel}">
+    <DataTemplate DataType="{x:Type TypeName=clientsVm:ClientsViewModel}">
         <clientsView:ClientsView />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type TypeName=catalogsVm:CatalogsViewModel}">
+        <catalogsView:CatalogsView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type TypeName=catalogsVm:CatalogsCreateViewModel}">
+        <catalogsView:CatalogsCreateView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type TypeName=catalogsVm:CatalogsUpdateViewModel}">
+        <catalogsView:CatalogsUpdateView />
     </DataTemplate>
 </ResourceDictionary>
