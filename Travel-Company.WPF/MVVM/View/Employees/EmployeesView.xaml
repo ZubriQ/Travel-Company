@@ -103,15 +103,13 @@
                 <!-- Buttons -->
                 <DockPanel Grid.Row="3"
                            Margin="0 15 0 0">
-                    <Button x:Name="ButtonAdd"
-                            Content="Add" 
-                            Margin="0 0 15 0"/>
-                    <Button x:Name="ButtonEdit"
-                            Content="Edit"
+                    <Button Content="Add" 
+                            Margin="0 0 15 0"
+                            Command="{Binding NavigateToEmployeesInsertCommand}"/>
+                    <Button Content="Edit"
                             Margin="0 0 15 0"
                             Command="{Binding NavigateToEmployeesUpdateCommand}"/>
-                    <Button x:Name="ButtonFire"
-                            Content="Fire"
+                    <Button Content="Fire"
                             HorizontalAlignment="Left" />
                 </DockPanel>
             </StackPanel>

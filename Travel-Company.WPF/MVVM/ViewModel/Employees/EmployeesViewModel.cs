@@ -47,6 +47,7 @@ public sealed class EmployeesViewModel : Core.ViewModel
     }
 
     public RelayCommand NavigateToEmployeesUpdateCommand { get; set; }
+    public RelayCommand NavigateToEmployeesInsertCommand { get; set; }
 
     public EmployeesViewModel(IRepository<TourGuide, int> repository, INavigationService navigationService)
     {
@@ -68,6 +69,10 @@ public sealed class EmployeesViewModel : Core.ViewModel
                     Navigation.NavigateTo<EmployeesUpdateViewModel>();
                 }
             },
+            canExecute: _ => true);
+
+        NavigateToEmployeesInsertCommand = new RelayCommand(
+            execute: _ => Navigation.NavigateTo<EmployeesCreateViewModel>(),
             canExecute: _ => true);
     }
 }

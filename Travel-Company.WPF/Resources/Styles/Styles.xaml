@@ -48,6 +48,7 @@
                             BorderBrush="Transparent"
                             BorderThickness="0"
                             CornerRadius="6"
+                            Padding="4 0"
                             Height="36">
                         <ScrollViewer x:Name="PART_ContentHost"
                                       Margin="6" />
@@ -60,6 +61,8 @@
     <Style TargetType="{x:Type PasswordBox}">
         <Setter Property="Foreground"
                 Value="{StaticResource Grey1Brush}" />
+        <Setter Property="CaretBrush"
+                Value="{StaticResource Primary4Brush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type PasswordBox}">
@@ -67,6 +70,7 @@
                             BorderBrush="Transparent"
                             BorderThickness="1"
                             CornerRadius="6"
+                            Padding="3 0"
                             Height="36">
                         <ScrollViewer x:Name="PART_ContentHost"
                                       Margin="6" />
