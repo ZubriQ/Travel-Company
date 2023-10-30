@@ -51,6 +51,7 @@
         </Grid>
 
         <ScrollViewer Grid.Row="2"
+                      Padding="0 0 5 5"
                       Margin="5 10 0 15">
             <StackPanel>
                 <!-- Data -->

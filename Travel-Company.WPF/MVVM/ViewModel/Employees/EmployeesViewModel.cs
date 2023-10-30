@@ -80,9 +80,12 @@ public sealed class EmployeesViewModel : Core.ViewModel
         FireSelectedEmployeeCommand = new RelayCommand(
             execute: _ =>
             {
-                SelectedTourGuide.IsFired = true;
-                SelectedTourGuide.FiredDate = DateTime.Now;
-                _employeesRepository.SaveChanges();
+                if (SelectedTourGuide is not null)
+                {
+                    SelectedTourGuide.IsFired = true;
+                    SelectedTourGuide.FiredDate = DateTime.Now;
+                    _employeesRepository.SaveChanges();
+                }
             },
             canExecute: _ => true);
     }
