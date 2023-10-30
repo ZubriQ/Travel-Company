@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Travel_Company.WPF.Core;
@@ -48,6 +49,7 @@ public sealed class EmployeesViewModel : Core.ViewModel
 
     public RelayCommand NavigateToEmployeesUpdateCommand { get; set; }
     public RelayCommand NavigateToEmployeesInsertCommand { get; set; }
+    public RelayCommand FireSelectedEmployeeCommand { get; set; }
 
     public EmployeesViewModel(IRepository<TourGuide, int> repository, INavigationService navigationService)
     {
@@ -73,6 +75,15 @@ public sealed class EmployeesViewModel : Core.ViewModel
 
         NavigateToEmployeesInsertCommand = new RelayCommand(
             execute: _ => Navigation.NavigateTo<EmployeesCreateViewModel>(),
+            canExecute: _ => true);
+
+        FireSelectedEmployeeCommand = new RelayCommand(
+            execute: _ =>
+            {
+                SelectedTourGuide.IsFired = true;
+                SelectedTourGuide.FiredDate = DateTime.Now;
+                _employeesRepository.SaveChanges();
+            },
             canExecute: _ => true);
     }
 }
