@@ -74,7 +74,7 @@ public sealed class ClientsViewModel : Core.ViewModel
         }
     }
 
-    private string _toggleButtonContent = "Show Passport Data";
+    private string _toggleButtonContent = "Show Passports";
     public string ToggleButtonContent
     {
         get => _toggleButtonContent;
@@ -143,8 +143,8 @@ public sealed class ClientsViewModel : Core.ViewModel
             ? Visibility.Visible
             : Visibility.Hidden;
         ToggleButtonContent = IsPassportDataVisible is Visibility.Hidden
-            ? "Show Passport Data" 
-            : "Hide Passport Data";
+            ? "Show Passports"
+            : "Hide Passports";
     }
 
     private void HandleDeleting()

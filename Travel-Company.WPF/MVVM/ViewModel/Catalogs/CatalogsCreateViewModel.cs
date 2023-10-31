@@ -1,4 +1,5 @@
-﻿using Travel_Company.WPF.Core;
+﻿using System.Windows;
+using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Core.Enums;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Data.Dto;
@@ -47,6 +48,17 @@ public class CatalogsCreateViewModel : Core.ViewModel
         }
     }
 
+    private Visibility _isClassElementVisible = Visibility.Collapsed;
+    public Visibility IsClassElementVisible
+    {
+        get => _isClassElementVisible;
+        private set
+        {
+            _isClassElementVisible = value;
+            OnPropertyChanged();
+        }
+    }
+
     public RelayCommand CreateCommand { get; set; }
     public RelayCommand CancelCommand { get; set; }
 
@@ -91,6 +103,11 @@ public class CatalogsCreateViewModel : Core.ViewModel
             case CatalogType.Place:
                 CatalogItem = new PopulatedPlace();
                 break;
+        }
+
+        if (CatalogType is CatalogType.Hotel)
+        {
+            IsClassElementVisible = Visibility.Visible;
         }
     }
 

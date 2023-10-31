@@ -63,7 +63,6 @@
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
                           RowStyle="{DynamicResource DataGridRowStyle1}"
                           x:Name="DataGridCatalog"
-                          Grid.Row="2"
                           d:ItemsSource="{d:SampleData ItemCount=5}"
                           ItemsSource="{Binding CatalogItems}"
                           Margin="0 8 4 0"
