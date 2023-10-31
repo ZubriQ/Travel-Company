@@ -1,4 +1,5 @@
-﻿using Travel_Company.WPF.Core;
+﻿using System.Windows;
+using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Data.Dto;
 using Travel_Company.WPF.Models;
@@ -46,6 +47,17 @@ public class CatalogsUpdateViewModel : Core.ViewModel
         }
     }
 
+    private Visibility _isClassElementVisible = Visibility.Collapsed;
+    public Visibility IsClassElementVisible
+    {
+        get => _isClassElementVisible;
+        private set
+        {
+            _isClassElementVisible = value;
+            OnPropertyChanged();
+        }
+    }
+
     public RelayCommand UpdateCommand { get; set; }
     public RelayCommand CancelCommand { get; set; }
 
@@ -67,7 +79,6 @@ public class CatalogsUpdateViewModel : Core.ViewModel
         UpdateCommand = new RelayCommand(
             execute: _ => HandleUpdate(),
             canExecute: _ => true);
-
         CancelCommand = new RelayCommand(
             execute: _ => Navigation.NavigateTo<CatalogsViewModel>(),
             canExecute: _ => true);
@@ -77,6 +88,11 @@ public class CatalogsUpdateViewModel : Core.ViewModel
     {
         CatalogType = message.CatalogType;
         CatalogItem = message.CatalogItem;
+
+        if (CatalogType is CatalogType.Hotel)
+        {
+            IsClassElementVisible = Visibility.Visible;
+        }
     }
 
     private void HandleUpdate()
