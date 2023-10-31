@@ -6,6 +6,7 @@ using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Data.Dto;
 using Travel_Company.WPF.Models;
+using Travel_Company.WPF.MVVM.ViewModel.Employees;
 using Travel_Company.WPF.Services.Navigation;
 
 namespace Travel_Company.WPF.MVVM.ViewModel.Catalogs;
@@ -50,7 +51,7 @@ public class CatalogsViewModel : Core.ViewModel
         }
     }
 
-    private ICatalogItem _selectedCatalogItem = null!;
+    private ICatalogItem _selectedCatalogItem;
     public ICatalogItem SelectedCatalogItem
     {
         get => _selectedCatalogItem;
@@ -85,6 +86,40 @@ public class CatalogsViewModel : Core.ViewModel
         }
     }
 
+    public RelayCommand NavigateToUpdatingCommand { get; set; }
+    public RelayCommand NavigateToInsertingCommand { get; set; }
+    public RelayCommand DeleteSelectedItemCommand { get; set; }
+
+    public CatalogsViewModel(
+        IRepository<Country, int> countriesRepository,
+        IRepository<Street, long> streetsRepository,
+        IRepository<Hotel, long> hotelsRepository,
+        IRepository<PopulatedPlace, long> placesRepository,
+        INavigationService navigationService)
+    {
+        _countriesRepository = countriesRepository;
+        _streetsRepository = streetsRepository;
+        _hotelsRepository = hotelsRepository;
+        _placesRepository = placesRepository;
+        _navigation = navigationService;
+
+        App.EventAggregator.Subscribe<CatalogTypeMessage>(HandleCatalogTypeMessage);
+        GetCatalog();
+        SetCatalog();
+
+        NavigateToUpdatingCommand = new RelayCommand(
+            execute: _ => HandleUpdatingCatalogItem(),
+            canExecute: _ => true);
+
+        NavigateToInsertingCommand = new RelayCommand(
+            execute: _ => Navigation.NavigateTo<CatalogsCreateViewModel>(),
+            canExecute: _ => true);
+
+        DeleteSelectedItemCommand = new RelayCommand(
+            execute: _ => HandleDeletingCatalogItem(),
+            canExecute: _ => true);
+    }
+
     private void FilterCatalog()
     {
         if (string.IsNullOrWhiteSpace(SearchText))
@@ -99,17 +134,37 @@ public class CatalogsViewModel : Core.ViewModel
         }
     }
 
-    public CatalogsViewModel(
-        IRepository<Country, int> countriesRepository,
-        IRepository<Street, long> streetsRepository,
-        IRepository<Hotel, long> hotelsRepository,
-        IRepository<PopulatedPlace, long> placesRepository)
+    private void HandleUpdatingCatalogItem()
     {
-        _countriesRepository = countriesRepository;
-        _streetsRepository = streetsRepository;
-        _hotelsRepository = hotelsRepository;
-        _placesRepository = placesRepository;
-        App.EventAggregator.Subscribe<CatalogTypeMessage>(HandleCatalogTypeMessage);
+        if (SelectedCatalogItem is not null)
+        {
+            var message = new CatalogItemMessage { CatalogItem = SelectedCatalogItem };
+            App.EventAggregator.Publish(message);
+            Navigation.NavigateTo<CatalogsUpdateViewModel>();
+        }
+    }
+
+    private void HandleDeletingCatalogItem()
+    {
+        if (SelectedCatalogItem is not null)
+        {
+            switch (_catalogType)
+            {
+                case CatalogType.Country:
+                    _countriesRepository.Delete((SelectedCatalogItem as Country)!);
+                    break;
+                case CatalogType.Street:
+                    _streetsRepository.Delete((SelectedCatalogItem as Street)!);
+                    break;
+                case CatalogType.Hotel:
+                    _hotelsRepository.Delete((SelectedCatalogItem as Hotel)!);
+                    break;
+                case CatalogType.Place:
+                    _placesRepository.Delete((SelectedCatalogItem as PopulatedPlace)!);
+                    break;
+            }
+        }
+        _countriesRepository.SaveChanges();
         GetCatalog();
         SetCatalog();
     }
@@ -135,8 +190,6 @@ public class CatalogsViewModel : Core.ViewModel
                 break;
             case CatalogType.Place:
                 _fetchedCatalogList = new(_placesRepository.GetAll());
-                break;
-            default:
                 break;
         }
     }
