@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Travel_Company.WPF.Models;
 
-public partial class PopulatedPlace
+public partial class PopulatedPlace : ICatalogItem
 {
     public long Id { get; set; }
 

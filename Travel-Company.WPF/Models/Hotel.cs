@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Travel_Company.WPF.Models;
 
-public partial class Hotel
+public partial class Hotel : ICatalogItem
 {
     public int Id { get; set; }
 

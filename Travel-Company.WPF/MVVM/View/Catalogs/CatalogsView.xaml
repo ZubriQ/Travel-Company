@@ -1,12 +1,20 @@
 ﻿<UserControl x:Class="Travel_Company.WPF.MVVM.View.Catalogs.CatalogsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Travel_Company.WPF.MVVM.View.Catalogs"
              xmlns:component="clr-namespace:Travel_Company.WPF.Resources.Components"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:catalogs="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Catalogs"
+             d:DataContext="{d:DesignInstance Type=catalogs:CatalogsViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <DiscreteObjectKeyFrame x:Key="IsClassColumnVisibleKeyFrame"
+                                Value="{Binding IsClassColumnVisible}" />
+    </UserControl.Resources>
+
     <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -24,6 +32,7 @@
             <component:SearchBar />
         </Grid>
 
+        <!-- Content -->
         <ScrollViewer Grid.Row="2"
                       Padding="0 0 5 5"
                       Margin="5 10 0 15">
@@ -36,8 +45,7 @@
                           x:Name="DataGridCatalog"
                           Grid.Row="2"
                           d:ItemsSource="{d:SampleData ItemCount=5}"
-                          ItemsSource="{Binding CatalogList}"
-                          AutoGenerateColumns="False"
+                          ItemsSource="{Binding CatalogItems}"
                           Margin="0 0 4 0"
                           SelectedItem="{Binding SelectedCatalogItem}">
                     <DataGrid.Columns>
@@ -59,6 +67,13 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
+
+                        <DataGridTextColumn x:Name="DataGridClassColumn"
+                                            Header="Class"
+                                            IsReadOnly="True"
+                                            Width="*"
+                                            Binding="{Binding Path=Class}"
+                                            Visibility="{Binding Value, Source={StaticResource IsClassColumnVisibleKeyFrame}}" />
                     </DataGrid.Columns>
                 </DataGrid>
 

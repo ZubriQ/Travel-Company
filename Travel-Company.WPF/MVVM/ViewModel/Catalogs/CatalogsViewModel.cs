@@ -1,4 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Data.Dto;
@@ -25,8 +28,19 @@ public class CatalogsViewModel : Core.ViewModel
         }
     }
 
+    private Visibility _isClassColumnVisible = Visibility.Collapsed;
+    public Visibility IsClassColumnVisible
+    {
+        get => _isClassColumnVisible;
+        private set
+        {
+            _isClassColumnVisible = value;
+            OnPropertyChanged();
+        }
+    }
+
     private CatalogType _catalogType = CatalogType.None;
-    public CatalogType Employee
+    public CatalogType CatalogType
     {
         get => _catalogType;
         set
@@ -36,7 +50,54 @@ public class CatalogsViewModel : Core.ViewModel
         }
     }
 
-    public ObservableCollection<object> CatalogList { get; set; } = null!;
+    private ICatalogItem _selectedCatalogItem = null!;
+    public ICatalogItem SelectedCatalogItem
+    {
+        get => _selectedCatalogItem;
+        set
+        {
+            _selectedCatalogItem = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private string _searchText = string.Empty;
+    public string SearchText
+    {
+        get => _searchText;
+        set
+        {
+            _searchText = value;
+            OnPropertyChanged();
+            FilterCatalog();
+        }
+    }
+
+    private List<ICatalogItem> _fetchedCatalogList = null!;
+    private List<ICatalogItem> _catalogItems = null!;
+    public List<ICatalogItem> CatalogItems
+    {
+        get => _catalogItems;
+        set
+        {
+            _catalogItems = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private void FilterCatalog()
+    {
+        if (string.IsNullOrWhiteSpace(SearchText))
+        {
+            CatalogItems = _fetchedCatalogList;
+        }
+        else
+        {
+            CatalogItems = _fetchedCatalogList
+                .Where(item => item.Name.Contains(SearchText, StringComparison.CurrentCultureIgnoreCase))
+                .ToList();
+        }
+    }
 
     public CatalogsViewModel(
         IRepository<Country, int> countriesRepository,
@@ -49,7 +110,8 @@ public class CatalogsViewModel : Core.ViewModel
         _hotelsRepository = hotelsRepository;
         _placesRepository = placesRepository;
         App.EventAggregator.Subscribe<CatalogTypeMessage>(HandleCatalogTypeMessage);
-        CatalogList = GetCatalog();
+        GetCatalog();
+        SetCatalog();
     }
 
     private void HandleCatalogTypeMessage(CatalogTypeMessage message)
@@ -57,28 +119,30 @@ public class CatalogsViewModel : Core.ViewModel
         _catalogType = message.CatalogType;
     }
 
-    public ObservableCollection<object> GetCatalog()
+    private void GetCatalog()
     {
-        var catalogList = new ObservableCollection<object>();
-
         switch (_catalogType)
         {
             case CatalogType.Country:
-                catalogList = new ObservableCollection<object>(_countriesRepository.GetAll());
+                _fetchedCatalogList = new(_countriesRepository.GetAll());
                 break;
             case CatalogType.Street:
-                catalogList = new ObservableCollection<object>(_streetsRepository.GetAll());
+                _fetchedCatalogList = new(_streetsRepository.GetAll());
                 break;
             case CatalogType.Hotel:
-                catalogList = new ObservableCollection<object>(_hotelsRepository.GetAll());
+                _fetchedCatalogList = new(_hotelsRepository.GetAll());
+                IsClassColumnVisible = Visibility.Visible;
                 break;
             case CatalogType.Place:
-                catalogList = new ObservableCollection<object>(_placesRepository.GetAll());
+                _fetchedCatalogList = new(_placesRepository.GetAll());
                 break;
             default:
                 break;
         }
+    }
 
-        return catalogList;
+    private void SetCatalog()
+    {
+        CatalogItems = _fetchedCatalogList;
     }
 }
