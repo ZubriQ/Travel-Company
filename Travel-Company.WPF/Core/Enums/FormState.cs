@@ -1,4 +1,4 @@
-﻿namespace Travel_Company.WPF.Core;
+﻿namespace Travel_Company.WPF.Core.Enums;
 
 public enum FormState
 {

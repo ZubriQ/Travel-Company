@@ -25,6 +25,7 @@ public sealed class EmployeesViewModel : Core.ViewModel
         }
     }
 
+    private List<TourGuide> _fetchedEmployees;
     private List<TourGuide> _employees;
     public List<TourGuide> Employees
     {
@@ -63,17 +64,11 @@ public sealed class EmployeesViewModel : Core.ViewModel
     {
         if (string.IsNullOrWhiteSpace(SearchText))
         {
-            Employees = _employeesRepository
-                .GetQuaryable()
-                .Include(e => e.Street)
-                .ToList();
+            Employees = _fetchedEmployees.ToList();
         }
         else
         {
-            Employees = _employeesRepository
-                .GetQuaryable()
-                .Include(e => e.Street)
-                .AsEnumerable()
+            Employees = _fetchedEmployees
                 .Where(e => e.FullName.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
                 .ToList();
         }
@@ -86,10 +81,11 @@ public sealed class EmployeesViewModel : Core.ViewModel
     public EmployeesViewModel(IRepository<TourGuide, int> repository, INavigationService navigationService)
     {
         _employeesRepository = repository;
-        _employees = _employeesRepository
+        _fetchedEmployees = _employeesRepository
             .GetQuaryable()
             .Include(e => e.Street)
             .ToList();
+        Employees = _fetchedEmployees;
 
         Navigation = navigationService;
 
@@ -106,8 +102,11 @@ public sealed class EmployeesViewModel : Core.ViewModel
             canExecute: _ => true);
 
         NavigateToEmployeesInsertCommand = new RelayCommand(
-            execute: _ => Navigation.NavigateTo<EmployeesCreateViewModel>(),
-            canExecute: _ => true);
+           execute: _ =>
+           {
+               Navigation.NavigateTo<EmployeesCreateViewModel>();
+           },
+           canExecute: _ => true);
 
         FireSelectedEmployeeCommand = new RelayCommand(
             execute: _ =>

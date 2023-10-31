@@ -7,3 +7,13 @@ public partial class TourGuide
             ? $"{LastName} {FirstName} {Patronymic}"
             : $"{LastName} {FirstName}";
 }
+
+public partial class Client
+{
+    public string FullName =>
+        !string.IsNullOrEmpty(Patronymic)
+            ? $"{LastName} {FirstName} {Patronymic}"
+            : $"{LastName} {FirstName}";
+
+    public string Passport => $"{PassportSeries} {PassportNumber}";
+}

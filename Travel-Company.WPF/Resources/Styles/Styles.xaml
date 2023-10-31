@@ -721,7 +721,7 @@
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Border x:Name="brd_HorizontalScrollBarBorder"
                             CornerRadius="4"
-                            Background="{DynamicResource Primary9Brush}"
+                            Background="{DynamicResource Primary6Brush}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="0"
                             Height="8"
@@ -733,7 +733,7 @@
                                  Value="true">
                             <Setter TargetName="brd_HorizontalScrollBarBorder"
                                     Property="Background"
-                                    Value="{DynamicResource Primary7Brush}" />
+                                    Value="{DynamicResource Primary5Brush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Travel_Company.WPF.Core;
+using Travel_Company.WPF.Core.Enums;
 using Travel_Company.WPF.Data.Dto;
 using Travel_Company.WPF.MVVM.ViewModel.Catalogs;
 using Travel_Company.WPF.MVVM.ViewModel.Clients;

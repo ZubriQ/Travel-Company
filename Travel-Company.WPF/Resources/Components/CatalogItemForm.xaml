@@ -44,7 +44,7 @@
                 
 
                 <!-- Buttons -->
-                <DockPanel Margin="0 12">
+                <DockPanel>
                     <Button x:Name="ButtonProceed"
                             Margin="0 0 15 0"
                             Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:CatalogItemForm}}, Path=RelayCommand}"/>

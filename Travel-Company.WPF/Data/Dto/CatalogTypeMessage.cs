@@ -1,4 +1,4 @@
-﻿using Travel_Company.WPF.Core;
+﻿using Travel_Company.WPF.Core.Enums;
 
 namespace Travel_Company.WPF.Data.Dto;
 

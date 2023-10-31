@@ -4,9 +4,119 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Travel_Company.WPF.MVVM.View.Clients"
+             xmlns:component="clr-namespace:Travel_Company.WPF.Resources.Components"
+             xmlns:clients="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Clients"
+             d:DataContext="{d:DesignInstance Type=clients:ClientsViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock>In Clients View</TextBlock>
+    <UserControl.Resources>
+        <DiscreteObjectKeyFrame x:Key="IsPassportDataVisibleKeyFrame"
+                                Value="{Binding IsPassportDataVisible}" />
+    </UserControl.Resources>
+    
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!-- Page Header-->
+        <TextBlock Grid.Row="0"
+                   Text="Clients"
+                   Style="{StaticResource PageHeader}" />
+
+        <!-- Search Bar -->
+        <Grid Grid.Row="1"
+              Margin="5">
+            <component:SearchBar />
+        </Grid>
+
+        <ScrollViewer Grid.Row="2"
+                      Padding="0 0 5 5"
+                      Margin="5 10 0 15">
+            <StackPanel>
+                <!-- Data -->
+                <DataGrid Style="{DynamicResource DataGridStyle1}"
+                          CellStyle="{DynamicResource DataGridCellStyle1}"
+                          ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                          RowStyle="{DynamicResource DataGridRowStyle1}"
+                          x:Name="DataGridClients"
+                          Grid.Row="2"
+                          d:ItemsSource="{d:SampleData ItemCount=5}"
+                          ItemsSource="{Binding Clients}"
+                          Margin="0 0 4 0"
+                          SelectedItem="{Binding SelectedClient}"
+                          HorizontalScrollBarVisibility="Visible">
+                    <DataGrid.Columns>
+                        <!-- Fields -->
+                        <DataGridTemplateColumn Header="Full name"
+                                                IsReadOnly="True"
+                                                Width="auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Width="8"
+                                                Height="8"
+                                                CornerRadius="4"
+                                                Margin="0 0 10 0"
+                                                Background="{StaticResource Primary4Brush}">
+                                        </Border>
+
+                                        <TextBlock Text="{Binding Path=FullName}"
+                                                   VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Header="Street"
+                                            IsReadOnly="True"
+                                            Width="auto"
+                                            Binding="{Binding Path=Street.Name}" />
+                        <DataGridTextColumn Header="Birthdate"
+                                            IsReadOnly="True"
+                                            Width="auto"
+                                            Binding="{Binding Path=Birthdate, StringFormat=dd/MM/yyyy}" />
+                        <DataGridTextColumn Header="Group"
+                                            IsReadOnly="True"
+                                            Width="auto"
+                                            Binding="{Binding Path=TouristGroup.Name}" />
+                        <DataGridTextColumn Header="Passport"
+                                            IsReadOnly="True"
+                                            Width="auto"
+                                            Binding="{Binding Path=Passport}"
+                                            Visibility="{Binding Value, Source={StaticResource IsPassportDataVisibleKeyFrame}}"/>
+                        <DataGridTextColumn Header="Issue date"
+                                            IsReadOnly="True"
+                                            Width="auto"
+                                            Binding="{Binding Path=PassportIssueDate, StringFormat=dd/MM/yyyy}"
+                                            Visibility="{Binding Value, Source={StaticResource IsPassportDataVisibleKeyFrame}}"/>
+                        <DataGridTextColumn Header="Authority"
+                                            IsReadOnly="True"
+                                            Width="auto"
+                                            Binding="{Binding Path=PassportIssuingAuthority}"
+                                            Visibility="{Binding Value, Source={StaticResource IsPassportDataVisibleKeyFrame}}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!-- Buttons -->
+                <DockPanel Grid.Row="3"
+                           Margin="0 15 0 0">
+                    <Button Content="Add"
+                            Margin="0 0 15 0"
+                            Command="{Binding NavigateToInsertingCommand}" />
+                    <Button Content="Edit"
+                            Margin="0 0 15 0"
+                            Command="{Binding NavigateToUpdatingCommand}" />
+                    <Button Content="Delete"
+                            HorizontalAlignment="Left"
+                            Margin="0 0 15 0"
+                            Command="{Binding DeleteSelectedItemCommand}" />
+                    <Button Content="{Binding ToggleButtonContent}"
+                            HorizontalAlignment="Left"
+                            Command="{Binding ToggleColumnsCommand}" />
+                </DockPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -25,7 +25,13 @@
     <DataTemplate DataType="{x:Type TypeName=clientsVm:ClientsViewModel}">
         <clientsView:ClientsView />
     </DataTemplate>
-    
+    <DataTemplate DataType="{x:Type TypeName=clientsVm:ClientsCreateViewModel}">
+        <clientsView:ClientsCreateView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type TypeName=clientsVm:ClientsUpdateViewModel}">
+        <clientsView:ClientsUpdateView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type TypeName=catalogsVm:CatalogsViewModel}">
         <catalogsView:CatalogsView />
     </DataTemplate>

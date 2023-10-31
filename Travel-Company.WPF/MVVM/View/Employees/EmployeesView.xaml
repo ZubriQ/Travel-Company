@@ -41,7 +41,8 @@
                           ItemsSource="{Binding Employees}"
                           AutoGenerateColumns="False" 
                           Margin="0 0 4 0"
-                          SelectedItem="{Binding SelectedTourGuide}">
+                          SelectedItem="{Binding SelectedTourGuide}"
+                          HorizontalScrollBarVisibility="Visible">
                     <DataGrid.Columns>
                         <!-- Fields -->
                         <DataGridTemplateColumn Header="Full name"
@@ -66,15 +67,15 @@
 
                         <DataGridTextColumn Header="Street"
                                             IsReadOnly="True"
-                                            Width="*"
+                                            Width="auto"
                                             Binding="{Binding Path=Street.Name}" />
                         <DataGridTextColumn Header="Birthdate"
                                             IsReadOnly="True"
-                                            Width="*"
+                                            Width="auto"
                                             Binding="{Binding Path=Birthdate, StringFormat=dd/MM/yyyy}" />
                         <DataGridTextColumn Header="Salary"
                                             IsReadOnly="True"
-                                            Width="*"
+                                            Width="auto"
                                             Binding="{Binding Path=Salary}" />
                     </DataGrid.Columns>
                 </DataGrid>

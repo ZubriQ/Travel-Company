@@ -54,10 +54,12 @@ namespace Travel_Company.WPF
             services.AddSingleton<MainViewModel>();
             // Pages
             services.AddSingleton<LoginViewModel>();
-            services.AddSingleton<EmployeesViewModel>();
+            services.AddTransient<EmployeesViewModel>();
             services.AddSingleton<EmployeesCreateViewModel>();
             services.AddSingleton<EmployeesUpdateViewModel>();
             services.AddSingleton<ClientsViewModel>();
+            services.AddSingleton<ClientsCreateViewModel>();
+            services.AddSingleton<ClientsUpdateViewModel>();
             // Catalogs
             services.AddTransient<CatalogsViewModel>();
             services.AddTransient<CatalogsCreateViewModel>();
