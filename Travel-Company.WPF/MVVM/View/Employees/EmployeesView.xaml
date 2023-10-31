@@ -12,23 +12,44 @@
     <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!-- Page Header-->
         <TextBlock Grid.Row="0"
+                   x:Name="TextBlockPageTitle"
                    Text="Employees"
                    Style="{StaticResource PageHeader}"/>
         
         <!-- Search Bar -->
         <Grid Grid.Row="1"
               Margin="5">
-            <component:SearchBar />
+            <component:SearchBar Placeholder="Search" />
         </Grid>
 
-        <ScrollViewer Grid.Row="2"
+        <!-- Buttons -->
+        <StackPanel Grid.Row="2">
+            <DockPanel Margin="5">
+                <Button Content="Add"
+                        Margin="0 0 15 0"
+                        Command="{Binding NavigateToEmployeesInsertCommand}" />
+                <Button Content="Edit"
+                        Margin="0 0 15 0"
+                        Command="{Binding NavigateToEmployeesUpdateCommand}" />
+                <Button Content="Fire"
+                        HorizontalAlignment="Left"
+                        Command="{Binding FireSelectedEmployeeCommand}"
+                        Style="{StaticResource FireRemoveButton}" />
+            </DockPanel>
+            <Border Background="{StaticResource Primary8Brush}" 
+                    Height="1" 
+                    Margin="6 8 6 0"/>
+        </StackPanel>
+        
+        <ScrollViewer Grid.Row="3"
                       Padding="0 0 5 5"
-                      Margin="5 10 0 15">
+                      Margin="5 0 0 15">
             <StackPanel>
                 <!-- Data -->
                 <DataGrid Style="{DynamicResource DataGridStyle1}"
@@ -39,10 +60,10 @@
                           Grid.Row="2"
                           d:ItemsSource="{d:SampleData ItemCount=5}"
                           ItemsSource="{Binding Employees}"
-                          AutoGenerateColumns="False" 
-                          Margin="0 0 4 0"
+                          AutoGenerateColumns="False"
+                          Margin="0 8 4 0"
                           SelectedItem="{Binding SelectedTourGuide}"
-                          HorizontalScrollBarVisibility="Visible">
+                          HorizontalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <!-- Fields -->
                         <DataGridTemplateColumn Header="Full name"
@@ -80,19 +101,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <!-- Buttons -->
-                <DockPanel Grid.Row="3"
-                           Margin="0 15 0 0">
-                    <Button Content="Add" 
-                            Margin="0 0 15 0"
-                            Command="{Binding NavigateToEmployeesInsertCommand}"/>
-                    <Button Content="Edit"
-                            Margin="0 0 15 0"
-                            Command="{Binding NavigateToEmployeesUpdateCommand}"/>
-                    <Button Content="Fire"
-                            HorizontalAlignment="Left"
-                            Command="{Binding FireSelectedEmployeeCommand}" />
-                </DockPanel>
+
             </StackPanel>
         </ScrollViewer>
     </Grid>

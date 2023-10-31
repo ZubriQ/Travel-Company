@@ -17,13 +17,15 @@
                  BorderBrush="Transparent"
                  VerticalContentAlignment="Center"
                  FontSize="14"
-                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                 TextChanged="SearchBarComponent_TextChanged" />
         <TextBlock x:Name="SearchBarPlaceholder"
                    VerticalAlignment="Center"
                    Margin="12"
                    Foreground="{StaticResource Grey5Brush}"
                    IsHitTestVisible="False"
-                   FontSize="14" />
+                   FontSize="14"
+                   Text="{Binding Text, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:Input}}, UpdateSourceTrigger=PropertyChanged}"/>
         <Path Data="{StaticResource GeoMagnifiedSearch}"
               Stroke="{StaticResource Grey5Brush}"
               StrokeThickness="1"

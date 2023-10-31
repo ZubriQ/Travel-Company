@@ -57,7 +57,7 @@ namespace Travel_Company.WPF
             services.AddTransient<EmployeesViewModel>();
             services.AddSingleton<EmployeesCreateViewModel>();
             services.AddSingleton<EmployeesUpdateViewModel>();
-            services.AddSingleton<ClientsViewModel>();
+            services.AddTransient<ClientsViewModel>();
             services.AddSingleton<ClientsCreateViewModel>();
             services.AddSingleton<ClientsUpdateViewModel>();
             // Catalogs
