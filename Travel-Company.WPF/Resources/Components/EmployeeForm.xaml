@@ -24,21 +24,21 @@
                 <!-- Inputs -->
                 <TextBlock Text="First name" 
                            Style="{StaticResource ComponentTitle}" />
-                <component:Input ComponentName="First name"
-                                 Text="{Binding Employee.FirstName, Mode=TwoWay}"
-                                 Margin="0 0 0 10" />
+                <local:Input ComponentName="First name"
+                             Text="{Binding Employee.FirstName, Mode=TwoWay}"
+                             Margin="0 0 0 10" />
 
                 <TextBlock Text="Last name"
                            Style="{StaticResource ComponentTitle}" />
-                <component:Input ComponentName="Last name"
-                                 Text="{Binding Employee.LastName, Mode=TwoWay}"
-                                 Margin="0 0 0 10" />
+                <local:Input ComponentName="Last name"
+                             Text="{Binding Employee.LastName, Mode=TwoWay}"
+                             Margin="0 0 0 10" />
 
                 <TextBlock Text="Patronymic"
                            Style="{StaticResource ComponentTitle}" />
-                <component:Input ComponentName="Patronymic"
-                                 Text="{Binding Employee.Patronymic, Mode=TwoWay}"
-                                 Margin="0 0 0 10" />
+                <local:Input ComponentName="Patronymic"
+                             Text="{Binding Employee.Patronymic, Mode=TwoWay}"
+                             Margin="0 0 0 10" />
 
                 <TextBlock Text="Street"
                            Style="{StaticResource ComponentTitle}" />
@@ -57,15 +57,15 @@
 
                 <TextBlock Text="Salary"
                            Style="{StaticResource ComponentTitle}" />
-                <component:Input ComponentName="Salary"
-                                 Text="{Binding Employee.Salary, Mode=TwoWay}"
-                                 Margin="0 0 0 10" />
+                <local:Input ComponentName="Salary"
+                             Text="{Binding Employee.Salary, Mode=TwoWay}"
+                             Margin="0 0 0 10" />
 
                 <!-- Buttons -->
                 <DockPanel Margin="0 12">
                     <Button x:Name="ButtonProceed"
                             Margin="0 0 15 0"
-                            Command="{Binding Command}" />
+                            Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:EmployeeForm}}, Path=RelayCommand}" />
                     <Button x:Name="ButtonCancel"
                             Content="Cancel"
                             Margin="0 0 15 0"

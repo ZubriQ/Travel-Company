@@ -6,7 +6,6 @@ using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Data.Dto;
 using Travel_Company.WPF.Models;
-using Travel_Company.WPF.MVVM.ViewModel.Employees;
 using Travel_Company.WPF.Services.Navigation;
 
 namespace Travel_Company.WPF.MVVM.ViewModel.Catalogs;
@@ -51,7 +50,7 @@ public class CatalogsViewModel : Core.ViewModel
         }
     }
 
-    private ICatalogItem _selectedCatalogItem;
+    private ICatalogItem _selectedCatalogItem = null!;
     public ICatalogItem SelectedCatalogItem
     {
         get => _selectedCatalogItem;
@@ -112,7 +111,7 @@ public class CatalogsViewModel : Core.ViewModel
             canExecute: _ => true);
 
         NavigateToInsertingCommand = new RelayCommand(
-            execute: _ => Navigation.NavigateTo<CatalogsCreateViewModel>(),
+            execute: _ => HandleInsertingCatalogItem(),
             canExecute: _ => true);
 
         DeleteSelectedItemCommand = new RelayCommand(
@@ -138,10 +137,21 @@ public class CatalogsViewModel : Core.ViewModel
     {
         if (SelectedCatalogItem is not null)
         {
-            var message = new CatalogItemMessage { CatalogItem = SelectedCatalogItem };
+            var message = new CatalogItemMessage
+            {
+                CatalogItem = _selectedCatalogItem,
+                CatalogType = _catalogType,
+            };
             App.EventAggregator.Publish(message);
             Navigation.NavigateTo<CatalogsUpdateViewModel>();
         }
+    }
+
+    private void HandleInsertingCatalogItem()
+    {
+        var message = new CatalogItemMessage { CatalogType = _catalogType };
+        App.EventAggregator.Publish(message);
+        Navigation.NavigateTo<CatalogsCreateViewModel>();
     }
 
     private void HandleDeletingCatalogItem()
