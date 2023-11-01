@@ -11,6 +11,7 @@ using Travel_Company.WPF.MVVM.ViewModel;
 using Travel_Company.WPF.MVVM.ViewModel.Catalogs;
 using Travel_Company.WPF.MVVM.ViewModel.Clients;
 using Travel_Company.WPF.MVVM.ViewModel.Employees;
+using Travel_Company.WPF.MVVM.ViewModel.Groups;
 using Travel_Company.WPF.MVVM.ViewModel.Penalties;
 using Travel_Company.WPF.Services.Authorization;
 using Travel_Company.WPF.Services.Navigation;
@@ -67,6 +68,10 @@ namespace Travel_Company.WPF
             services.AddTransient<PenaltiesViewModel>();
             services.AddTransient<PenaltiesCreateViewModel>();
             services.AddSingleton<PenaltiesUpdateViewModel>();
+
+            services.AddTransient<GroupsViewModel>();
+            //services.AddTransient<GroupsCreateViewModel>();
+            //services.AddSingleton<GroupsUpdateViewModel>();
 
             // Catalogs
             services.AddTransient<CatalogsViewModel>();

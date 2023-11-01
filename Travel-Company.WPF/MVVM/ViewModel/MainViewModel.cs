@@ -5,6 +5,7 @@ using Travel_Company.WPF.Data.Dto;
 using Travel_Company.WPF.MVVM.ViewModel.Catalogs;
 using Travel_Company.WPF.MVVM.ViewModel.Clients;
 using Travel_Company.WPF.MVVM.ViewModel.Employees;
+using Travel_Company.WPF.MVVM.ViewModel.Groups;
 using Travel_Company.WPF.MVVM.ViewModel.Penalties;
 using Travel_Company.WPF.Services.Navigation;
 
@@ -41,6 +42,7 @@ public sealed class MainViewModel : Core.ViewModel
     public RelayCommand NavigateToEmployeesCommand { get; set; }
     public RelayCommand NavigateToClientsCommand { get; set; }
     public RelayCommand NavigateToPenaltiesCommand { get; set; }
+    public RelayCommand NavigateToTouristGroupsCommand { get; set; }
 
     // Catalogs
     public RelayCommand NavigateToCountriesCommand { get; set; }
@@ -67,6 +69,9 @@ public sealed class MainViewModel : Core.ViewModel
             canExecute: _ => true);
         NavigateToPenaltiesCommand = new RelayCommand(
             execute: _ => Navigation.NavigateTo<PenaltiesViewModel>(),
+            canExecute: _ => true);
+        NavigateToTouristGroupsCommand = new RelayCommand(
+            execute: _ => Navigation.NavigateTo<GroupsViewModel>(),
             canExecute: _ => true);
     }
 

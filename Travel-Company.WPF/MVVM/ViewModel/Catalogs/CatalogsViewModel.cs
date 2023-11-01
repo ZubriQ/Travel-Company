@@ -74,6 +74,18 @@ public class CatalogsViewModel : Core.ViewModel
         }
     }
 
+    private string _pageTitle = string.Empty;
+    public string PageTitle
+    {
+        get => _pageTitle;
+        set
+        {
+            _pageTitle = value;
+            OnPropertyChanged();
+            FilterCatalog();
+        }
+    }
+
     private List<ICatalogItem> _fetchedCatalogList = null!;
     private List<ICatalogItem> _catalogItems = null!;
     public List<ICatalogItem> CatalogItems
@@ -191,16 +203,20 @@ public class CatalogsViewModel : Core.ViewModel
         {
             case CatalogType.Country:
                 _fetchedCatalogList = new(_countriesRepository.GetAll());
+                PageTitle = "Countries";
                 break;
             case CatalogType.Street:
                 _fetchedCatalogList = new(_streetsRepository.GetAll());
+                PageTitle = "Streets";
                 break;
             case CatalogType.Hotel:
                 _fetchedCatalogList = new(_hotelsRepository.GetAll());
                 IsClassColumnVisible = Visibility.Visible;
+                PageTitle = "Hotels";
                 break;
             case CatalogType.Place:
                 _fetchedCatalogList = new(_placesRepository.GetAll());
+                PageTitle = "Populated Places";
                 break;
         }
     }

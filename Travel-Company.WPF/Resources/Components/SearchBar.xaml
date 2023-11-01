@@ -18,7 +18,8 @@
                  VerticalContentAlignment="Center"
                  FontSize="14"
                  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                 TextChanged="SearchBarComponent_TextChanged" />
+                 TextChanged="SearchBarComponent_TextChanged"
+                 Padding="0 0 26 0"/>
         <TextBlock x:Name="SearchBarPlaceholder"
                    VerticalAlignment="Center"
                    Margin="12"

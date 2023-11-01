@@ -6,10 +6,12 @@
                     xmlns:clientsView="clr-namespace:Travel_Company.WPF.MVVM.View.Clients"
                     xmlns:catalogsView="clr-namespace:Travel_Company.WPF.MVVM.View.Catalogs"
                     xmlns:penaltiesView="clr-namespace:Travel_Company.WPF.MVVM.View.Penalties"
+                    xmlns:groupsView="clr-namespace:Travel_Company.WPF.MVVM.View.Groups"
                     xmlns:employeesVm="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Employees"
                     xmlns:clientsVm="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Clients"
                     xmlns:catalogsVm="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Catalogs"
-                    xmlns:penaltiesVm="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Penalties">
+                    xmlns:penaltiesVm="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Penalties"
+                    xmlns:groupsVm="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Groups">
     <DataTemplate DataType="{x:Type TypeName=viewModels:LoginViewModel}">
         <views:LoginView />
     </DataTemplate>
@@ -52,5 +54,9 @@
     </DataTemplate>
     <DataTemplate DataType="{x:Type TypeName=penaltiesVm:PenaltiesUpdateViewModel}">
         <penaltiesView:PenaltiesUpdateView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type TypeName=groupsVm:GroupsViewModel}">
+        <groupsView:GroupsView />
     </DataTemplate>
 </ResourceDictionary>
