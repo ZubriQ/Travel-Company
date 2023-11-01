@@ -59,12 +59,13 @@
                           d:ItemsSource="{d:SampleData ItemCount=5}"
                           ItemsSource="{Binding Path=Penalties}"
                           Margin="0 8 4 0"
-                          SelectedItem="{Binding Path=SelectedItem}">
+                          SelectedItem="{Binding Path=SelectedItem}"
+                          HorizontalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <!-- Fields -->
-                        <DataGridTemplateColumn Header="Name"
+                        <DataGridTemplateColumn Header="Full name"
                                                 IsReadOnly="True"
-                                                Width="*">
+                                                Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -79,6 +80,27 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Header="Group"
+                                            IsReadOnly="True"
+                                            Width="auto"
+                                            Binding="{Binding Path=Client.TouristGroup.Name}" />
+                        <DataGridTextColumn Header="Amount"
+                                            IsReadOnly="True"
+                                            Width="auto"
+                                            Binding="{Binding Path=CompensationAmount}" />
+                        <DataGridTextColumn Header="Date"
+                                            IsReadOnly="True"
+                                            Width="auto"
+                                            Binding="{Binding Path=CompensationDateTime, StringFormat=dd/MM/yyyy}" />
+                        <DataGridTextColumn Header="Description"
+                                            IsReadOnly="True"
+                                            Width="auto"
+                                            Binding="{Binding Path=CompensationDescription}" />
+                        <DataGridTextColumn Header="Responsible"
+                                            IsReadOnly="True"
+                                            Width="auto"
+                                            Binding="{Binding Path=TourGuide.FullName}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>

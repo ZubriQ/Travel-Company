@@ -97,6 +97,7 @@ public class PenaltiesViewModel : Core.ViewModel
     private List<Penalty> FetchDataGridData() => _penaltiesRepository
         .GetQuaryable()
         .Include(p => p.Client)
+        .ThenInclude(c => c.TouristGroup)
         .Include(c => c.TourGuide)
         .ToList();
 
