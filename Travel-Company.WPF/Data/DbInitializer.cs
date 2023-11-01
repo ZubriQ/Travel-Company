@@ -433,6 +433,8 @@ public static class DbInitializer
             {
                 ClientId = clients.First().Id,
                 TourGuideId = employees.First().Id,
+                CompensationDateTime = DateTime.Now,
+                CompensationDescription = "Broken bed in the hotel",
                 CompensationAmount = 5700,
             },
         };

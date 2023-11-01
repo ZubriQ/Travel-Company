@@ -13,6 +13,10 @@ public partial class Penalty
 
     public decimal CompensationAmount { get; set; }
 
+    public string CompensationDescription { get; set; } = null!;
+
+    public DateTime CompensationDateTime { get; set; }
+
     public virtual Client Client { get; set; } = null!;
 
     public virtual TourGuide TourGuide { get; set; } = null!;
