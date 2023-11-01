@@ -10,11 +10,14 @@ public class ByteArrayToImageConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        byte[] bytes = value as byte[];
-        if (bytes == null || bytes.Length == 0) return null;
+        var bytes = value as byte[];
+        if (bytes == null || bytes.Length == 0)
+        {
+            return null!;
+        }
 
-        BitmapImage image = new BitmapImage();
-        using (MemoryStream stream = new MemoryStream(bytes))
+        var image = new BitmapImage();
+        using (var stream = new MemoryStream(bytes))
         {
             image.BeginInit();
             image.CacheOption = BitmapCacheOption.OnLoad;

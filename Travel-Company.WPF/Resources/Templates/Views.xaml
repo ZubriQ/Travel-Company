@@ -47,4 +47,10 @@
     <DataTemplate DataType="{x:Type TypeName=penaltiesVm:PenaltiesViewModel}">
         <penaltiesView:PenaltiesView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type TypeName=penaltiesVm:PenaltiesCreateViewModel}">
+        <penaltiesView:PenaltiesCreateView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type TypeName=penaltiesVm:PenaltiesUpdateViewModel}">
+        <penaltiesView:PenaltiesUpdateView />
+    </DataTemplate>
 </ResourceDictionary>

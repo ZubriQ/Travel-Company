@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Travel_Company.WPF.Core;
+using Travel_Company.WPF.Data;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Data.Dto;
 using Travel_Company.WPF.Models;
@@ -13,7 +14,7 @@ namespace Travel_Company.WPF.MVVM.ViewModel.Penalties;
 
 public class PenaltiesViewModel : Core.ViewModel
 {
-    private readonly IRepository<Penalty, int> _penaltiesRepository;
+    private readonly IRepository<Penalty, long> _penaltiesRepository;
 
     private INavigationService _navigation;
     public INavigationService Navigation
@@ -63,16 +64,42 @@ public class PenaltiesViewModel : Core.ViewModel
         }
     }
 
+    private string _pageTitle = "Penalties";
+    public string PageTitle
+    {
+        get => _pageTitle;
+        set
+        {
+            _pageTitle = value;
+            OnPropertyChanged();
+            FilterItems();
+        }
+    }
+
     private void FilterItems()
     {
-        if (string.IsNullOrWhiteSpace(SearchText))
+        if (string.IsNullOrWhiteSpace(SearchText) && _clientToFilterBy is null)
         {
             Penalties = _fetchedPenalties.ToList();
         }
-        else
+
+        if (string.IsNullOrWhiteSpace(SearchText) && _clientToFilterBy is not null)
+        {
+            Penalties = _fetchedPenalties.Where(p => p.ClientId == _clientToFilterBy.Id).ToList();
+        }
+
+        if (_clientToFilterBy is null)
         {
             Penalties = _fetchedPenalties
                 .Where(c => c.Client.FullName.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+
+        if (_clientToFilterBy is not null)
+        {
+            Penalties = _fetchedPenalties
+                .Where(c => c.Client.FullName.Contains(SearchText, StringComparison.OrdinalIgnoreCase) &&
+                    c.ClientId == _clientToFilterBy.Id)
                 .ToList();
         }
     }
@@ -81,25 +108,45 @@ public class PenaltiesViewModel : Core.ViewModel
     public RelayCommand NavigateToInsertingCommand { get; set; } = null!;
     public RelayCommand DeleteSelectedItemCommand { get; set; } = null!;
 
-    public PenaltiesViewModel(IRepository<Penalty, int> repository, INavigationService navigation)
+    public PenaltiesViewModel(IRepository<Penalty, long> repository, INavigationService navigation)
     {
         _penaltiesRepository = repository;
         _navigation = navigation;
 
+        App.EventAggregator.Subscribe<ClientMessage>(HandleStartupMessage);
+
         _fetchedPenalties = FetchDataGridData();
         Penalties = _fetchedPenalties;
 
-        // TODO: Subscribe and get the client, then filter by it.
-
+        InitializeTitle();
         InitializeCommands();
     }
 
-    private List<Penalty> FetchDataGridData() => _penaltiesRepository
-        .GetQuaryable()
-        .Include(p => p.Client)
-        .ThenInclude(c => c.TouristGroup)
-        .Include(c => c.TourGuide)
-        .ToList();
+    private List<Penalty> FetchDataGridData()
+    {
+        return (_clientToFilterBy is null)
+            ? _penaltiesRepository
+                .GetQuaryable()
+                .Include(p => p.Client)
+                .ThenInclude(c => c.TouristGroup)
+                .Include(c => c.TourGuide)
+                .ToList()
+            : _penaltiesRepository
+                .GetQuaryable()
+                .Include(p => p.Client)
+                .ThenInclude(c => c.TouristGroup)
+                .Where(p => p.ClientId == _clientToFilterBy.Id)
+                .Include(c => c.TourGuide)
+                .ToList();
+    }
+
+    private void InitializeTitle()
+    {
+        if (_clientToFilterBy is not null)
+        {
+            PageTitle = _clientToFilterBy.FullName + " Penalties";
+        }
+    }
 
     private void InitializeCommands()
     {
@@ -107,7 +154,7 @@ public class PenaltiesViewModel : Core.ViewModel
             execute: _ => HandleUpdating(),
             canExecute: _ => true);
         NavigateToInsertingCommand = new RelayCommand(
-           execute: _ => Navigation.NavigateTo<ClientsCreateViewModel>(),
+           execute: _ => Navigation.NavigateTo<PenaltiesCreateViewModel>(),
            canExecute: _ => true);
         DeleteSelectedItemCommand = new RelayCommand(
             execute: _ => HandleDeleting(),
@@ -119,7 +166,7 @@ public class PenaltiesViewModel : Core.ViewModel
         {
             var message = new PenaltyMessage { Penalty = SelectedItem };
             App.EventAggregator.Publish(message);
-            //Navigation.NavigateTo<PenaltiesUpdateViewModel>();
+            Navigation.NavigateTo<PenaltiesUpdateViewModel>();
         }
     }
 
@@ -133,5 +180,11 @@ public class PenaltiesViewModel : Core.ViewModel
             _fetchedPenalties = FetchDataGridData();
             Penalties = _fetchedPenalties;
         }
+    }
+
+    private void HandleStartupMessage(ClientMessage message)
+    {
+        _clientToFilterBy = message.Client;
+        App.EventAggregator.RemoveMessage<ClientMessage>();
     }
 }

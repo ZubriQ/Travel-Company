@@ -133,7 +133,7 @@ public sealed class ClientsViewModel : Core.ViewModel
             execute: _ => HandleDeleting(),
             canExecute: _ => true);
         NavigateToPenaltiesCommand = new RelayCommand(
-            execute: _ => Navigation.NavigateTo<PenaltiesViewModel>(),
+            execute: _ => HandleVisitingPenalties(),
             canExecute: _ => true);
         ToggleColumnsCommand = new RelayCommand(
             execute: _ => HandleColumnToggling(),
@@ -169,6 +169,16 @@ public sealed class ClientsViewModel : Core.ViewModel
             var message = new ClientMessage { Client = SelectedClient };
             App.EventAggregator.Publish(message);
             Navigation.NavigateTo<ClientsUpdateViewModel>();
+        }
+    }
+
+    private void HandleVisitingPenalties()
+    {
+        if (SelectedClient is not null)
+        {
+            var message = new ClientMessage { Client = SelectedClient };
+            App.EventAggregator.Publish(message);
+            Navigation.NavigateTo<PenaltiesViewModel>();
         }
     }
 }

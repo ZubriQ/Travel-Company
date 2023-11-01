@@ -46,4 +46,15 @@ public class EventAggregator
             action((TMessage)_lastPublishedMessage[messageType]);
         }
     }
+
+    public void RemoveMessage<TMessage>()
+    {
+        var messageType = typeof(TMessage);
+
+        if (_lastPublishedMessage.ContainsKey(messageType))
+        {
+            _lastPublishedMessage.Remove(messageType);
+        }
+    }
+
 }

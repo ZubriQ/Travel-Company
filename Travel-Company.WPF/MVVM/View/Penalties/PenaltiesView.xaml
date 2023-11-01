@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
         <!-- Page Header-->
         <TextBlock Grid.Row="0"
-                   Text="Penalties"
+                   Text="{Binding PageTitle}"
                    Style="{StaticResource PageHeader}" />
 
         <!-- Search Bar -->
