@@ -364,3 +364,4 @@ FodyWeavers.xsd
 
 # Rider folder
 .idea
+/Travel-Company.WPF/TravelCompany.db
