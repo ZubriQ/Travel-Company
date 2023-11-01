@@ -46,6 +46,9 @@
                         Margin="0 0 15 0"
                         Command="{Binding DeleteSelectedItemCommand}"
                         Style="{StaticResource FireRemoveButton}"/>
+                <Button Content="Penalties"
+                        Margin="0 0 15 0"
+                        Command="{Binding NavigateToPenaltiesCommand}" />
                 <Button Content="{Binding ToggleButtonContent}"
                         HorizontalAlignment="Left"
                         Command="{Binding ToggleColumnsCommand}" />

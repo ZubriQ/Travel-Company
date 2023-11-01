@@ -1,0 +1,138 @@
+﻿<UserControl x:Class="Travel_Company.WPF.Resources.Components.ClientForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Travel_Company.WPF.Resources.Components"
+             xmlns:component="clr-namespace:Travel_Company.WPF.Resources.Components"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:clients="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Clients"
+             d:DataContext="{d:DesignInstance Type=clients:ClientsUpdateViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="600">
+    <UserControl.Resources>
+        <local:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter" />
+    </UserControl.Resources>
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="TextBlockTitle"
+                   Style="{StaticResource PageHeader}" />
+
+        <ScrollViewer Padding="0 5 5 5"
+                      Margin="5 10 0 15"
+                      Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Inputs -->
+                <StackPanel Margin="1 0 5 0">
+                    <TextBlock Text="First name"
+                               Style="{StaticResource ComponentTitle}" />
+                    <local:Input ComponentName="First name"
+                                 Text="{Binding Client.FirstName, Mode=TwoWay}"
+                                 Margin="0 0 0 10" />
+
+                    <TextBlock Text="Last name"
+                               Style="{StaticResource ComponentTitle}" />
+                    <local:Input ComponentName="Last name"
+                                 Text="{Binding Client.LastName, Mode=TwoWay}"
+                                 Margin="0 0 0 10" />
+
+                    <TextBlock Text="Patronymic"
+                               Style="{StaticResource ComponentTitle}" />
+                    <local:Input ComponentName="Patronymic"
+                                 Text="{Binding Client.Patronymic, Mode=TwoWay}"
+                                 Margin="0 0 0 10" />
+
+                    <TextBlock Text="Street"
+                               Style="{StaticResource ComponentTitle}" />
+                    <ComboBox ItemsSource="{Binding Streets}"
+                              SelectedItem="{Binding Client.Street}"
+                              DisplayMemberPath="Name"
+                              Margin="0 0 0 10" />
+
+                    <TextBlock Text="Birthdate"
+                               Style="{StaticResource ComponentTitle}" />
+                    <DatePicker SelectedDate="{Binding Client.Birthdate, Mode=TwoWay}"
+                                DisplayDateStart="1/1/1900"
+                                DisplayDateEnd="{x:Static sys:DateTime.Today}"
+                                Margin="-2 0 0 10"
+                                VerticalContentAlignment="Center" />
+
+                    <TextBlock Text="Tourist group"
+                               Style="{StaticResource ComponentTitle}" />
+                    <ComboBox ItemsSource="{Binding Groups}"
+                              SelectedItem="{Binding Client.TouristGroup}"
+                              DisplayMemberPath="Name"
+                              Margin="0 0 0 10" />
+
+                    <TextBlock Text="Passport series"
+                               Style="{StaticResource ComponentTitle}" />
+                    <local:Input ComponentName="Passport series"
+                                 Text="{Binding Client.PassportSeries, Mode=TwoWay}"
+                                 Margin="0 0 0 10" />
+
+                    <TextBlock Text="Passport number"
+                               Style="{StaticResource ComponentTitle}" />
+                    <local:Input ComponentName="Passport number"
+                                 Text="{Binding Client.PassportNumber, Mode=TwoWay}"
+                                 Margin="0 0 0 10" />
+
+                    <TextBlock Text="Passport issue date"
+                               Style="{StaticResource ComponentTitle}" />
+                    <DatePicker SelectedDate="{Binding Client.PassportIssueDate, Mode=TwoWay}"
+                                DisplayDateStart="1/1/1900"
+                                DisplayDateEnd="{x:Static sys:DateTime.Today}"
+                                Margin="-2 0 0 10"
+                                VerticalContentAlignment="Center" />
+
+                    <TextBlock Text="Passport issuing authority"
+                               Style="{StaticResource ComponentTitle}" />
+                    <local:Input ComponentName="Passport issuing authority"
+                                 Text="{Binding Client.PassportIssuingAuthority, Mode=TwoWay}"
+                                 Margin="0 0 0 10" />
+
+                    <!-- Buttons -->
+                    <DockPanel>
+                        <Button x:Name="ButtonProceed"
+                                Margin="0 0 15 0"
+                                Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ClientForm}}, Path=RelayCommand}" />
+                        <Button x:Name="ButtonCancel"
+                                Content="Cancel"
+                                Margin="0 0 15 0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding CancelCommand}" />
+                    </DockPanel>
+                </StackPanel>
+                
+                <!-- Photo and Penalties -->
+                <StackPanel Grid.Column="1"
+                            Margin="15 25 10 10">
+                    <Image x:Name="clientImage">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source"
+                                        Value="{Binding Client.Photograph, Converter={StaticResource ByteArrayToImageConverter}}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Client.Photograph}"
+                                                 Value="{x:Null}">
+                                        <Setter Property="Source"
+                                                Value="/Resources/Images/no-photo.png" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </StackPanel>
+
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

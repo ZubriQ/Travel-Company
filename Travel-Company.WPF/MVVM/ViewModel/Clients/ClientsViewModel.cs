@@ -2,9 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Controls;
 using System.Windows;
-using System.Windows.Input;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Data.Dto;
