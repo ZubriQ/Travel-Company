@@ -26,7 +26,7 @@ public sealed class ClientsViewModel : Core.ViewModel
         }
     }
 
-    private readonly List<Client> _fetchedClients;
+    private List<Client> _fetchedClients;
     private List<Client> _clients = null!;
     public List<Client> Clients
     {
@@ -151,6 +151,9 @@ public sealed class ClientsViewModel : Core.ViewModel
         {
             _clientsRepository.Delete(SelectedClient);
             _clientsRepository.SaveChanges();
+
+            _fetchedClients = FetchDataGridData();
+            Clients = _fetchedClients;
         }
     }
 
