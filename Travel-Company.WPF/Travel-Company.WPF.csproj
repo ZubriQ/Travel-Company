@@ -29,8 +29,4 @@
     </Resource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="MVVM\ViewModel\Penalties\" />
-  </ItemGroup>
-
 </Project>

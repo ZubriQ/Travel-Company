@@ -190,7 +190,8 @@
                              ToolTip="Penalties"
                              Template="{StaticResource MainMenuRadioButton}"
                              IsChecked="False"
-                             Margin="1">
+                             Margin="1"
+                             Command="{Binding NavigateToPenaltiesCommand}">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Path Fill="{StaticResource Primary4Brush}"

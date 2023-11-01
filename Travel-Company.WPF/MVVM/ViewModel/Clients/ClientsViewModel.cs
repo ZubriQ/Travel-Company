@@ -7,6 +7,7 @@ using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Data.Dto;
 using Travel_Company.WPF.Models;
+using Travel_Company.WPF.MVVM.ViewModel.Penalties;
 using Travel_Company.WPF.Services.Navigation;
 
 namespace Travel_Company.WPF.MVVM.ViewModel.Clients;
@@ -100,6 +101,7 @@ public sealed class ClientsViewModel : Core.ViewModel
     public RelayCommand NavigateToUpdatingCommand { get; set; } = null!;
     public RelayCommand NavigateToInsertingCommand { get; set; } = null!;
     public RelayCommand DeleteSelectedItemCommand { get; set; } = null!;
+    public RelayCommand NavigateToPenaltiesCommand { get; set; } = null!;
     public RelayCommand ToggleColumnsCommand { get; set; } = null!;
 
     public ClientsViewModel(IRepository<Client, int> repository, INavigationService navigation)
@@ -129,6 +131,9 @@ public sealed class ClientsViewModel : Core.ViewModel
            canExecute: _ => true);
         DeleteSelectedItemCommand = new RelayCommand(
             execute: _ => HandleDeleting(),
+            canExecute: _ => true);
+        NavigateToPenaltiesCommand = new RelayCommand(
+            execute: _ => Navigation.NavigateTo<PenaltiesViewModel>(),
             canExecute: _ => true);
         ToggleColumnsCommand = new RelayCommand(
             execute: _ => HandleColumnToggling(),
