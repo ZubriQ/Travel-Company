@@ -126,13 +126,13 @@ public class PenaltiesViewModel : Core.ViewModel
             ? _penaltiesRepository
                 .GetQuaryable()
                 .Include(p => p.Client)
-                .ThenInclude(c => c.TouristGroup)
+                .ThenInclude(c => c.TouristGroups)
                 .Include(c => c.TourGuide)
                 .ToList()
             : _penaltiesRepository
                 .GetQuaryable()
                 .Include(p => p.Client)
-                .ThenInclude(c => c.TouristGroup)
+                .ThenInclude(c => c.TouristGroups)
                 .Where(p => p.ClientId == _clientToFilterBy.Id)
                 .Include(c => c.TourGuide)
                 .ToList();

@@ -6,7 +6,6 @@ using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Data.Dto;
 using Travel_Company.WPF.Models;
-using Travel_Company.WPF.MVVM.ViewModel.Penalties;
 using Travel_Company.WPF.Services.Navigation;
 
 namespace Travel_Company.WPF.MVVM.ViewModel.Groups;
@@ -102,19 +101,20 @@ public class GroupsViewModel : Core.ViewModel
             execute: _ => HandleUpdating(),
             canExecute: _ => true);
         NavigateToInsertingCommand = new RelayCommand(
-           execute: _ => Navigation.NavigateTo<PenaltiesCreateViewModel>(),
+           execute: _ => Navigation.NavigateTo<GroupsCreateViewModel>(),
            canExecute: _ => true);
         DeleteSelectedItemCommand = new RelayCommand(
             execute: _ => HandleDeleting(),
             canExecute: _ => true);
     }
+
     private void HandleUpdating()
     {
         if (SelectedItem is not null)
         {
             var message = new TouristGroupMessage { Group = SelectedItem };
             App.EventAggregator.Publish(message);
-            Navigation.NavigateTo<PenaltiesUpdateViewModel>();
+            Navigation.NavigateTo<GroupsUpdateViewModel>();
         }
     }
 

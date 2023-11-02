@@ -13,9 +13,9 @@ public partial class TouristGroup
 
     public long RouteId { get; set; }
 
-    public virtual ICollection<Client> Clients { get; set; } = new List<Client>();
-
     public virtual Route Route { get; set; } = null!;
 
     public virtual TourGuide TourGuide { get; set; } = null!;
+
+    public virtual ICollection<Client> Clients { get; set; } = new List<Client>();
 }

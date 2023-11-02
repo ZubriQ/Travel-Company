@@ -17,8 +17,6 @@ public partial class Client
 
     public long StreetId { get; set; }
 
-    public long TouristGroupId { get; set; }
-
     public string PassportSeries { get; set; } = null!;
 
     public string PassportNumber { get; set; } = null!;
@@ -33,5 +31,5 @@ public partial class Client
 
     public virtual Street Street { get; set; } = null!;
 
-    public virtual TouristGroup TouristGroup { get; set; } = null!;
+    public virtual ICollection<TouristGroup> TouristGroups { get; set; } = new List<TouristGroup>();
 }

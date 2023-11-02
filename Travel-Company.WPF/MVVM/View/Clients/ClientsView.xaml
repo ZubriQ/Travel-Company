@@ -103,10 +103,10 @@
                                             IsReadOnly="True"
                                             Width="auto"
                                             Binding="{Binding Path=Birthdate, StringFormat=dd/MM/yyyy}" />
-                        <DataGridTextColumn Header="Group"
+                        <DataGridTextColumn Header="Groups"
                                             IsReadOnly="True"
                                             Width="auto"
-                                            Binding="{Binding Path=TouristGroup.Name}" />
+                                            Binding="{Binding Path=TouristGroups.Count}" />
                         <DataGridTextColumn Header="Penalties"
                                             IsReadOnly="True"
                                             Width="auto"

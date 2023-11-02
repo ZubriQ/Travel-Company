@@ -1,4 +1,4 @@
-using Travel_Company.WPF.Models.Users;
+using Travel_Company.WPF.Models;
 
 namespace Travel_Company.WPF.Services.Authorization;
 

@@ -81,10 +81,10 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTextColumn Header="Group"
+                        <DataGridTextColumn Header="Groups"
                                             IsReadOnly="True"
                                             Width="auto"
-                                            Binding="{Binding Path=Client.TouristGroup.Name}" />
+                                            Binding="{Binding Path=Client.TouristGroups.Count}" />
                         <DataGridTextColumn Header="Amount"
                                             IsReadOnly="True"
                                             Width="auto"

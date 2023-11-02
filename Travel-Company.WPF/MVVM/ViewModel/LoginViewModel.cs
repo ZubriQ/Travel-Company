@@ -1,5 +1,5 @@
 ﻿using Travel_Company.WPF.Core;
-using Travel_Company.WPF.Models.Users;
+using Travel_Company.WPF.Models;
 using Travel_Company.WPF.MVVM.ViewModel.Employees;
 using Travel_Company.WPF.Services.Authorization;
 using Travel_Company.WPF.Services.Navigation;

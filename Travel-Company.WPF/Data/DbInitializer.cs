@@ -343,6 +343,7 @@ public static class DbInitializer
 
         var clients = new List<Client>
         {
+
             new Client()
             {
                 FirstName = "Evgenii",
@@ -350,7 +351,11 @@ public static class DbInitializer
                 Patronymic = "Antonovich",
                 StreetId = streets.FirstOrDefault(s => s.Name == "Abbey Road")!.Id,
                 Birthdate = AgeGenerator.GetRandomDate(),
-                TouristGroupId = groups.FirstOrDefault(g => g.Name == $"{DateTime.Now.Year} Group 1")!.Id,
+                TouristGroups = new List<TouristGroup>
+                {
+                    groups.First(g => g.Name == $"{DateTime.Now.Year} Group 1"),
+                    groups.First(g => g.Name == $"{DateTime.Now.Year} Group 2"),
+                },
                 PassportSeries = "03 11",
                 PassportNumber = "793853",
                 PassportIssueDate = DateTime.Now.AddYears(-18),
@@ -364,7 +369,10 @@ public static class DbInitializer
                 Patronymic = "Stevenson",
                 StreetId = streets.FirstOrDefault(s => s.Name == "Baker Street")!.Id,
                 Birthdate = AgeGenerator.GetRandomDate(),
-                TouristGroupId = groups.FirstOrDefault(g => g.Name == $"{DateTime.Now.Year} Group 1")!.Id,
+                TouristGroups = new List<TouristGroup>
+                {
+                    groups.First(g => g.Name == $"{DateTime.Now.Year} Group 1")
+                },
                 PassportSeries = "03 12",
                 PassportNumber = "803954",
                 PassportIssueDate = DateTime.Now.AddYears(-19),
@@ -378,7 +386,10 @@ public static class DbInitializer
                 Patronymic = "Li",
                 StreetId = streets.FirstOrDefault(s => s.Name == "Buckingham Palace Road")!.Id,
                 Birthdate = AgeGenerator.GetRandomDate(),
-                TouristGroupId = groups.FirstOrDefault(g => g.Name == $"{DateTime.Now.Year} Group 1")!.Id,
+                TouristGroups = new List<TouristGroup>
+                {
+                    groups.First(g => g.Name == $"{DateTime.Now.Year} Group 1")
+                },
                 PassportSeries = "03 13",
                 PassportNumber = "804955",
                 PassportIssueDate = DateTime.Now.AddYears(-23),
@@ -392,7 +403,10 @@ public static class DbInitializer
                 Patronymic = "Reeves",
                 StreetId = streets.FirstOrDefault(s => s.Name == "Carlisle Street")!.Id,
                 Birthdate = AgeGenerator.GetRandomDate(),
-                TouristGroupId = groups.FirstOrDefault(g => g.Name == $"{DateTime.Now.Year} Group 2")!.Id,
+                TouristGroups = new List<TouristGroup>
+                {
+                    groups.First(g => g.Name == $"{DateTime.Now.Year} Group 2")
+                },
                 PassportSeries = "03 14",
                 PassportNumber = "805956",
                 PassportIssueDate = DateTime.Now.AddYears(-21),
@@ -406,7 +420,10 @@ public static class DbInitializer
                 Patronymic = "Banks",
                 StreetId = streets.FirstOrDefault(s => s.Name == "Cavendish Square")!.Id,
                 Birthdate = AgeGenerator.GetRandomDate(),
-                TouristGroupId = groups.FirstOrDefault(g => g.Name == $"{DateTime.Now.Year} Group 2")!.Id,
+                TouristGroups = new List<TouristGroup>
+                {
+                    groups.First(g => g.Name == $"{DateTime.Now.Year} Group 2")
+                },
                 PassportSeries = "03 15",
                 PassportNumber = "806957",
                 PassportIssueDate = DateTime.Now.AddYears(-21),
@@ -433,7 +450,7 @@ public static class DbInitializer
             {
                 ClientId = clients.First().Id,
                 TourGuideId = employees.First().Id,
-                CompensationDateTime = DateTime.Now,
+                CompensationDate = DateTime.Now,
                 CompensationDescription = "Broken bed in the hotel",
                 CompensationAmount = 5700,
             },

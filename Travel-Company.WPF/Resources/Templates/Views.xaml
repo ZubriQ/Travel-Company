@@ -59,4 +59,10 @@
     <DataTemplate DataType="{x:Type TypeName=groupsVm:GroupsViewModel}">
         <groupsView:GroupsView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type TypeName=groupsVm:GroupsCreateViewModel}">
+        <groupsView:GroupsCreateView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type TypeName=groupsVm:GroupsUpdateViewModel}">
+        <groupsView:GroupsUpdateView />
+    </DataTemplate>
 </ResourceDictionary>

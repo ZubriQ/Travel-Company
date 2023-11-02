@@ -16,87 +16,86 @@ using Travel_Company.WPF.MVVM.ViewModel.Penalties;
 using Travel_Company.WPF.Services.Authorization;
 using Travel_Company.WPF.Services.Navigation;
 
-namespace Travel_Company.WPF
+namespace Travel_Company.WPF;
+
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
+public partial class App : Application
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+    private static ServiceProvider _serviceProvider = null!;
+
+    public static Settings Settings { get; set; } = new();
+    public static EventAggregator EventAggregator { get; } = new();
+
+    public App()
     {
-        private static ServiceProvider _serviceProvider = null!;
+        IServiceCollection services = new ServiceCollection();
 
-        public static Settings Settings { get; set; } = new();
-        public static EventAggregator EventAggregator { get; } = new();
+        services.AddDbContext<TravelCompanyDbContext>(options => options.UseSqlite("Data Source=TravelCompany.db;"));
 
-        public App()
+        services.AddSingleton(provider => new MainWindow()
         {
-            IServiceCollection services = new ServiceCollection();
+            DataContext = provider.GetRequiredService<MainViewModel>()
+        });
+        services.AddSingleton<INavigationService, NavigationService>();
+        services.AddSingleton<Func<Type, ViewModel>>(
+            serviceProvider => viewModelType => (ViewModel)serviceProvider.GetRequiredService(viewModelType));
+        services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
+        InitializeViewModels(services);
+        InitializeDbServices(services);
 
-            services.AddDbContext<TravelCompanyDbContext>(options => options.UseSqlite("Data Source=TravelCompany.db;"));
+        _serviceProvider = services.BuildServiceProvider();
 
-            services.AddSingleton(provider => new MainWindow()
-            {
-                DataContext = provider.GetRequiredService<MainViewModel>()
-            });
-            services.AddSingleton<INavigationService, NavigationService>();
-            services.AddSingleton<Func<Type, ViewModel>>(
-                serviceProvider => viewModelType => (ViewModel)serviceProvider.GetRequiredService(viewModelType));
-            services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
-            InitializeViewModels(services);
-            InitializeDbServices(services);
+        var navigationService = _serviceProvider.GetRequiredService<INavigationService>() as NavigationService;
+        navigationService?.Initialize();
+    }
 
-            _serviceProvider = services.BuildServiceProvider();
+    private static void InitializeViewModels(IServiceCollection services)
+    {
+        services.AddSingleton<MainViewModel>();
+        // Pages
+        services.AddSingleton<LoginViewModel>();
 
-            var navigationService = _serviceProvider.GetRequiredService<INavigationService>() as NavigationService;
-            navigationService?.Initialize();
-        }
+        services.AddTransient<EmployeesViewModel>();
+        services.AddTransient<EmployeesCreateViewModel>();
+        services.AddSingleton<EmployeesUpdateViewModel>();
 
-        private static void InitializeViewModels(IServiceCollection services)
-        {
-            services.AddSingleton<MainViewModel>();
-            // Pages
-            services.AddSingleton<LoginViewModel>();
+        services.AddTransient<ClientsViewModel>();
+        services.AddTransient<ClientsCreateViewModel>();
+        services.AddSingleton<ClientsUpdateViewModel>();
 
-            services.AddTransient<EmployeesViewModel>();
-            services.AddTransient<EmployeesCreateViewModel>();
-            services.AddSingleton<EmployeesUpdateViewModel>();
+        services.AddTransient<PenaltiesViewModel>();
+        services.AddTransient<PenaltiesCreateViewModel>();
+        services.AddSingleton<PenaltiesUpdateViewModel>();
 
-            services.AddTransient<ClientsViewModel>();
-            services.AddTransient<ClientsCreateViewModel>();
-            services.AddSingleton<ClientsUpdateViewModel>();
+        services.AddTransient<GroupsViewModel>();
+        services.AddTransient<GroupsCreateViewModel>();
+        services.AddSingleton<GroupsUpdateViewModel>();
 
-            services.AddTransient<PenaltiesViewModel>();
-            services.AddTransient<PenaltiesCreateViewModel>();
-            services.AddSingleton<PenaltiesUpdateViewModel>();
+        // Catalogs
+        services.AddTransient<CatalogsViewModel>();
+        services.AddTransient<CatalogsCreateViewModel>();
+        services.AddTransient<CatalogsUpdateViewModel>();
+    }
+    
+    private static void InitializeDbServices(IServiceCollection services)
+    {
+        services.AddScoped<IAuthorizationService, AuthorizationService>();
+    }
 
-            services.AddTransient<GroupsViewModel>();
-            //services.AddTransient<GroupsCreateViewModel>();
-            //services.AddSingleton<GroupsUpdateViewModel>();
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
+        mainWindow.Show();
 
-            // Catalogs
-            services.AddTransient<CatalogsViewModel>();
-            services.AddTransient<CatalogsCreateViewModel>();
-            services.AddTransient<CatalogsUpdateViewModel>();
-        }
-        
-        private static void InitializeDbServices(IServiceCollection services)
-        {
-            services.AddScoped<IAuthorizationService, AuthorizationService>();
-        }
+        DbInitializer.Seed(_serviceProvider);
 
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
-            mainWindow.Show();
+        base.OnStartup(e);
+    }
 
-            DbInitializer.Seed(_serviceProvider);
-
-            base.OnStartup(e);
-        }
-
-        public static ViewModel GetStartupView()
-        {
-            return _serviceProvider.GetRequiredService<LoginViewModel>();
-        }
+    public static ViewModel GetStartupView()
+    {
+        return _serviceProvider.GetRequiredService<LoginViewModel>();
     }
 }

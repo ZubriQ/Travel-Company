@@ -118,7 +118,8 @@ public sealed class ClientsViewModel : Core.ViewModel
     private List<Client> FetchDataGridData() => _clientsRepository
         .GetQuaryable()
         .Include(c => c.Street)
-        .Include(c => c.TouristGroup)
+        .Include(c => c.TouristGroups)
+        .Include(c => c.Penalties)
         .ToList();
 
     private void InitializeCommands()

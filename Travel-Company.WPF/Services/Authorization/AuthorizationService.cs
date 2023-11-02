@@ -1,6 +1,5 @@
 using System.Linq;
 using Travel_Company.WPF.Models;
-using Travel_Company.WPF.Models.Users;
 
 namespace Travel_Company.WPF.Services.Authorization;
 

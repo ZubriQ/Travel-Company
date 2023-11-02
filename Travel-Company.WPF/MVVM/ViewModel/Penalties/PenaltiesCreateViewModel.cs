@@ -85,7 +85,7 @@ public class PenaltiesCreateViewModel : Core.ViewModel
     {
         Clients = _clientsRepository.GetAll();
         Employees = _employeesRepository.GetAll();
-        Penalty.CompensationDateTime = DateTime.Now;
+        Penalty.CompensationDate = DateTime.Now;
     }
 
     private void HandleCreating()

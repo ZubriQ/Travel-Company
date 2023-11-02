@@ -15,7 +15,7 @@ public partial class Penalty
 
     public string CompensationDescription { get; set; } = null!;
 
-    public DateTime CompensationDateTime { get; set; }
+    public DateTime CompensationDate { get; set; }
 
     public virtual Client Client { get; set; } = null!;
 

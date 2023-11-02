@@ -5,9 +5,13 @@ namespace Travel_Company.WPF.Data;
 
 public static class PhotographLoader
 {
-    public static BitmapImage LoadImage(byte[] imageData)
+    public static BitmapImage? LoadImage(byte[] imageData)
     {
-        if (imageData == null || imageData.Length == 0) return null;
+        if (imageData == null || imageData.Length == 0)
+        {
+            return null;
+        }
+
         var image = new BitmapImage();
         using (var mem = new MemoryStream(imageData))
         {
@@ -22,5 +26,4 @@ public static class PhotographLoader
         image.Freeze();
         return image;
     }
-
 }
