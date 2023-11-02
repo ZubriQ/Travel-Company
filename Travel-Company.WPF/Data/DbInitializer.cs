@@ -152,7 +152,8 @@ public static class DbInitializer
                 CountryId = countries.FirstOrDefault(c => c.Name == "Japan")!.Id
             },
             new PopulatedPlace() 
-            { Name = "Bristol", 
+            { 
+                Name = "Bristol", 
                 CountryId = countries.FirstOrDefault(c => c.Name == "Australia")!.Id 
             },
             new PopulatedPlace() 

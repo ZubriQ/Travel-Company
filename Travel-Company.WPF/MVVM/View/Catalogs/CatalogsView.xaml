@@ -13,6 +13,8 @@
     <UserControl.Resources>
         <DiscreteObjectKeyFrame x:Key="IsClassColumnVisibleKeyFrame"
                                 Value="{Binding IsClassColumnVisible}" />
+        <DiscreteObjectKeyFrame x:Key="IsCountryColumnVisibleKeyFrame"
+                                Value="{Binding IsCountryColumnVisible}" />
     </UserControl.Resources>
 
     <Grid Margin="15">
@@ -87,12 +89,16 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTextColumn x:Name="DataGridClassColumn"
-                                            Header="Class"
+                        <DataGridTextColumn Header="Class"
                                             IsReadOnly="True"
                                             Width="*"
                                             Binding="{Binding Path=Class}"
                                             Visibility="{Binding Value, Source={StaticResource IsClassColumnVisibleKeyFrame}}" />
+                        <DataGridTextColumn Header="Country"
+                                            IsReadOnly="True"
+                                            Width="*"
+                                            Binding="{Binding Path=Country.Name}"
+                                            Visibility="{Binding Value, Source={StaticResource IsCountryColumnVisibleKeyFrame}}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>

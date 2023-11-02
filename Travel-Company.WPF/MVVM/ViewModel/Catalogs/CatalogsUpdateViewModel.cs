@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Core.Enums;
 using Travel_Company.WPF.Data.Base;
@@ -59,6 +60,28 @@ public class CatalogsUpdateViewModel : Core.ViewModel
         }
     }
 
+    private Visibility _isCountryNameElementVisible = Visibility.Collapsed;
+    public Visibility IsCountryNameElementVisible
+    {
+        get => _isCountryNameElementVisible;
+        private set
+        {
+            _isCountryNameElementVisible = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private List<Country> _countries = null!;
+    public List<Country> Countries
+    {
+        get => _countries;
+        set
+        {
+            _countries = value;
+            OnPropertyChanged();
+        }
+    }
+
     public RelayCommand UpdateCommand { get; set; }
     public RelayCommand CancelCommand { get; set; }
 
@@ -93,6 +116,11 @@ public class CatalogsUpdateViewModel : Core.ViewModel
         if (CatalogType is CatalogType.Hotel)
         {
             IsClassElementVisible = Visibility.Visible;
+        }
+        if (CatalogType is CatalogType.Place)
+        {
+            IsCountryNameElementVisible = Visibility.Visible;
+            Countries = _countriesRepository.GetAll();
         }
     }
 

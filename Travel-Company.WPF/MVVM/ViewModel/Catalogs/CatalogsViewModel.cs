@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -36,6 +37,17 @@ public class CatalogsViewModel : Core.ViewModel
         private set
         {
             _isClassColumnVisible = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private Visibility _isCountryColumnVisible = Visibility.Collapsed;
+    public Visibility IsCountryColumnVisible
+    {
+        get => _isCountryColumnVisible;
+        private set
+        {
+            _isCountryColumnVisible = value;
             OnPropertyChanged();
         }
     }
@@ -215,7 +227,8 @@ public class CatalogsViewModel : Core.ViewModel
                 PageTitle = "Hotels";
                 break;
             case CatalogType.Place:
-                _fetchedCatalogList = new(_placesRepository.GetAll());
+                _fetchedCatalogList = new(_placesRepository.GetQuaryable().Include(p => p.Country));
+                IsCountryColumnVisible = Visibility.Visible;
                 PageTitle = "Populated Places";
                 break;
         }
