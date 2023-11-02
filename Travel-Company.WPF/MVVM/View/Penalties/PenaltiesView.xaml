@@ -92,7 +92,7 @@
                         <DataGridTextColumn Header="Date"
                                             IsReadOnly="True"
                                             Width="auto"
-                                            Binding="{Binding Path=CompensationDateTime, StringFormat=dd/MM/yyyy}" />
+                                            Binding="{Binding Path=CompensationDate, StringFormat=dd/MM/yyyy}" />
                         <DataGridTextColumn Header="Description"
                                             IsReadOnly="True"
                                             Width="auto"
