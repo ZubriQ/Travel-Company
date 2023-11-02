@@ -13,6 +13,7 @@ using Travel_Company.WPF.MVVM.ViewModel.Clients;
 using Travel_Company.WPF.MVVM.ViewModel.Employees;
 using Travel_Company.WPF.MVVM.ViewModel.Groups;
 using Travel_Company.WPF.MVVM.ViewModel.Penalties;
+using Travel_Company.WPF.MVVM.ViewModel.Routes;
 using Travel_Company.WPF.Services.Authorization;
 using Travel_Company.WPF.Services.Navigation;
 
@@ -54,6 +55,7 @@ public partial class App : Application
     private static void InitializeViewModels(IServiceCollection services)
     {
         services.AddSingleton<MainViewModel>();
+
         // Pages
         services.AddSingleton<LoginViewModel>();
 
@@ -72,6 +74,10 @@ public partial class App : Application
         services.AddTransient<GroupsViewModel>();
         services.AddTransient<GroupsCreateViewModel>();
         services.AddSingleton<GroupsUpdateViewModel>();
+
+        services.AddTransient<RoutesViewModel>();
+        //services.AddTransient<RoutesCreateViewModel>();
+        //services.AddSingleton<RoutesUpdateViewModel>();
 
         // Catalogs
         services.AddTransient<CatalogsViewModel>();

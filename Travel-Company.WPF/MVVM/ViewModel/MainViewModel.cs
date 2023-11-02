@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.CodeDom.Compiler;
+using System.Windows;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Core.Enums;
 using Travel_Company.WPF.Data.Dto;
@@ -7,6 +8,7 @@ using Travel_Company.WPF.MVVM.ViewModel.Clients;
 using Travel_Company.WPF.MVVM.ViewModel.Employees;
 using Travel_Company.WPF.MVVM.ViewModel.Groups;
 using Travel_Company.WPF.MVVM.ViewModel.Penalties;
+using Travel_Company.WPF.MVVM.ViewModel.Routes;
 using Travel_Company.WPF.Services.Navigation;
 
 namespace Travel_Company.WPF.MVVM.ViewModel;
@@ -43,6 +45,7 @@ public sealed class MainViewModel : Core.ViewModel
     public RelayCommand NavigateToClientsCommand { get; set; }
     public RelayCommand NavigateToPenaltiesCommand { get; set; }
     public RelayCommand NavigateToTouristGroupsCommand { get; set; }
+    public RelayCommand NavigateToRoutesCommand { get; set; }
 
     // Catalogs
     public RelayCommand NavigateToCountriesCommand { get; set; }
@@ -72,6 +75,9 @@ public sealed class MainViewModel : Core.ViewModel
             canExecute: _ => true);
         NavigateToTouristGroupsCommand = new RelayCommand(
             execute: _ => Navigation.NavigateTo<GroupsViewModel>(),
+            canExecute: _ => true);
+        NavigateToRoutesCommand = new RelayCommand(
+            execute: _ => Navigation.NavigateTo<RoutesViewModel>(),
             canExecute: _ => true);
     }
 

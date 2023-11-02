@@ -152,7 +152,8 @@
                              ToolTip="Routes"
                              Template="{StaticResource MainMenuRadioButton}"
                              IsChecked="False"
-                             Margin="1">
+                             Margin="1"
+                             Command="{Binding NavigateToRoutesCommand}">
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Path Fill="{StaticResource Primary4Brush}"
