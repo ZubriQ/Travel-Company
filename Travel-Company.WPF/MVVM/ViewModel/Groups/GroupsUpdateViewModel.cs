@@ -6,7 +6,6 @@ using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Data.Dto;
 using Travel_Company.WPF.Models;
-using Travel_Company.WPF.MVVM.ViewModel.Penalties;
 using Travel_Company.WPF.Services.Navigation;
 
 namespace Travel_Company.WPF.MVVM.ViewModel.Groups;
@@ -135,7 +134,7 @@ public class GroupsUpdateViewModel : Core.ViewModel
             execute: _ => HandleUpdating(),
             canExecute: _ => true);
         CancelCommand = new RelayCommand(
-            execute: _ => Navigation.NavigateTo<PenaltiesViewModel>(),
+            execute: _ => Navigation.NavigateTo<GroupsViewModel>(),
             canExecute: _ => true);
         MoveItemToLeftCommand = new RelayCommand(
             execute: _ => HandleClientAdding(),
@@ -229,15 +228,19 @@ public class GroupsUpdateViewModel : Core.ViewModel
     {
         // TODO: Data validation.
 
+        AddUpdatedClients();
+        _groupsRepository.Update(Group);
+        _groupsRepository.SaveChanges();
+
+        Navigation.NavigateTo<GroupsViewModel>();
+    }
+
+    private void AddUpdatedClients()
+    {
         Group.Clients.Clear();
         foreach (var client in CurrentClients)
         {
             Group.Clients.Add(client);
         }
-
-        _groupsRepository.Update(Group);
-        _groupsRepository.SaveChanges();
-
-        Navigation.NavigateTo<GroupsViewModel>();
     }
 }
