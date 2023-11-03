@@ -45,7 +45,7 @@
                 <Grid Margin="0 0 0 15">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
-                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
@@ -84,18 +84,18 @@
                         </DataGrid>
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1" 
+                    <StackPanel Grid.Column="1"
                                 VerticalAlignment="Center"
                                 Margin="5 58 9 0">
                         <Button Template="{StaticResource MoveItemToLeftButton}"
-                                Command="{Binding MoveItemToLeftCommand}" 
+                                Command="{Binding MoveItemToLeftCommand}"
                                 ToolTip="Add selected tourist" />
                         <Button Template="{StaticResource MoveItemToRightButton}"
                                 Command="{Binding MoveItemToRightCommand}"
-                                ToolTip="Remove selected tourist"/>
+                                ToolTip="Remove selected tourist" />
                     </StackPanel>
 
-                        <!-- Available List -->
+                    <!-- Available List -->
                     <StackPanel Grid.Column="2">
                         <TextBlock Text=" "
                                    Style="{StaticResource ComponentTitle}" />

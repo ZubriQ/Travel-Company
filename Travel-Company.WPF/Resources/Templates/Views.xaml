@@ -13,7 +13,7 @@
                     xmlns:catalogsVm="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Catalogs"
                     xmlns:penaltiesVm="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Penalties"
                     xmlns:groupsVm="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Groups"
-                    xmlns:routessVm="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Routes">
+                    xmlns:routesVm="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Routes">
     <DataTemplate DataType="{x:Type TypeName=viewModels:LoginViewModel}">
         <views:LoginView />
     </DataTemplate>
@@ -68,7 +68,13 @@
         <groupsView:GroupsUpdateView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type TypeName=routessVm:RoutesViewModel}">
+    <DataTemplate DataType="{x:Type TypeName=routesVm:RoutesViewModel}">
         <routesView:RoutesView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type TypeName=routesVm:RoutesCreateViewModel}">
+        <routesView:RoutesCreateView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type TypeName=routesVm:RoutesUpdateViewModel}">
+        <routesView:RoutesUpdateView />
     </DataTemplate>
 </ResourceDictionary>

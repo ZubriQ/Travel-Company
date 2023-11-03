@@ -194,15 +194,15 @@ public class GroupsUpdateViewModel : Core.ViewModel
         }
     }
 
-    public void RefreshAvailableClients()
-    {
-        IQueryable<Client> availableClientsQuery = _clientsRepository
-            .GetQuaryable()
-            .Include(c => c.TouristGroups)
-            .Where(client => !Group.Clients.Select(c => c.Id).Contains(client.Id));
+    //public void RefreshAvailableClients()
+    //{
+    //    IQueryable<Client> availableClientsQuery = _clientsRepository
+    //        .GetQuaryable()
+    //        .Include(c => c.TouristGroups)
+    //        .Where(client => !Group.Clients.Select(c => c.Id).Contains(client.Id));
 
-        AvailableClients = new ObservableCollection<Client>(availableClientsQuery.ToList());
-    }
+    //    AvailableClients = new ObservableCollection<Client>(availableClientsQuery.ToList());
+    //}
 
 
     private void HandleStartupMessage(TouristGroupMessage message)

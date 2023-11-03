@@ -33,7 +33,8 @@ public partial class App : Application
     {
         IServiceCollection services = new ServiceCollection();
 
-        services.AddDbContext<TravelCompanyDbContext>(options => options.UseSqlite("Data Source=TravelCompany.db;"));
+        services.AddDbContext<TravelCompanyDbContext>(
+            options => options.UseSqlite("Data Source=TravelCompany.db;"));
 
         services.AddSingleton(provider => new MainWindow()
         {
@@ -76,8 +77,8 @@ public partial class App : Application
         services.AddSingleton<GroupsUpdateViewModel>();
 
         services.AddTransient<RoutesViewModel>();
-        //services.AddTransient<RoutesCreateViewModel>();
-        //services.AddSingleton<RoutesUpdateViewModel>();
+        services.AddTransient<RoutesCreateViewModel>();
+        services.AddSingleton<RoutesUpdateViewModel>();
 
         // Catalogs
         services.AddTransient<CatalogsViewModel>();

@@ -6,7 +6,6 @@ using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Data.Dto;
 using Travel_Company.WPF.Models;
-using Travel_Company.WPF.MVVM.ViewModel.Penalties;
 using Travel_Company.WPF.Services.Navigation;
 
 namespace Travel_Company.WPF.MVVM.ViewModel.Routes;
@@ -102,7 +101,7 @@ public class RoutesViewModel : Core.ViewModel
             execute: _ => HandleUpdating(),
             canExecute: _ => true);
         NavigateToInsertingCommand = new RelayCommand(
-           execute: _ => Navigation.NavigateTo<PenaltiesCreateViewModel>(),
+           execute: _ => Navigation.NavigateTo<RoutesCreateViewModel>(),
            canExecute: _ => true);
         DeleteSelectedItemCommand = new RelayCommand(
             execute: _ => HandleDeleting(),
@@ -114,7 +113,7 @@ public class RoutesViewModel : Core.ViewModel
         {
             var message = new RouteMessage { Route = SelectedItem };
             App.EventAggregator.Publish(message);
-            //Navigation.NavigateTo<PenaltiesUpdateViewModel>();
+            Navigation.NavigateTo<RoutesUpdateViewModel>();
         }
     }
 
