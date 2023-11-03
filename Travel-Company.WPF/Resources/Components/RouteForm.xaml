@@ -97,148 +97,178 @@
                           Margin="0 0 0 10" />
 
                 <!-- Places in the Route -->
-                <StackPanel>
-                    <TextBlock Text="Populated places"
-                               Style="{StaticResource ComponentTitle}" />
-                    <DataGrid Style="{DynamicResource DataGridStyle1}"
-                              CellStyle="{DynamicResource DataGridCellStyle1}"
-                              ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                              RowStyle="{DynamicResource DataGridRowStyle1}"
-                              d:ItemsSource="{d:SampleData ItemCount=6}"
-                              ItemsSource="{Binding Path=CurrentPlaces, Mode=OneWay}"
-                              SelectedItem="{Binding SelectedIncludedPlace}"
-                              HorizontalScrollBarVisibility="Auto"
-                              VerticalScrollBarVisibility="Auto"
-                              MaxHeight="180"
-                              Margin="0 8 4 0">
-                        <DataGrid.Columns>
-                            <!-- Fields -->
-                            <DataGridTemplateColumn Header="Current places in the route"
+                <TextBlock Text="Populated places in the route"
+                           Style="{StaticResource ComponentTitle}" />
+                <Border Padding="10"
+                        Margin="5"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        BorderBrush="{StaticResource Primary8Brush}">
+                    <StackPanel>
+                        <DataGrid Style="{DynamicResource DataGridStyle1}"
+                                  CellStyle="{DynamicResource DataGridCellStyle1}"
+                                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                  RowStyle="{DynamicResource DataGridRowStyle1}"
+                                  d:ItemsSource="{d:SampleData ItemCount=6}"
+                                  ItemsSource="{Binding Path=CurrentPlaces, Mode=OneWay}"
+                                  SelectedItem="{Binding SelectedIncludedPlace}"
+                                  HorizontalScrollBarVisibility="Auto"
+                                  VerticalScrollBarVisibility="Auto"
+                                  MaxHeight="180"
+                                  Margin="0 8 4 0">
+                            <DataGrid.Columns>
+                                <!-- Fields -->
+                                <DataGridTemplateColumn Header="Place"
+                                                        IsReadOnly="True"
+                                                        Width="auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Width="8"
+                                                        Height="8"
+                                                        CornerRadius="4"
+                                                        Margin="0 0 10 0"
+                                                        Background="{StaticResource Primary4Brush}" />
+                                                <TextBlock Text="{Binding Path=PopulatedPlace.Name}"
+                                                           VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTextColumn Header="Hotel"
                                                     IsReadOnly="True"
-                                                    Width="auto">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Border Width="8"
-                                                    Height="8"
-                                                    CornerRadius="4"
-                                                    Margin="0 0 10 0"
-                                                    Background="{StaticResource Primary4Brush}" />
-                                            <TextBlock Text="{Binding Path=PopulatedPlace.Name}"
-                                                       VerticalAlignment="Center" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                                                    Width="auto"
+                                                    Binding="{Binding Path=Hotel.Name}" />
+                                <DataGridTextColumn Header="Program"
+                                                    IsReadOnly="True"
+                                                    Width="auto"
+                                                    Binding="{Binding Path=ExcursionProgram}" 
+                                                    MaxWidth="150"/>
+                                <DataGridTextColumn Header="Arrive"
+                                                    IsReadOnly="True"
+                                                    Width="auto"
+                                                    Binding="{Binding Path=StayStartDatetime, StringFormat=dd/MM/yyyy - hh:mm}" />
+                                <DataGridTextColumn Header="Departure"
+                                                    IsReadOnly="True"
+                                                    Width="auto"
+                                                    Binding="{Binding Path=StayEndDatetime, StringFormat=dd/MM/yyyy - hh:mm}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
 
-                    <DockPanel Margin="0 15 0 10">
-                        <!-- State 1 - Not adding or editing -->
-                        <DockPanel Visibility="{Binding Value, Source={StaticResource IsInitialCommandsVisibleKeyFrame}}">
-                            <Button Content="New place"
-                                    ToolTip="Add a new place to the route."
-                                    Margin="0 0 15 0"
-                                    Command="{Binding NewPlaceCommand}" />
-                            <Button Content="Edit selected"
-                                    ToolTip="Edit selected place from the route."
-                                    Margin="0 0 15 0"
-                                    Command="{Binding EditSelectedCommand}" />
-                            <Button Content="Remove selected"
-                                    ToolTip="Remove selected place from the route."
-                                    Margin="0 0 15 0"
-                                    HorizontalAlignment="Left"
-                                    Command="{Binding RemoveSelectedCommand}" />
+                        <DockPanel Margin="0 15 0 15">
+                            <!-- State 1 - Not adding or editing -->
+                            <DockPanel Visibility="{Binding Value, Source={StaticResource IsInitialCommandsVisibleKeyFrame}}">
+                                <Button Content="New place"
+                                        ToolTip="Add a new place to the route."
+                                        Margin="0 0 15 0"
+                                        Command="{Binding NewPlaceCommand}"
+                                        Style="{StaticResource DataGridCommandButton}" />
+                                <Button Content="Edit selected"
+                                        ToolTip="Edit selected place from the route."
+                                        Margin="0 0 15 0"
+                                        Command="{Binding EditSelectedCommand}"
+                                        Style="{StaticResource DataGridCommandButton}" />
+                                <Button Content="Remove selected"
+                                        ToolTip="Remove selected place from the route."
+                                        Margin="0 0 15 0"
+                                        HorizontalAlignment="Left"
+                                        Command="{Binding RemoveSelectedCommand}"
+                                        Style="{StaticResource DataGridCommandButton}" />
+                            </DockPanel>
+
+                            <!-- State 2 - Adding or editing -->
+                            <DockPanel Visibility="{Binding Value, Source={StaticResource IsSecondaryCommandsVisibleKeyFrame}}">
+                                <Button Content="Add place"
+                                        ToolTip="Edit selected place from the route."
+                                        Margin="0 0 15 0"
+                                        Command="{Binding AddPlaceCommand}"
+                                        Style="{StaticResource DataGridCommandButton}" />
+                                <Button Content="Save place"
+                                        ToolTip="Edit selected place from the route."
+                                        Margin="0 0 15 0"
+                                        Command="{Binding SaveEditCommand}"
+                                        Style="{StaticResource DataGridCommandButton}" />
+                                <Button Content="Cancel"
+                                        ToolTip="Edit selected place from the route."
+                                        Margin="0 0 15 0"
+                                        Command="{Binding CancelChangesCommand}"
+                                        Style="{StaticResource DataGridCommandButton}"
+                                        HorizontalAlignment="Left" />
+                            </DockPanel>
                         </DockPanel>
 
-                        <!-- State 2 - Adding or editing -->
-                        <DockPanel Visibility="{Binding Value, Source={StaticResource IsSecondaryCommandsVisibleKeyFrame}}">
-                            <Button Content="Add place"
-                                    ToolTip="Edit selected place from the route."
-                                    Margin="0 0 15 0"
-                                    Command="{Binding AddPlaceCommand}" />
-                            <Button Content="Save place"
-                                    ToolTip="Edit selected place from the route."
-                                    Margin="0 0 15 0"
-                                    Command="{Binding SaveEditCommand}" />
-                            <Button Content="Cancel"
-                                    ToolTip="Edit selected place from the route."
-                                    Margin="0 0 15 0"
-                                    Command="{Binding CancelChangesCommand}"
-                                    HorizontalAlignment="Left" />
-                        </DockPanel>
-                    </DockPanel>
+                        <TextBlock Text="Place"
+                                   Style="{StaticResource ComponentTitle}" />
+                        <ComboBox ItemsSource="{Binding Places}"
+                                  SelectedItem="{Binding Path=PlaceToAddOrEdit.PopulatedPlace}"
+                                  DisplayMemberPath="Name"
+                                  IsEnabled="{Binding Value, Source={StaticResource IsInputEnabledKeyFrame}}"
+                                  Margin="0 0 0 10" />
 
-                    <TextBlock Text="Place"
-                               Style="{StaticResource ComponentTitle}" />
-                    <ComboBox ItemsSource="{Binding Places}"
-                              SelectedItem="{Binding Path=PlaceToAddOrEdit.PopulatedPlace}"
-                              DisplayMemberPath="Name"
-                              IsEnabled="{Binding Value, Source={StaticResource IsInputEnabledKeyFrame}}"
-                              Margin="0 0 0 10" />
+                        <TextBlock Text="Hotel"
+                                   Style="{StaticResource ComponentTitle}" />
+                        <ComboBox ItemsSource="{Binding Hotels}"
+                                  SelectedItem="{Binding Path=PlaceToAddOrEdit.Hotel}"
+                                  DisplayMemberPath="Name"
+                                  IsEnabled="{Binding Value, Source={StaticResource IsInputEnabledKeyFrame}}"
+                                  Margin="0 0 0 10" />
 
-                    <TextBlock Text="Hotel"
-                               Style="{StaticResource ComponentTitle}" />
-                    <ComboBox ItemsSource="{Binding Hotels}"
-                              SelectedItem="{Binding Path=PlaceToAddOrEdit.Hotel}"
-                              DisplayMemberPath="Name"
-                              IsEnabled="{Binding Value, Source={StaticResource IsInputEnabledKeyFrame}}"
-                              Margin="0 0 0 10" />
+                        <TextBlock Text="Excursion program"
+                                   Style="{StaticResource ComponentTitle}" />
+                        <local:Input ComponentName="Excursion program"
+                                     Text="{Binding Path=PlaceToAddOrEdit.ExcursionProgram, Mode=TwoWay}"
+                                     IsEnabled="{Binding Value, Source={StaticResource IsInputEnabledKeyFrame}}"
+                                     Margin="0 0 0 10" />
 
-                    <TextBlock Text="Excursion program"
-                               Style="{StaticResource ComponentTitle}" />
-                    <local:Input ComponentName="Excursion program"
-                                 Text="{Binding Path=PlaceToAddOrEdit.ExcursionProgram, Mode=TwoWay}"
-                                 IsEnabled="{Binding Value, Source={StaticResource IsInputEnabledKeyFrame}}"
-                                 Margin="0 0 0 10" />
+                        <TextBlock Text="Initial stay time"
+                                   Style="{StaticResource ComponentTitle}" />
+                        <DatePicker SelectedDate="{Binding PlaceToAddOrEdit.StayStartDatetime, Mode=TwoWay}"
+                                    DisplayDateStart="1/1/1900"
+                                    Margin="-2 0 0 10"
+                                    VerticalContentAlignment="Center"
+                                    IsEnabled="{Binding Value, Source={StaticResource IsInputEnabledKeyFrame}}">
+                            <DatePicker.Resources>
+                                <Style TargetType="DatePickerTextBox">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <TextBox Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType=DatePicker}, StringFormat={}{0:dd/MM/yyyy hh:mm:ss}}"
+                                                         VerticalContentAlignment="Center"
+                                                         Margin="-4" />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
 
-                    <TextBlock Text="Initial stay time"
-                               Style="{StaticResource ComponentTitle}" />
-                    <DatePicker SelectedDate="{Binding PlaceToAddOrEdit.StayStartDatetime, Mode=TwoWay}"
-                                DisplayDateStart="1/1/1900"
-                                Margin="-2 0 0 10"
-                                VerticalContentAlignment="Center"
-                                IsEnabled="{Binding Value, Source={StaticResource IsInputEnabledKeyFrame}}">
-                        <DatePicker.Resources>
-                            <Style TargetType="DatePickerTextBox">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate>
-                                            <TextBox Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType=DatePicker}, StringFormat={}{0:dd/MM/yyyy hh:mm:ss}}"
-                                                     VerticalContentAlignment="Center"
-                                                     Margin="-4" />
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </DatePicker.Resources>
-                    </DatePicker>
-
-                    <TextBlock Text="Departure time"
-                               Style="{StaticResource ComponentTitle}" />
-                    <DatePicker SelectedDate="{Binding PlaceToAddOrEdit.StayEndDatetime, Mode=TwoWay}"
-                                DisplayDateStart="1/1/1900"
-                                Margin="-2 0 0 10"
-                                VerticalContentAlignment="Center"
-                                IsEnabled="{Binding Value, Source={StaticResource IsInputEnabledKeyFrame}}">
-                        <DatePicker.Resources>
-                            <Style TargetType="DatePickerTextBox">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate>
-                                            <TextBox Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType=DatePicker}, StringFormat={}{0:dd/MM/yyyy hh:mm:ss}}"
-                                                     VerticalContentAlignment="Center"
-                                                     Margin="-4" />
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </DatePicker.Resources>
-                    </DatePicker>
-                </StackPanel>
+                        <TextBlock Text="Departure time"
+                                   Style="{StaticResource ComponentTitle}" />
+                        <DatePicker SelectedDate="{Binding PlaceToAddOrEdit.StayEndDatetime, Mode=TwoWay}"
+                                    DisplayDateStart="1/1/1900"
+                                    Margin="-2 0 0 10"
+                                    VerticalContentAlignment="Center"
+                                    IsEnabled="{Binding Value, Source={StaticResource IsInputEnabledKeyFrame}}">
+                            <DatePicker.Resources>
+                                <Style TargetType="DatePickerTextBox">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <TextBox Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType=DatePicker}, StringFormat={}{0:dd/MM/yyyy hh:mm:ss}}"
+                                                         VerticalContentAlignment="Center"
+                                                         Margin="-4" />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
+                    </StackPanel>
+                </Border>
 
                 <!-- Buttons -->
-                <DockPanel>
+                <DockPanel Margin="0 10">
                     <Button x:Name="ButtonProceed"
                             Margin="0 0 15 0"
                             Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:RouteForm}}, Path=RelayCommand}"

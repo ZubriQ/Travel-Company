@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -224,7 +225,11 @@ public class RoutesUpdateViewModel : Core.ViewModel
 
     private void HandleNewPlaceCommand()
     {
-        PlaceToAddOrEdit = new();
+        PlaceToAddOrEdit = new()
+        {
+            StayStartDatetime = DateTime.Now,
+            StayEndDatetime = DateTime.Now
+        };
         UnlockPlaceFields();
     }
 
@@ -248,6 +253,7 @@ public class RoutesUpdateViewModel : Core.ViewModel
 
     private void HandleAddPlaceCommand()
     {
+        // TODO: validate data
         CurrentPlaces.Add(PlaceToAddOrEdit);
         PlaceToAddOrEdit = null!;
         LockPlaceFields();
@@ -255,12 +261,14 @@ public class RoutesUpdateViewModel : Core.ViewModel
 
     private void HandleSaveEditCommand()
     {
+        // TODO: validate data
         PlaceToAddOrEdit = null!;
         LockPlaceFields();
     }
 
     private void HandleCancelChangesCommand()
     {
+        // TODO: rollback changes
         PlaceToAddOrEdit = null!;
         LockPlaceFields(); 
         _savedEditablePlaceData = null!;
