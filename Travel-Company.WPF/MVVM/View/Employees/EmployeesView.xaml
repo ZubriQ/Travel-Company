@@ -7,6 +7,10 @@
              xmlns:employees="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Employees"
              d:DataContext="{d:DesignInstance Type=employees:EmployeesViewModel}"
              xmlns:component="clr-namespace:Travel_Company.WPF.Resources.Components"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="ru-RU"
+             lex:ResxLocalizationProvider.DefaultAssembly="Travel-Company.WPF"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="15">
@@ -19,27 +23,27 @@
         <!-- Page Header-->
         <TextBlock Grid.Row="0"
                    x:Name="TextBlockPageTitle"
-                   Text="Employees"
+                   Text="{lex:Loc Employees}"
                    Style="{StaticResource PageHeader}"/>
         
         <!-- Search Bar -->
         <Grid Grid.Row="1"
               Margin="5">
-            <component:SearchBar Placeholder="Search" />
+            <component:SearchBar Placeholder="{lex:Loc SearchBarDefaultPlaceholder}" />
         </Grid>
 
         <!-- Buttons -->
         <StackPanel Grid.Row="2">
             <DockPanel Margin="5">
-                <Button Content="Add"
+                <Button Content="{lex:Loc ButtonAdd}"
                         Margin="0 0 15 0"
                         Command="{Binding NavigateToEmployeesInsertCommand}"
                         Style="{StaticResource CommandButton}" />
-                <Button Content="Edit"
+                <Button Content="{lex:Loc ButtonEdit}"
                         Margin="0 0 15 0"
                         Command="{Binding NavigateToEmployeesUpdateCommand}"
                         Style="{StaticResource CommandButton}" />
-                <Button Content="Fire"
+                <Button Content="{lex:Loc ButtonFire}"
                         HorizontalAlignment="Left"
                         Command="{Binding FireSelectedEmployeeCommand}"
                         Style="{StaticResource FireRemoveButton}" />
@@ -67,7 +71,7 @@
                           HorizontalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <!-- Fields -->
-                        <DataGridTemplateColumn Header="Full name"
+                        <DataGridTemplateColumn Header="{lex:Loc FullName}"
                                                 IsReadOnly="True"
                                                 Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
@@ -87,15 +91,15 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTextColumn Header="Street"
+                        <DataGridTextColumn Header="{lex:Loc Street}"
                                             IsReadOnly="True"
                                             Width="auto"
                                             Binding="{Binding Path=Street.Name}" />
-                        <DataGridTextColumn Header="Birthdate"
+                        <DataGridTextColumn Header="{lex:Loc Birthdate}"
                                             IsReadOnly="True"
                                             Width="auto"
                                             Binding="{Binding Path=Birthdate, StringFormat=dd/MM/yyyy}" />
-                        <DataGridTextColumn Header="Salary"
+                        <DataGridTextColumn Header="{lex:Loc Salary}"
                                             IsReadOnly="True"
                                             Width="auto"
                                             Binding="{Binding Path=Salary}" />

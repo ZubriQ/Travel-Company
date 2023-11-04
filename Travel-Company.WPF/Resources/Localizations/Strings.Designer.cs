@@ -259,11 +259,29 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Employee.
+        /// </summary>
+        public static string CreateEmployeeHeader {
+            get {
+                return ResourceManager.GetString("CreateEmployeeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Client.
         /// </summary>
         public static string EditClientHeader {
             get {
                 return ResourceManager.GetString("EditClientHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Employee.
+        /// </summary>
+        public static string EditEmployeeHeader {
+            get {
+                return ResourceManager.GetString("EditEmployeeHeader", resourceCulture);
             }
         }
         
@@ -417,6 +435,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         public static string Routes {
             get {
                 return ResourceManager.GetString("Routes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salary.
+        /// </summary>
+        public static string Salary {
+            get {
+                return ResourceManager.GetString("Salary", resourceCulture);
             }
         }
         

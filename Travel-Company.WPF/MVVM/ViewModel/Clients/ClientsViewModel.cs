@@ -176,7 +176,7 @@ public sealed class ClientsViewModel : Core.ViewModel
 
     private void HandleVisitingPenalties()
     {
-        if (SelectedClient is not null)
+        if (SelectedClient is not null && SelectedClient.Penalties.Count > 0)
         {
             var message = new ClientMessage { Client = SelectedClient };
             App.EventAggregator.Publish(message);

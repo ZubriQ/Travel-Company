@@ -183,8 +183,14 @@
   <data name="CreateClientHeader" xml:space="preserve">
     <value>Create Client</value>
   </data>
+  <data name="CreateEmployeeHeader" xml:space="preserve">
+    <value>Create Employee</value>
+  </data>
   <data name="EditClientHeader" xml:space="preserve">
     <value>Edit Client</value>
+  </data>
+  <data name="EditEmployeeHeader" xml:space="preserve">
+    <value>Edit Employee</value>
   </data>
   <data name="Employees" xml:space="preserve">
     <value>Employees</value>
@@ -236,6 +242,9 @@
   </data>
   <data name="Routes" xml:space="preserve">
     <value>Routes</value>
+  </data>
+  <data name="Salary" xml:space="preserve">
+    <value>Salary</value>
   </data>
   <data name="SearchBarDefaultPlaceholder" xml:space="preserve">
     <value>Search</value>

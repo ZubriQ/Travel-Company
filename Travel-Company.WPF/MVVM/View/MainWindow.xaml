@@ -21,7 +21,7 @@
         AllowsTransparency="True"
         TextElement.FontFamily="/Resources/Fonts/#Inter"
         MinHeight="450"
-        MinWidth="660">
+        MinWidth="724">
     
     <Window.Resources>
         <Geometry x:Key="GeoPeople">
