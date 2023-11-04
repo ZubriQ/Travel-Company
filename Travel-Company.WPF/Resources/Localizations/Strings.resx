@@ -117,8 +117,44 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ButtonAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ButtonCreate" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="ButtonDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="ButtonEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ButtonFire" xml:space="preserve">
+    <value>Fire</value>
+  </data>
   <data name="ButtonLogIn" xml:space="preserve">
     <value>Enter</value>
+  </data>
+  <data name="ButtonPenalties" xml:space="preserve">
+    <value>Penalties</value>
+  </data>
+  <data name="ButtonUpdate" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Catalog" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
+  <data name="CatalogClass" xml:space="preserve">
+    <value>Class</value>
+  </data>
+  <data name="CatalogCountry" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="CatalogName" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="CatalogsHeader" xml:space="preserve">
     <value>Catalogs</value>
@@ -128,6 +164,9 @@
   </data>
   <data name="Countries" xml:space="preserve">
     <value>Countries</value>
+  </data>
+  <data name="CreateCatalogHeader" xml:space="preserve">
+    <value>Create Catalog</value>
   </data>
   <data name="Employees" xml:space="preserve">
     <value>Employees</value>
@@ -156,8 +195,14 @@
   <data name="Routes" xml:space="preserve">
     <value>Routes</value>
   </data>
+  <data name="SearchBarDefaultPlaceholder" xml:space="preserve">
+    <value>Search</value>
+  </data>
   <data name="Streets" xml:space="preserve">
     <value>Streets</value>
+  </data>
+  <data name="UpdateCatalogHeader" xml:space="preserve">
+    <value>Update Catalog</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>

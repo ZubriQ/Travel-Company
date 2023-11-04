@@ -23,8 +23,8 @@ public class LocalizedStrings
         get
         {
             var result = LocalizeDictionary.Instance.GetLocalizedObject(
-                "Travel_Company.WPF", "Strings", key, LocalizeDictionary.Instance.Culture);
-            return (result as string)!;
+                "Travel-Company.WPF", "Strings", key, LocalizeDictionary.Instance.Culture);
+            return result as string;
         }
     }
 }

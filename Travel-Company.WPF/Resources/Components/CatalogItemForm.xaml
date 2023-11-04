@@ -6,6 +6,10 @@
              xmlns:local="clr-namespace:Travel_Company.WPF.Resources.Components"
              xmlns:catalogs="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Catalogs"
              d:DataContext="{d:DesignInstance Type=catalogs:CatalogsUpdateViewModel}"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="ru-RU"
+             lex:ResxLocalizationProvider.DefaultAssembly="Travel-Company.WPF"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -29,24 +33,24 @@
                       VerticalScrollBarVisibility="Disabled">
             <StackPanel Margin="1 0 5 0">
                 <!-- Inputs -->
-                <TextBlock Text="Catalog name"
+                <TextBlock Text="{lex:Loc CatalogName}"
                            Style="{StaticResource ComponentTitle}" />
-                <local:Input ComponentName="Catalog name"
+                <local:Input ComponentName="{lex:Loc CatalogName}"
                              Text="{Binding CatalogItem.Name, Mode=TwoWay}"
                              Margin="0 0 0 10" />
 
                 <StackPanel x:Name="StackPanelClassElement"
                             Visibility="{Binding Value, Source={StaticResource IsClassElementVisibleKeyFrame}}">
-                    <TextBlock Text="Class"
+                    <TextBlock Text="{lex:Loc CatalogClass}"
                                Style="{StaticResource ComponentTitle}" />
-                    <local:Input ComponentName="Class"
+                    <local:Input ComponentName="{lex:Loc CatalogClass}"
                                  Text="{Binding CatalogItem.Class, Mode=TwoWay}"
                                  Margin="0 0 0 10" />
                 </StackPanel>
 
                 <StackPanel x:Name="StackPanelCountryElement"
                             Visibility="{Binding Value, Source={StaticResource IsCountryNameElementVisibleKeyFrame}}">
-                    <TextBlock Text="Country"
+                    <TextBlock Text="{lex:Loc CatalogCountry}"
                                Style="{StaticResource ComponentTitle}" />
                     <ComboBox ItemsSource="{Binding Countries}"
                               SelectedItem="{Binding CatalogItem.Country}"
@@ -61,7 +65,7 @@
                             Margin="0 0 15 0"
                             Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:CatalogItemForm}}, Path=RelayCommand}"/>
                     <Button x:Name="ButtonCancel"
-                            Content="Cancel"
+                            Content="{lex:Loc ButtonCancel}"
                             Margin="0 0 15 0"
                             HorizontalAlignment="Left"
                             Command="{Binding CancelCommand}" />

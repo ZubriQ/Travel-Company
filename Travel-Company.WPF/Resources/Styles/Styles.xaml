@@ -227,7 +227,7 @@
         <Setter Property="Margin"
                 Value="6,8,4,2" />
         <Setter Property="Foreground"
-                Value="{StaticResource Grey1Brush}" />
+                Value="{StaticResource Grey3Brush}" />
     </Style>
 
     <Style x:Key="ComponentTitle"
@@ -256,7 +256,6 @@
     <!--#endregion TextBlocks -->
     
     <!--#region DataGrid -->
-
     <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
         <Setter Property="Width"
                 Value="8" />
@@ -961,7 +960,6 @@
     <!--#endregion-->
     
     <!--#region ComboBox-->
-
     <Style x:Key="ComboBoxToggleButton"
            TargetType="ToggleButton">
         <Setter Property="Template">
@@ -1156,7 +1154,6 @@
     <!--#endregion-->
     
     <!--#region DateTime Picker-->
-
     <Style TargetType="{x:Type DatePicker}">
         <Setter Property="Foreground"
                 Value="#FF333333" />

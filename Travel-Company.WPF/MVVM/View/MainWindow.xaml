@@ -11,7 +11,7 @@
         lex:ResxLocalizationProvider.DefaultAssembly="Travel-Company.WPF"
         lex:ResxLocalizationProvider.DefaultDictionary="Strings"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Travel Company"
         Height="450" 
         Width="800"
         WindowStyle="None"

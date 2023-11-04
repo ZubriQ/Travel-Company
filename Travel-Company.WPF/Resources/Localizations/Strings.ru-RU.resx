@@ -117,8 +117,44 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ButtonAdd" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="ButtonCreate" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="ButtonDelete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="ButtonEdit" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="ButtonFire" xml:space="preserve">
+    <value>Уволить</value>
+  </data>
   <data name="ButtonLogIn" xml:space="preserve">
     <value>Войти</value>
+  </data>
+  <data name="ButtonPenalties" xml:space="preserve">
+    <value>Неустойки</value>
+  </data>
+  <data name="ButtonUpdate" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="Catalog" xml:space="preserve">
+    <value>Справочник</value>
+  </data>
+  <data name="CatalogClass" xml:space="preserve">
+    <value>Класс</value>
+  </data>
+  <data name="CatalogCountry" xml:space="preserve">
+    <value>Страна</value>
+  </data>
+  <data name="CatalogName" xml:space="preserve">
+    <value>Наименование</value>
   </data>
   <data name="CatalogsHeader" xml:space="preserve">
     <value>Справочники</value>
@@ -128,6 +164,9 @@
   </data>
   <data name="Countries" xml:space="preserve">
     <value>Страны</value>
+  </data>
+  <data name="CreateCatalogHeader" xml:space="preserve">
+    <value>Создание объекта справочника</value>
   </data>
   <data name="Employees" xml:space="preserve">
     <value>Сотрудники</value>
@@ -156,8 +195,14 @@
   <data name="Routes" xml:space="preserve">
     <value>Маршруты</value>
   </data>
+  <data name="SearchBarDefaultPlaceholder" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
   <data name="Streets" xml:space="preserve">
     <value>Улицы</value>
+  </data>
+  <data name="UpdateCatalogHeader" xml:space="preserve">
+    <value>Редактирование объекта справочника</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Имя пользователя</value>
