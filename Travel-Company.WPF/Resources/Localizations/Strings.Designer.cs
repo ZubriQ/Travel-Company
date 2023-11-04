@@ -61,6 +61,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string Amount {
+            get {
+                return ResourceManager.GetString("Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Authority.
         /// </summary>
         public static string Authority {
@@ -223,6 +232,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Client.
+        /// </summary>
+        public static string Client {
+            get {
+                return ResourceManager.GetString("Client", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clients.
         /// </summary>
         public static string Clients {
@@ -268,6 +286,33 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Penalty.
+        /// </summary>
+        public static string CreatePenaltyHeader {
+            get {
+                return ResourceManager.GetString("CreatePenaltyHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Client.
         /// </summary>
         public static string EditClientHeader {
@@ -282,6 +327,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         public static string EditEmployeeHeader {
             get {
                 return ResourceManager.GetString("EditEmployeeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Penalty.
+        /// </summary>
+        public static string EditPenaltyHeader {
+            get {
+                return ResourceManager.GetString("EditPenaltyHeader", resourceCulture);
             }
         }
         
@@ -426,6 +480,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         public static string Places {
             get {
                 return ResourceManager.GetString("Places", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Responsible.
+        /// </summary>
+        public static string Responsible {
+            get {
+                return ResourceManager.GetString("Responsible", resourceCulture);
             }
         }
         

@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Core.Enums;
+using Travel_Company.WPF.Resources.Localizations;
 
 namespace Travel_Company.WPF.Resources.Components
 {
@@ -45,15 +46,15 @@ namespace Travel_Company.WPF.Resources.Components
 
         private void InitializeUpdating()
         {
-            TextBlockTitle.Text = "Edit Penalty";
-            ButtonProceed.Content = "Update";
+            TextBlockTitle.Text = LocalizedStrings.Instance["EditPenaltyHeader"];
+            ButtonProceed.Content = LocalizedStrings.Instance["ButtonUpdate"];
             SetCommand("UpdateCommand");
         }
 
         private void InitializeInserting()
         {
-            TextBlockTitle.Text = "Add Penalty";
-            ButtonProceed.Content = "Create";
+            TextBlockTitle.Text = LocalizedStrings.Instance["CreatePenaltyHeader"];
+            ButtonProceed.Content = LocalizedStrings.Instance["ButtonCreate"];
             SetCommand("CreateCommand");
         }
 

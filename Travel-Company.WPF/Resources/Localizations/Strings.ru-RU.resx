@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Amount" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
   <data name="Authority" xml:space="preserve">
     <value>Кем выдан</value>
   </data>
@@ -171,6 +174,9 @@
   <data name="CatalogsHeader" xml:space="preserve">
     <value>Справочники</value>
   </data>
+  <data name="Client" xml:space="preserve">
+    <value>Клиент</value>
+  </data>
   <data name="Clients" xml:space="preserve">
     <value>Клиенты</value>
   </data>
@@ -186,11 +192,23 @@
   <data name="CreateEmployeeHeader" xml:space="preserve">
     <value>Создание сотрудника</value>
   </data>
+  <data name="CreatePenaltyHeader" xml:space="preserve">
+    <value>Создание Неустойки</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
   <data name="EditClientHeader" xml:space="preserve">
     <value>Редактирование Клиента</value>
   </data>
   <data name="EditEmployeeHeader" xml:space="preserve">
     <value>Редактирование сотрудника</value>
+  </data>
+  <data name="EditPenaltyHeader" xml:space="preserve">
+    <value>Редактирование Неустойки</value>
   </data>
   <data name="Employees" xml:space="preserve">
     <value>Сотрудники</value>
@@ -239,6 +257,9 @@
   </data>
   <data name="Places" xml:space="preserve">
     <value>Пункты</value>
+  </data>
+  <data name="Responsible" xml:space="preserve">
+    <value>Ответственное лицо</value>
   </data>
   <data name="Routes" xml:space="preserve">
     <value>Маршруты</value>
