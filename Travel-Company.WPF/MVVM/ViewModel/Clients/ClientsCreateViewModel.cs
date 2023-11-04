@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Travel_Company.WPF.Core;
+using Travel_Company.WPF.Data;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Models;
 using Travel_Company.WPF.Services.Navigation;
@@ -58,6 +59,8 @@ public class ClientsCreateViewModel : Core.ViewModel
 
     public RelayCommand CreateCommand { get; set; }
     public RelayCommand CancelCommand { get; set; }
+    public RelayCommand ChangeProfilePictureCommand { get; set; }
+    public RelayCommand RemoveProfilePictureCommand { get; set; }
 
     public ClientsCreateViewModel(
         IRepository<Street, long> streetsRepo,
@@ -79,6 +82,17 @@ public class ClientsCreateViewModel : Core.ViewModel
         CancelCommand = new RelayCommand(
             execute: _ => Navigation.NavigateTo<ClientsViewModel>(),
             canExecute: _ => true);
+        ChangeProfilePictureCommand = new RelayCommand(
+            execute: _ => ChangeProfilePicture(),
+            canExecute: _ => true);
+        RemoveProfilePictureCommand = new RelayCommand(
+           execute: _ => Client.Photograph = null,
+           canExecute: _ => true);
+    }
+
+    private void ChangeProfilePicture()
+    {
+        ImageHandler.ChangeProfilePicture(Client);
     }
 
     private void HandleUpdating()

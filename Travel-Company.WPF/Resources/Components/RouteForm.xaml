@@ -163,18 +163,18 @@
                                         ToolTip="Add a new place to the route."
                                         Margin="0 0 15 0"
                                         Command="{Binding NewPlaceCommand}"
-                                        Style="{StaticResource DataGridCommandButton}" />
+                                        Style="{StaticResource CommandButton}" />
                                 <Button Content="Edit selected"
                                         ToolTip="Edit selected place from the route."
                                         Margin="0 0 15 0"
                                         Command="{Binding EditSelectedCommand}"
-                                        Style="{StaticResource DataGridCommandButton}" />
+                                        Style="{StaticResource CommandButton}" />
                                 <Button Content="Remove selected"
                                         ToolTip="Remove selected place from the route."
                                         Margin="0 0 15 0"
                                         HorizontalAlignment="Left"
                                         Command="{Binding RemoveSelectedCommand}"
-                                        Style="{StaticResource DataGridCommandButton}" />
+                                        Style="{StaticResource CommandButton}" />
                             </DockPanel>
 
                             <!-- State 2 - Adding or editing -->
@@ -183,17 +183,17 @@
                                         ToolTip="Edit selected place from the route."
                                         Margin="0 0 15 0"
                                         Command="{Binding AddPlaceCommand}"
-                                        Style="{StaticResource DataGridCommandButton}" />
+                                        Style="{StaticResource CommandButton}" />
                                 <Button Content="Save place"
                                         ToolTip="Edit selected place from the route."
                                         Margin="0 0 15 0"
                                         Command="{Binding SaveEditCommand}"
-                                        Style="{StaticResource DataGridCommandButton}" />
+                                        Style="{StaticResource CommandButton}" />
                                 <Button Content="Cancel"
                                         ToolTip="Edit selected place from the route."
                                         Margin="0 0 15 0"
                                         Command="{Binding CancelChangesCommand}"
-                                        Style="{StaticResource DataGridCommandButton}"
+                                        Style="{StaticResource CommandButton}"
                                         HorizontalAlignment="Left" />
                             </DockPanel>
                         </DockPanel>

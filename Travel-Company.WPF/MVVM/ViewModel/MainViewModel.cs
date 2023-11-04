@@ -40,23 +40,21 @@ public sealed class MainViewModel : Core.ViewModel
     }
 
     // Pages
-    public RelayCommand NavigateToEmployeesCommand { get; set; }
-    public RelayCommand NavigateToClientsCommand { get; set; }
-    public RelayCommand NavigateToPenaltiesCommand { get; set; }
-    public RelayCommand NavigateToTouristGroupsCommand { get; set; }
-    public RelayCommand NavigateToRoutesCommand { get; set; }
-
+    public RelayCommand NavigateToEmployeesCommand { get; set; } = null!;
+    public RelayCommand NavigateToClientsCommand { get; set; } = null!;
+    public RelayCommand NavigateToPenaltiesCommand { get; set; } = null!;
+    public RelayCommand NavigateToTouristGroupsCommand { get; set; } = null!;
+    public RelayCommand NavigateToRoutesCommand { get; set; } = null!;
     // Catalogs
-    public RelayCommand NavigateToCountriesCommand { get; set; }
-    public RelayCommand NavigateToStreetsCommand { get; set; }
-    public RelayCommand NavigateToHotelsCommand { get; set; }
-    public RelayCommand NavigateToPopulatedPlacesCommand { get; set; }
+    public RelayCommand NavigateToCountriesCommand { get; set; } = null!;
+    public RelayCommand NavigateToStreetsCommand { get; set; } = null!;
+    public RelayCommand NavigateToHotelsCommand { get; set; } = null!;
+    public RelayCommand NavigateToPopulatedPlacesCommand { get; set; } = null!;
 
     public MainViewModel(INavigationService service)
     {
         Navigation = service;
         //MainMenuVisibility = Visibility.Collapsed;
-
         InitializePagesCommands();
         InitializeCatalogsCommands();
     }

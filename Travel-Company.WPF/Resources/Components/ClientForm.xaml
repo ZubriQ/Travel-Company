@@ -114,7 +114,8 @@
                 
                 <!-- Photo and Penalties -->
                 <StackPanel Grid.Column="1"
-                            Margin="15 25 10 10">
+                            Margin="15 25 10 10"
+                            Width="180">
                     <Image x:Name="clientImage">
                         <Image.Style>
                             <Style TargetType="{x:Type Image}">
@@ -130,6 +131,15 @@
                             </Style>
                         </Image.Style>
                     </Image>
+                    <Button Content="Change picture"
+                            Margin="0 10"
+                            HorizontalAlignment="Center"
+                            Command="{Binding ChangeProfilePictureCommand}"
+                            Style="{StaticResource CommandButton}" />
+                    <Button Content="Remove picture"
+                            HorizontalAlignment="Center"
+                            Command="{Binding RemoveProfilePictureCommand}"
+                            Style="{StaticResource FireRemoveButton}" />
                 </StackPanel>
 
             </Grid>

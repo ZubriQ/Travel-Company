@@ -16,7 +16,7 @@
         ResizeMode="CanResizeWithGrip"
         AllowsTransparency="True"
         TextElement.FontFamily="/Resources/Fonts/#Inter"
-        MinHeight="150"
+        MinHeight="450"
         MinWidth="660">
     
     <Window.Resources>
@@ -45,250 +45,260 @@
             M6,3A1,1 0 0,1 7,4V4.88C8.06,4.44 9.5,4 11,4C14,4 14,6 16,6C19,6 20,4 20,4V12C20,12 19,14 16,14C13,14 13,12 11,12C8,12 7,14 7,14V21H5V4A1,1 0 0,1 6,3Z
         </Geometry>
     </Window.Resources>
-    
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="36"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
 
-        <!-- Title Bar -->
-        <Border x:Name="BorderTitleBar"
-                Grid.ColumnSpan="2"
-                Background="{StaticResource Primary1Brush}"
-                CornerRadius="8,8,0,0"
-                MouseDown="BorderTitleBar_MouseDown">
-            <DockPanel>
-                <!-- Title -->
-                <TextBlock Text="Travel Company"
-                           FontFamily="/Resources/Fonts/#Roboto"
-                           FontSize="14"
-                           VerticalAlignment="Center"
-                           Margin="15,0,0,0"
-                           FontWeight="ExtraBold"
-                           Foreground="{StaticResource Grey10Brush}"/>
-                <!-- General Buttons-->
-                <DockPanel HorizontalAlignment="Right">
-                    <Button x:Name="ButtonMinimize"
-                            Template="{StaticResource MinimizeButton}"
-                            Click="ButtonMinimize_Click" />
-                    <Button x:Name="ButtonClose"
-                            Template="{StaticResource CloseButton}"
-                            Click="ButtonClose_Click" />
+    <Border CornerRadius="8">
+        <Border.Background>
+            <SolidColorBrush Color="{StaticResource Grey6}"
+                             Opacity="0.3" />
+        </Border.Background>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="36" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!-- Title Bar -->
+            <Border x:Name="BorderTitleBar"
+                    Grid.ColumnSpan="2"
+                    Background="{StaticResource Primary1Brush}"
+                    Margin="1 1 1 0"
+                    CornerRadius="8,8,0,0"
+                    MouseDown="BorderTitleBar_MouseDown">
+                <DockPanel>
+                    <!-- Title -->
+                    <TextBlock Text="Travel Company"
+                               FontFamily="/Resources/Fonts/#Roboto"
+                               FontSize="14"
+                               VerticalAlignment="Center"
+                               Margin="15,0,0,0"
+                               FontWeight="ExtraBold"
+                               Foreground="{StaticResource Grey10Brush}" />
+                    <!-- General Buttons-->
+                    <DockPanel HorizontalAlignment="Right">
+                        <Button x:Name="ButtonMinimize"
+                                Template="{StaticResource MinimizeButton}"
+                                Click="ButtonMinimize_Click" />
+                        <Button x:Name="ButtonClose"
+                                Template="{StaticResource CloseButton}"
+                                Click="ButtonClose_Click" />
+                    </DockPanel>
                 </DockPanel>
-            </DockPanel>
-        </Border>
-        
-        <!-- Pages -->
-        <Border x:Name="BorderPages"
-                Grid.Row="1"
-                Grid.Column="1"
-                Background="{StaticResource Primary9Brush}"
-                CornerRadius="0,0,8,8">
-            <ContentControl x:Name="MainContentControl"
-                            Content="{Binding Path=Navigation.CurrentView}"
-                            Focusable="False" />
-        </Border>
+            </Border>
 
-        <!-- Main Menu -->
-        <Border x:Name="BorderMainMenu"
-                Grid.Row="1" Grid.Column="0"
-                Background="{StaticResource Primary9Brush}"
-                CornerRadius="0,0,0,8"
-                Margin="0,0,-10,0"
-                Visibility="{Binding Path=MainMenuVisibility}">
-            <StackPanel VerticalAlignment="Center"
-                        Margin="10">
-                <!-- Header -->
-                <TextBlock Text="Pages"
-                           Style="{StaticResource MainMenuHeader}" />
-                <!-- Employees -->
-                <RadioButton x:Name="ButtonEmployees"
-                             GroupName="MainMenu"
-                             ToolTip="Employees"
-                             Template="{StaticResource MainMenuRadioButton}"
-                             Command="{Binding Path=NavigateToEmployeesCommand}"
-                             IsChecked="False"
-                             Margin="1">
-                    <RadioButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Path Fill="{StaticResource Primary4Brush}"
-                                  Data="{StaticResource GeoPeople}"
-                                  Width="24"
-                                  Height="24" />
-                            <TextBlock Text="Employees"
-                                       Style="{StaticResource MainMenuTitle}" />
-                        </StackPanel>
-                    </RadioButton.Content>
-                </RadioButton>
+            <!-- Pages -->
+            <Border x:Name="BorderPages"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Background="{StaticResource Primary9Brush}"
+                    CornerRadius="0,0,8,8"
+                    Margin="1 0 1 1">
+                <ContentControl x:Name="MainContentControl"
+                                Content="{Binding Path=Navigation.CurrentView}"
+                                Focusable="False" />
+            </Border>
 
-                <!-- Clients -->
-                <RadioButton x:Name="ButtonClients"
-                             GroupName="MainMenu"
-                             ToolTip="Clients"
-                             Template="{StaticResource MainMenuRadioButton}"
-                             Command="{Binding Path=NavigateToClientsCommand}"
-                             IsChecked="False"
-                             Margin="1">
-                    <RadioButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Path Fill="{StaticResource Primary4Brush}"
-                                  Data="{StaticResource GeoPeople}"
-                                  Width="24"
-                                  Height="24" />
-                            <TextBlock Text="Clients"
-                                       Style="{StaticResource MainMenuTitle}" />
-                        </StackPanel>
-                    </RadioButton.Content>
-                </RadioButton>
+            <!-- Main Menu -->
+            <Border x:Name="BorderMainMenu"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Background="{StaticResource Primary9Brush}"
+                    CornerRadius="0,0,0,8"
+                    Margin="1 0 -10 1"
+                    Visibility="{Binding Path=MainMenuVisibility}">
+                <StackPanel VerticalAlignment="Center"
+                            Margin="10">
+                    <!-- Header -->
+                    <TextBlock Text="Pages"
+                               Style="{StaticResource MainMenuHeader}" />
+                    <!-- Employees -->
+                    <RadioButton x:Name="ButtonEmployees"
+                                 GroupName="MainMenu"
+                                 ToolTip="Employees"
+                                 Template="{StaticResource MainMenuRadioButton}"
+                                 Command="{Binding Path=NavigateToEmployeesCommand}"
+                                 IsChecked="False"
+                                 Margin="1">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Path Fill="{StaticResource Primary4Brush}"
+                                      Data="{StaticResource GeoPeople}"
+                                      Width="24"
+                                      Height="24" />
+                                <TextBlock Text="Employees"
+                                           Style="{StaticResource MainMenuTitle}" />
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
 
-                <!-- Routes -->
-                <RadioButton x:Name="ButtonRoutes"
-                             GroupName="MainMenu"
-                             ToolTip="Routes"
-                             Template="{StaticResource MainMenuRadioButton}"
-                             IsChecked="False"
-                             Margin="1"
-                             Command="{Binding NavigateToRoutesCommand}">
-                    <RadioButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Path Fill="{StaticResource Primary4Brush}"
-                                  Data="{StaticResource GeoRoute}"
-                                  Width="24"
-                                  Height="24" />
-                            <TextBlock Text="Routes"
-                                       Style="{StaticResource MainMenuTitle}" />
-                        </StackPanel>
-                    </RadioButton.Content>
-                </RadioButton>
+                    <!-- Clients -->
+                    <RadioButton x:Name="ButtonClients"
+                                 GroupName="MainMenu"
+                                 ToolTip="Clients"
+                                 Template="{StaticResource MainMenuRadioButton}"
+                                 Command="{Binding Path=NavigateToClientsCommand}"
+                                 IsChecked="False"
+                                 Margin="1">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Path Fill="{StaticResource Primary4Brush}"
+                                      Data="{StaticResource GeoPeople}"
+                                      Width="24"
+                                      Height="24" />
+                                <TextBlock Text="Clients"
+                                           Style="{StaticResource MainMenuTitle}" />
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
 
-                <!-- Tourist Groups -->
-                <RadioButton x:Name="ButtonsTouristGroups"
-                             GroupName="MainMenu"
-                             ToolTip="Groups"
-                             Template="{StaticResource MainMenuRadioButton}"
-                             IsChecked="False"
-                             Margin="1"
-                             Command="{Binding NavigateToTouristGroupsCommand}">
-                    <RadioButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Path Fill="{StaticResource Primary4Brush}"
-                                  Data="{StaticResource GeoTouristGroup}"
-                                  Width="24"
-                                  Height="24" />
-                            <TextBlock Text="Groups"
-                                       Style="{StaticResource MainMenuTitle}" />
-                        </StackPanel>
-                    </RadioButton.Content>
-                </RadioButton>
+                    <!-- Routes -->
+                    <RadioButton x:Name="ButtonRoutes"
+                                 GroupName="MainMenu"
+                                 ToolTip="Routes"
+                                 Template="{StaticResource MainMenuRadioButton}"
+                                 IsChecked="False"
+                                 Margin="1"
+                                 Command="{Binding NavigateToRoutesCommand}">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Path Fill="{StaticResource Primary4Brush}"
+                                      Data="{StaticResource GeoRoute}"
+                                      Width="24"
+                                      Height="24" />
+                                <TextBlock Text="Routes"
+                                           Style="{StaticResource MainMenuTitle}" />
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
 
-                <!-- Penalties -->
-                <RadioButton x:Name="ButtonsPenalties"
-                             GroupName="MainMenu"
-                             ToolTip="Penalties"
-                             Template="{StaticResource MainMenuRadioButton}"
-                             IsChecked="False"
-                             Margin="1"
-                             Command="{Binding NavigateToPenaltiesCommand}">
-                    <RadioButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Path Fill="{StaticResource Primary4Brush}"
-                                  Data="{StaticResource GeoPenalty}"
-                                  Width="24"
-                                  Height="24" />
-                            <TextBlock Text="Penalties"
-                                       Style="{StaticResource MainMenuTitle}" />
-                        </StackPanel>
-                    </RadioButton.Content>
-                </RadioButton>
+                    <!-- Tourist Groups -->
+                    <RadioButton x:Name="ButtonsTouristGroups"
+                                 GroupName="MainMenu"
+                                 ToolTip="Groups"
+                                 Template="{StaticResource MainMenuRadioButton}"
+                                 IsChecked="False"
+                                 Margin="1"
+                                 Command="{Binding NavigateToTouristGroupsCommand}">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Path Fill="{StaticResource Primary4Brush}"
+                                      Data="{StaticResource GeoTouristGroup}"
+                                      Width="24"
+                                      Height="24" />
+                                <TextBlock Text="Groups"
+                                           Style="{StaticResource MainMenuTitle}" />
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
 
-                <!-- Header -->
-                <TextBlock Text="Catalogs"
-                           Style="{StaticResource MainMenuHeader}" />
-                <!-- Countries -->
-                <RadioButton x:Name="ButtonsCountries"
-                             GroupName="MainMenu"
-                             ToolTip="Countries"
-                             Template="{StaticResource MainMenuRadioButton}"
-                             IsChecked="False"
-                             Margin="1"
-                             Command="{Binding NavigateToCountriesCommand}">
-                    <RadioButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Path Fill="{StaticResource Primary4Brush}"
-                                  Data="{StaticResource GeoCountries}"
-                                  Width="24"
-                                  Height="24" />
-                            <TextBlock Text="Countries"
-                                       Style="{StaticResource MainMenuTitle}" />
-                        </StackPanel>
-                    </RadioButton.Content>
-                </RadioButton>
-                
-                <!-- Streets -->
-                <RadioButton x:Name="ButtonsStreets"
-                             GroupName="MainMenu"
-                             ToolTip="Streets"
-                             Template="{StaticResource MainMenuRadioButton}"
-                             IsChecked="False"
-                             Margin="1"
-                             Command="{Binding NavigateToStreetsCommand}">
-                    <RadioButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Path Fill="{StaticResource Primary4Brush}"
-                                  Data="{StaticResource GeoStreet}"
-                                  Width="24"
-                                  Height="24" />
-                            <TextBlock Text="Streets"
-                                       Style="{StaticResource MainMenuTitle}" />
-                        </StackPanel>
-                    </RadioButton.Content>
-                </RadioButton>
+                    <!-- Penalties -->
+                    <RadioButton x:Name="ButtonsPenalties"
+                                 GroupName="MainMenu"
+                                 ToolTip="Penalties"
+                                 Template="{StaticResource MainMenuRadioButton}"
+                                 IsChecked="False"
+                                 Margin="1"
+                                 Command="{Binding NavigateToPenaltiesCommand}">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Path Fill="{StaticResource Primary4Brush}"
+                                      Data="{StaticResource GeoPenalty}"
+                                      Width="24"
+                                      Height="24" />
+                                <TextBlock Text="Penalties"
+                                           Style="{StaticResource MainMenuTitle}" />
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
 
-                <!-- Hotels -->
-                <RadioButton x:Name="ButtonsHotels"
-                             GroupName="MainMenu"
-                             ToolTip="Hotels"
-                             Template="{StaticResource MainMenuRadioButton}"
-                             IsChecked="False"
-                             Margin="1"
-                             Command="{Binding NavigateToHotelsCommand}">
-                    <RadioButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Path Fill="{StaticResource Primary4Brush}"
-                                  Data="{StaticResource GeoHotel}"
-                                  Width="24"
-                                  Height="24" />
-                            <TextBlock Text="Hotels"
-                                       Style="{StaticResource MainMenuTitle}" />
-                        </StackPanel>
-                    </RadioButton.Content>
-                </RadioButton>
+                    <!-- Header -->
+                    <TextBlock Text="Catalogs"
+                               Style="{StaticResource MainMenuHeader}" />
+                    <!-- Countries -->
+                    <RadioButton x:Name="ButtonsCountries"
+                                 GroupName="MainMenu"
+                                 ToolTip="Countries"
+                                 Template="{StaticResource MainMenuRadioButton}"
+                                 IsChecked="False"
+                                 Margin="1"
+                                 Command="{Binding NavigateToCountriesCommand}">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Path Fill="{StaticResource Primary4Brush}"
+                                      Data="{StaticResource GeoCountries}"
+                                      Width="24"
+                                      Height="24" />
+                                <TextBlock Text="Countries"
+                                           Style="{StaticResource MainMenuTitle}" />
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
 
-                <!-- Populated Places -->
-                <RadioButton x:Name="ButtonsPopulatedPlaces"
-                             GroupName="MainMenu"
-                             ToolTip="Populated Places"
-                             Template="{StaticResource MainMenuRadioButton}"
-                             IsChecked="False"
-                             Margin="1"
-                             Command="{Binding NavigateToPopulatedPlacesCommand}">
-                    <RadioButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <Path Fill="{StaticResource Primary4Brush}"
-                                  Data="{StaticResource GeoPlace}"
-                                  Width="24"
-                                  Height="24" />
-                            <TextBlock Text="Places"
-                                       Style="{StaticResource MainMenuTitle}" />
-                        </StackPanel>
-                    </RadioButton.Content>
-                </RadioButton>
-            </StackPanel>
-        </Border>
-    </Grid>
+                    <!-- Streets -->
+                    <RadioButton x:Name="ButtonsStreets"
+                                 GroupName="MainMenu"
+                                 ToolTip="Streets"
+                                 Template="{StaticResource MainMenuRadioButton}"
+                                 IsChecked="False"
+                                 Margin="1"
+                                 Command="{Binding NavigateToStreetsCommand}">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Path Fill="{StaticResource Primary4Brush}"
+                                      Data="{StaticResource GeoStreet}"
+                                      Width="24"
+                                      Height="24" />
+                                <TextBlock Text="Streets"
+                                           Style="{StaticResource MainMenuTitle}" />
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
+
+                    <!-- Hotels -->
+                    <RadioButton x:Name="ButtonsHotels"
+                                 GroupName="MainMenu"
+                                 ToolTip="Hotels"
+                                 Template="{StaticResource MainMenuRadioButton}"
+                                 IsChecked="False"
+                                 Margin="1"
+                                 Command="{Binding NavigateToHotelsCommand}">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Path Fill="{StaticResource Primary4Brush}"
+                                      Data="{StaticResource GeoHotel}"
+                                      Width="24"
+                                      Height="24" />
+                                <TextBlock Text="Hotels"
+                                           Style="{StaticResource MainMenuTitle}" />
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
+
+                    <!-- Populated Places -->
+                    <RadioButton x:Name="ButtonsPopulatedPlaces"
+                                 GroupName="MainMenu"
+                                 ToolTip="Populated Places"
+                                 Template="{StaticResource MainMenuRadioButton}"
+                                 IsChecked="False"
+                                 Margin="1"
+                                 Command="{Binding NavigateToPopulatedPlacesCommand}">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Path Fill="{StaticResource Primary4Brush}"
+                                      Data="{StaticResource GeoPlace}"
+                                      Width="24"
+                                      Height="24" />
+                                <TextBlock Text="Places"
+                                           Style="{StaticResource MainMenuTitle}" />
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
 </Window>

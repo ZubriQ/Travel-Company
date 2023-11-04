@@ -32,10 +32,12 @@
             <DockPanel Margin="5">
                 <Button Content="Add"
                         Margin="0 0 15 0"
-                        Command="{Binding NavigateToInsertingCommand}" />
+                        Command="{Binding NavigateToInsertingCommand}"
+                        Style="{StaticResource CommandButton}" />
                 <Button Content="Edit"
                         Margin="0 0 15 0"
-                        Command="{Binding NavigateToUpdatingCommand}" />
+                        Command="{Binding NavigateToUpdatingCommand}"
+                        Style="{StaticResource CommandButton}" />
                 <Button Content="Delete"
                         HorizontalAlignment="Left"
                         Command="{Binding DeleteSelectedItemCommand}"

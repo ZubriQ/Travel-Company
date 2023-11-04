@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Travel_Company.WPF.Core;
 
 namespace Travel_Company.WPF.Models;
 
-public partial class Client
+public partial class Client : ObservableObject
 {
     public long Id { get; set; }
 
@@ -25,7 +26,16 @@ public partial class Client
 
     public string PassportIssuingAuthority { get; set; } = null!;
 
-    public byte[]? Photograph { get; set; }
+    private byte[]? _photograph;
+    public byte[]? Photograph
+    {
+        get => _photograph;
+        set
+        {
+            _photograph = value;
+            OnPropertyChanged();
+        }
+    }
 
     public virtual ICollection<Penalty> Penalties { get; set; } = new List<Penalty>();
 

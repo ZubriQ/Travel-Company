@@ -37,10 +37,12 @@
             <DockPanel Margin="5">
                 <Button Content="Add"
                         Margin="0 0 15 0"
-                        Command="{Binding NavigateToInsertingCommand}" />
+                        Command="{Binding NavigateToInsertingCommand}"
+                        Style="{StaticResource CommandButton}"/>
                 <Button Content="Edit"
                         Margin="0 0 15 0"
-                        Command="{Binding NavigateToUpdatingCommand}" />
+                        Command="{Binding NavigateToUpdatingCommand}"
+                        Style="{StaticResource CommandButton}" />
                 <Button Content="Delete"
                         HorizontalAlignment="Left"
                         Margin="0 0 15 0"
@@ -48,10 +50,12 @@
                         Style="{StaticResource FireRemoveButton}"/>
                 <Button Content="Penalties"
                         Margin="0 0 15 0"
-                        Command="{Binding NavigateToPenaltiesCommand}" />
+                        Command="{Binding NavigateToPenaltiesCommand}"
+                        Style="{StaticResource CommandButton}" />
                 <Button Content="{Binding ToggleButtonContent}"
                         HorizontalAlignment="Left"
-                        Command="{Binding ToggleColumnsCommand}" />
+                        Command="{Binding ToggleColumnsCommand}"
+                        Style="{StaticResource CommandButton}" />
             </DockPanel>
             <Border Background="{StaticResource Primary8Brush}"
                     Height="1"
