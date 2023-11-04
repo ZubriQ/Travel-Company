@@ -8,6 +8,7 @@ using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Data.Dto;
 using Travel_Company.WPF.Models;
 using Travel_Company.WPF.MVVM.ViewModel.Penalties;
+using Travel_Company.WPF.Resources.Localizations;
 using Travel_Company.WPF.Services.Navigation;
 
 namespace Travel_Company.WPF.MVVM.ViewModel.Clients;
@@ -73,7 +74,7 @@ public sealed class ClientsViewModel : Core.ViewModel
         }
     }
 
-    private string _toggleButtonContent = "Show Passports";
+    private string _toggleButtonContent = LocalizedStrings.Instance["TextShowPassports"];
     public string ToggleButtonContent
     {
         get => _toggleButtonContent;
@@ -147,8 +148,8 @@ public sealed class ClientsViewModel : Core.ViewModel
             ? Visibility.Visible
             : Visibility.Hidden;
         ToggleButtonContent = IsPassportDataVisible is Visibility.Hidden
-            ? "Show Passports"
-            : "Hide Passports";
+            ? LocalizedStrings.Instance["TextShowPassports"]
+            : LocalizedStrings.Instance["TextHidePassports"];
     }
 
     private void HandleDeleting()

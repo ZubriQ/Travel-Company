@@ -61,6 +61,24 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Authority.
+        /// </summary>
+        public static string Authority {
+            get {
+                return ResourceManager.GetString("Authority", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Birthdate.
+        /// </summary>
+        public static string Birthdate {
+            get {
+                return ResourceManager.GetString("Birthdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string ButtonAdd {
@@ -75,6 +93,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         public static string ButtonCancel {
             get {
                 return ResourceManager.GetString("ButtonCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change picture.
+        /// </summary>
+        public static string ButtonChangePicture {
+            get {
+                return ResourceManager.GetString("ButtonChangePicture", resourceCulture);
             }
         }
         
@@ -129,6 +156,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         public static string ButtonPenalties {
             get {
                 return ResourceManager.GetString("ButtonPenalties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove picture.
+        /// </summary>
+        public static string ButtonRemovePicture {
+            get {
+                return ResourceManager.GetString("ButtonRemovePicture", resourceCulture);
             }
         }
         
@@ -214,11 +250,47 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Client.
+        /// </summary>
+        public static string CreateClientHeader {
+            get {
+                return ResourceManager.GetString("CreateClientHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Client.
+        /// </summary>
+        public static string EditClientHeader {
+            get {
+                return ResourceManager.GetString("EditClientHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employees.
         /// </summary>
         public static string Employees {
             get {
                 return ResourceManager.GetString("Employees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First name.
+        /// </summary>
+        public static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full name.
+        /// </summary>
+        public static string FullName {
+            get {
+                return ResourceManager.GetString("FullName", resourceCulture);
             }
         }
         
@@ -241,6 +313,24 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Issue date.
+        /// </summary>
+        public static string IssueDate {
+            get {
+                return ResourceManager.GetString("IssueDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last name.
+        /// </summary>
+        public static string LastName {
+            get {
+                return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string LoginHeaderTextBlock {
@@ -259,11 +349,47 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Passport.
+        /// </summary>
+        public static string Passport {
+            get {
+                return ResourceManager.GetString("Passport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passport number.
+        /// </summary>
+        public static string PassportNumber {
+            get {
+                return ResourceManager.GetString("PassportNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passport series.
+        /// </summary>
+        public static string PassportSeries {
+            get {
+                return ResourceManager.GetString("PassportSeries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string PasswordTextBlockPlaceholder {
             get {
                 return ResourceManager.GetString("PasswordTextBlockPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patronymic.
+        /// </summary>
+        public static string Patronymic {
+            get {
+                return ResourceManager.GetString("Patronymic", resourceCulture);
             }
         }
         
@@ -304,11 +430,47 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Street.
+        /// </summary>
+        public static string Street {
+            get {
+                return ResourceManager.GetString("Street", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Streets.
         /// </summary>
         public static string Streets {
             get {
                 return ResourceManager.GetString("Streets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide passports.
+        /// </summary>
+        public static string TextHidePassports {
+            get {
+                return ResourceManager.GetString("TextHidePassports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show passports.
+        /// </summary>
+        public static string TextShowPassports {
+            get {
+                return ResourceManager.GetString("TextShowPassports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tourist group.
+        /// </summary>
+        public static string TouristGroup {
+            get {
+                return ResourceManager.GetString("TouristGroup", resourceCulture);
             }
         }
         
