@@ -172,6 +172,35 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="LanguageToggleButton"
+           TargetType="ToggleButton">
+        <Setter Property="Foreground"
+                Value="{StaticResource WhiteBrush}" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="Margin"
+                Value="0 0 10 1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <TextBlock x:Name="contentPresenter"
+                               Text="Ru"
+                               TextDecorations="Underline" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked"
+                                 Value="True">
+                            <Setter TargetName="contentPresenter"
+                                    Property="Text"
+                                    Value="En" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
     <!--#endregion Controls -->
 
     <!--#region TextBlocks -->

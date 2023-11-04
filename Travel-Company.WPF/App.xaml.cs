@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Globalization;
+using System.Reflection;
 using System.Windows;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data;
@@ -16,6 +18,7 @@ using Travel_Company.WPF.MVVM.ViewModel.Penalties;
 using Travel_Company.WPF.MVVM.ViewModel.Routes;
 using Travel_Company.WPF.Services.Authorization;
 using Travel_Company.WPF.Services.Navigation;
+using WPFLocalizeExtension.Engine;
 
 namespace Travel_Company.WPF;
 
@@ -31,6 +34,8 @@ public partial class App : Application
 
     public App()
     {
+        InitializeLocalization();
+
         IServiceCollection services = new ServiceCollection();
 
         services.AddDbContext<TravelCompanyDbContext>(
@@ -93,16 +98,20 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
+        base.OnStartup(e);
         var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
         mainWindow.Show();
-
         DbInitializer.Seed(_serviceProvider);
-
-        base.OnStartup(e);
     }
 
     public static ViewModel GetStartupView()
     {
         return _serviceProvider.GetRequiredService<LoginViewModel>();
+    }
+
+    private void InitializeLocalization()
+    {
+        //LocalizeDictionary.Instance.Culture = CultureInfo.CurrentCulture;
+        LocalizeDictionary.Instance.Culture = new CultureInfo("ru-RU");
     }
 }

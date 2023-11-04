@@ -6,12 +6,17 @@
              xmlns:local="clr-namespace:Travel_Company.WPF.MVVM.View"
              xmlns:component="clr-namespace:Travel_Company.WPF.Resources.Components"
              xmlns:viewmodel="clr-namespace:Travel_Company.WPF.MVVM.ViewModel"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="ru-RU"
+             lex:ResxLocalizationProvider.DefaultAssembly="Travel-Company.WPF"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              d:DataContext="{d:DesignInstance Type=viewmodel:LoginViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Margin="20"
                 VerticalAlignment="Center">
-        <TextBlock Text="Login"
+        <TextBlock Name="LoginHeaderTextBlock"
+                   Text="{lex:Loc}"
                    HorizontalAlignment="Center" 
                    FontSize="24"
                    FontFamily="Sans-serif"
@@ -21,19 +26,21 @@
         <StackPanel>
             <Grid Width="260"
                   Margin="10">
-                <component:Input ComponentName="Username"
+                <component:Input x:Name="Username"
+                                 ComponentName="{lex:Loc}"
                                  Text="{Binding Username, Mode=TwoWay}" />
             </Grid>
             <Grid Width="260" 
                   Margin="10">
-                <component:Password PasswordText="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <component:Password x:Name="Password"
+                                    PasswordText="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </Grid>
             <Grid Width="260"
                   Margin="10">
                 <Button x:Name="ButtonLogIn"
                         Template="{StaticResource ButtonLogIn}"
                         Command="{Binding Path=NavigateToEmployeesCommand}"
-                        Content="Enter" />
+                        Content="{lex:Loc}" />
             </Grid>
             <Grid Margin="50">
                 

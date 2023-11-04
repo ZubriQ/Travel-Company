@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using Travel_Company.WPF.Resources.Localizations;
 
 namespace Travel_Company.WPF.Resources.Components;
 
@@ -9,8 +10,6 @@ namespace Travel_Company.WPF.Resources.Components;
 /// </summary>
 public partial class Password : UserControl
 {
-    private readonly string _componentName = "Password";
-
     public string PasswordText
     {
         get => (string)GetValue(PasswordProperty);
@@ -30,7 +29,7 @@ public partial class Password : UserControl
     protected override void OnInitialized(EventArgs e)
     {
         InitializeComponent();
-        Placeholder.Text = _componentName;
+        PasswordTextBlockPlaceholder.Visibility = Visibility.Visible;
         base.OnInitialized(e);
     }
 
@@ -40,9 +39,9 @@ public partial class Password : UserControl
 
         if (ComponentPassword.Password.Length > 0)
         {
-            Placeholder.Text = string.Empty;
+            PasswordTextBlockPlaceholder.Visibility = Visibility.Hidden;
             return;
         }
-        Placeholder.Text = _componentName;
+        PasswordTextBlockPlaceholder.Visibility = Visibility.Visible;
     }
 }

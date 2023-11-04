@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Globalization;
+using System.Linq;
+using System.Windows;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Core.Enums;
 using Travel_Company.WPF.Data.Dto;
@@ -9,6 +12,7 @@ using Travel_Company.WPF.MVVM.ViewModel.Groups;
 using Travel_Company.WPF.MVVM.ViewModel.Penalties;
 using Travel_Company.WPF.MVVM.ViewModel.Routes;
 using Travel_Company.WPF.Services.Navigation;
+using WPFLocalizeExtension.Engine;
 
 namespace Travel_Company.WPF.MVVM.ViewModel;
 
@@ -50,6 +54,8 @@ public sealed class MainViewModel : Core.ViewModel
     public RelayCommand NavigateToStreetsCommand { get; set; } = null!;
     public RelayCommand NavigateToHotelsCommand { get; set; } = null!;
     public RelayCommand NavigateToPopulatedPlacesCommand { get; set; } = null!;
+    // Localization
+    public RelayCommand SwitchLocalizationCommand { get; set; } = null!;
 
     public MainViewModel(INavigationService service)
     {
@@ -57,6 +63,20 @@ public sealed class MainViewModel : Core.ViewModel
         //MainMenuVisibility = Visibility.Collapsed;
         InitializePagesCommands();
         InitializeCatalogsCommands();
+        SwitchLocalizationCommand = new RelayCommand(
+            execute: _ =>
+            {
+                LocalizeDictionary.Instance.SetCurrentThreadCulture = true;
+                if (LocalizeDictionary.Instance.Culture.Name == "ru-RU")
+                {
+                    LocalizeDictionary.Instance.Culture = new CultureInfo("en-US");
+                }
+                else if (LocalizeDictionary.Instance.Culture.Name == "en-US")
+                {
+                    LocalizeDictionary.Instance.Culture = new CultureInfo("ru-RU");
+                }
+            },
+            canExecute: _ => true);
     }
 
     private void InitializePagesCommands()

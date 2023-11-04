@@ -80,11 +80,11 @@
                                Foreground="{StaticResource Grey10Brush}" />
                     <!-- General Buttons-->
                     <DockPanel HorizontalAlignment="Right">
-                        <Button x:Name="ButtonMinimize"
-                                Template="{StaticResource MinimizeButton}"
+                        <ToggleButton Style="{StaticResource LanguageToggleButton}"
+                                      Command="{Binding SwitchLocalizationCommand}"/>
+                        <Button Template="{StaticResource MinimizeButton}"
                                 Click="ButtonMinimize_Click" />
-                        <Button x:Name="ButtonClose"
-                                Template="{StaticResource CloseButton}"
+                        <Button Template="{StaticResource CloseButton}"
                                 Click="ButtonClose_Click" />
                     </DockPanel>
                 </DockPanel>
