@@ -49,7 +49,7 @@ public sealed class EmployeesUpdateViewModel : Core.ViewModel
     public RelayCommand CancelCommand { get; set; }
 
     public EmployeesUpdateViewModel(
-        IRepository<Street, long> streetsRepo, 
+        IRepository<Street, long> streetsRepo,
         IRepository<TourGuide, int> employeesRepo,
         INavigationService navigationService)
     {

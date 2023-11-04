@@ -12,8 +12,8 @@ public partial class Input : UserControl
     public string Text
     {
         get => (string)GetValue(TextProperty);
-        set 
-        { 
+        set
+        {
             SetValue(TextProperty, value);
         }
     }

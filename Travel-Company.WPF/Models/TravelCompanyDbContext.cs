@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 
 namespace Travel_Company.WPF.Models;
 
@@ -41,7 +40,7 @@ public partial class TravelCompanyDbContext : DbContext
 
     public virtual DbSet<UsersObject> UsersObjects { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
         optionsBuilder.UseSqlite("Data Source=TravelCompany.db;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

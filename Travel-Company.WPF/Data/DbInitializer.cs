@@ -126,49 +126,49 @@ public static class DbInitializer
                 Name = "London",
                 CountryId = countries.FirstOrDefault(c => c.Name == "United Kingdom")!.Id
             },
-            new PopulatedPlace() 
-            { 
+            new PopulatedPlace()
+            {
                 Name = "Manchester",
-                CountryId = countries.FirstOrDefault(c => c.Name == "Canada")!.Id 
+                CountryId = countries.FirstOrDefault(c => c.Name == "Canada")!.Id
             },
-            new PopulatedPlace() 
-            { 
+            new PopulatedPlace()
+            {
                 Name = "Birmingham",
-                CountryId = countries.FirstOrDefault(c => c.Name == "Russia")!.Id 
+                CountryId = countries.FirstOrDefault(c => c.Name == "Russia")!.Id
             },
-            new PopulatedPlace() 
-            { 
-                Name = "Liverpool", 
-                CountryId = countries.FirstOrDefault(c => c.Name == "Germany")!.Id 
+            new PopulatedPlace()
+            {
+                Name = "Liverpool",
+                CountryId = countries.FirstOrDefault(c => c.Name == "Germany")!.Id
             },
-            new PopulatedPlace() 
-            { 
-                Name = "Glasgow", 
+            new PopulatedPlace()
+            {
+                Name = "Glasgow",
                 CountryId = countries.FirstOrDefault(c => c.Name == "France")!.Id
             },
-            new PopulatedPlace() 
-            { 
-                Name = "Leeds", 
+            new PopulatedPlace()
+            {
+                Name = "Leeds",
                 CountryId = countries.FirstOrDefault(c => c.Name == "Japan")!.Id
             },
-            new PopulatedPlace() 
-            { 
-                Name = "Bristol", 
-                CountryId = countries.FirstOrDefault(c => c.Name == "Australia")!.Id 
+            new PopulatedPlace()
+            {
+                Name = "Bristol",
+                CountryId = countries.FirstOrDefault(c => c.Name == "Australia")!.Id
             },
-            new PopulatedPlace() 
-            { 
+            new PopulatedPlace()
+            {
                 Name = "Sheffield",
-                CountryId = countries.FirstOrDefault(c => c.Name == "Brazil")!.Id 
+                CountryId = countries.FirstOrDefault(c => c.Name == "Brazil")!.Id
             },
-            new PopulatedPlace() 
-            { 
-                Name = "Edinburgh", 
+            new PopulatedPlace()
+            {
+                Name = "Edinburgh",
                 CountryId = countries.FirstOrDefault(c => c.Name == "India")!.Id
             },
-            new PopulatedPlace() 
-            { 
-                Name = "Cardiff", 
+            new PopulatedPlace()
+            {
+                Name = "Cardiff",
                 CountryId = countries.FirstOrDefault(c => c.Name == "South Africa")!.Id
             },
         };

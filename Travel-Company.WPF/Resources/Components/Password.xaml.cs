@@ -14,16 +14,16 @@ public partial class Password : UserControl
     public string PasswordText
     {
         get => (string)GetValue(PasswordProperty);
-        set 
-        { 
-            SetValue(PasswordProperty, value); 
+        set
+        {
+            SetValue(PasswordProperty, value);
         }
     }
 
     public static readonly DependencyProperty PasswordProperty =
         DependencyProperty.Register(
-            "PasswordText", 
-            typeof(string),  
+            "PasswordText",
+            typeof(string),
             typeof(Password),
             new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 

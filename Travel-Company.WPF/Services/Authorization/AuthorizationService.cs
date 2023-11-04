@@ -11,10 +11,10 @@ public class AuthorizationService : IAuthorizationService
     {
         _context = context;
     }
-    
+
     public User? LogIn(string username, string password)
     {
-        return (_context.Users.FirstOrDefault(u => u.Username == username) is User user && user.Password == password) 
+        return (_context.Users.FirstOrDefault(u => u.Username == username) is User user && user.Password == password)
             ? user
             : null;
     }

@@ -14,7 +14,7 @@ public partial class EmployeeForm : UserControl
 {
     public FormState State { get; set; }
 
-    public static readonly DependencyProperty CommandProperty = 
+    public static readonly DependencyProperty CommandProperty =
         DependencyProperty.Register("RelayCommand", typeof(RelayCommand), typeof(EmployeeForm));
 
     public RelayCommand RelayCommand

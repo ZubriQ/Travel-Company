@@ -85,7 +85,7 @@ public partial class App : Application
         services.AddTransient<CatalogsCreateViewModel>();
         services.AddTransient<CatalogsUpdateViewModel>();
     }
-    
+
     private static void InitializeDbServices(IServiceCollection services)
     {
         services.AddScoped<IAuthorizationService, AuthorizationService>();

@@ -48,8 +48,8 @@ public sealed class EmployeesCreateViewModel : Core.ViewModel
     public RelayCommand CancelCommand { get; set; }
 
     public EmployeesCreateViewModel(
-        IRepository<Street, long> streetsRepo, 
-        IRepository<TourGuide, int> employeesRepo, 
+        IRepository<Street, long> streetsRepo,
+        IRepository<TourGuide, int> employeesRepo,
         INavigationService navigation)
     {
         _streetsRepository = streetsRepo;

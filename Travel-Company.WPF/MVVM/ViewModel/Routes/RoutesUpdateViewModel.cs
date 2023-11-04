@@ -1,8 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data.Base;
@@ -270,7 +268,7 @@ public class RoutesUpdateViewModel : Core.ViewModel
     {
         // TODO: rollback changes
         PlaceToAddOrEdit = null!;
-        LockPlaceFields(); 
+        LockPlaceFields();
         _savedEditablePlaceData = null!;
     }
 

@@ -2,8 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using Travel_Company.WPF.Core.Enums;
 using Travel_Company.WPF.Core;
+using Travel_Company.WPF.Core.Enums;
 
 namespace Travel_Company.WPF.Resources.Components
 {
