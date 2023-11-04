@@ -181,6 +181,8 @@
                 Value="Center" />
         <Setter Property="Margin"
                 Value="0 0 10 1" />
+        <Setter Property="Cursor"
+                Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">

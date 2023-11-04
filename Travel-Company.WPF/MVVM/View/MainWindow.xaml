@@ -6,6 +6,10 @@
         xmlns:local="clr-namespace:Travel_Company.WPF"
         xmlns:viewmodel="clr-namespace:Travel_Company.WPF.MVVM.ViewModel"
         d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:LocalizeDictionary.DesignCulture="ru-RU"
+        lex:ResxLocalizationProvider.DefaultAssembly="Travel-Company.WPF"
+        lex:ResxLocalizationProvider.DefaultDictionary="Strings"
         mc:Ignorable="d"
         Title="MainWindow"
         Height="450" 
@@ -113,12 +117,13 @@
                 <StackPanel VerticalAlignment="Center"
                             Margin="10">
                     <!-- Header -->
-                    <TextBlock Text="Pages"
+                    <TextBlock x:Name="PagesHeader"
+                               Text="{lex:Loc}"
                                Style="{StaticResource MainMenuHeader}" />
                     <!-- Employees -->
-                    <RadioButton x:Name="ButtonEmployees"
+                    <RadioButton Name="ButtonEmployees"
                                  GroupName="MainMenu"
-                                 ToolTip="Employees"
+                                 ToolTip="{lex:Loc Employees}"
                                  Template="{StaticResource MainMenuRadioButton}"
                                  Command="{Binding Path=NavigateToEmployeesCommand}"
                                  IsChecked="False"
@@ -129,7 +134,7 @@
                                       Data="{StaticResource GeoPeople}"
                                       Width="24"
                                       Height="24" />
-                                <TextBlock Text="Employees"
+                                <TextBlock Text="{lex:Loc Employees}"
                                            Style="{StaticResource MainMenuTitle}" />
                             </StackPanel>
                         </RadioButton.Content>
@@ -138,7 +143,7 @@
                     <!-- Clients -->
                     <RadioButton x:Name="ButtonClients"
                                  GroupName="MainMenu"
-                                 ToolTip="Clients"
+                                 ToolTip="{lex:Loc Clients}"
                                  Template="{StaticResource MainMenuRadioButton}"
                                  Command="{Binding Path=NavigateToClientsCommand}"
                                  IsChecked="False"
@@ -149,7 +154,7 @@
                                       Data="{StaticResource GeoPeople}"
                                       Width="24"
                                       Height="24" />
-                                <TextBlock Text="Clients"
+                                <TextBlock Text="{lex:Loc Clients}"
                                            Style="{StaticResource MainMenuTitle}" />
                             </StackPanel>
                         </RadioButton.Content>
@@ -158,7 +163,7 @@
                     <!-- Routes -->
                     <RadioButton x:Name="ButtonRoutes"
                                  GroupName="MainMenu"
-                                 ToolTip="Routes"
+                                 ToolTip="{lex:Loc Routes}"
                                  Template="{StaticResource MainMenuRadioButton}"
                                  IsChecked="False"
                                  Margin="1"
@@ -169,7 +174,7 @@
                                       Data="{StaticResource GeoRoute}"
                                       Width="24"
                                       Height="24" />
-                                <TextBlock Text="Routes"
+                                <TextBlock Text="{lex:Loc Routes}"
                                            Style="{StaticResource MainMenuTitle}" />
                             </StackPanel>
                         </RadioButton.Content>
@@ -178,7 +183,7 @@
                     <!-- Tourist Groups -->
                     <RadioButton x:Name="ButtonsTouristGroups"
                                  GroupName="MainMenu"
-                                 ToolTip="Groups"
+                                 ToolTip="{lex:Loc Groups}"
                                  Template="{StaticResource MainMenuRadioButton}"
                                  IsChecked="False"
                                  Margin="1"
@@ -189,7 +194,7 @@
                                       Data="{StaticResource GeoTouristGroup}"
                                       Width="24"
                                       Height="24" />
-                                <TextBlock Text="Groups"
+                                <TextBlock Text="{lex:Loc Groups}"
                                            Style="{StaticResource MainMenuTitle}" />
                             </StackPanel>
                         </RadioButton.Content>
@@ -198,7 +203,7 @@
                     <!-- Penalties -->
                     <RadioButton x:Name="ButtonsPenalties"
                                  GroupName="MainMenu"
-                                 ToolTip="Penalties"
+                                 ToolTip="{lex:Loc Penalties}"
                                  Template="{StaticResource MainMenuRadioButton}"
                                  IsChecked="False"
                                  Margin="1"
@@ -209,19 +214,20 @@
                                       Data="{StaticResource GeoPenalty}"
                                       Width="24"
                                       Height="24" />
-                                <TextBlock Text="Penalties"
+                                <TextBlock Text="{lex:Loc Penalties}"
                                            Style="{StaticResource MainMenuTitle}" />
                             </StackPanel>
                         </RadioButton.Content>
                     </RadioButton>
 
                     <!-- Header -->
-                    <TextBlock Text="Catalogs"
-                               Style="{StaticResource MainMenuHeader}" />
+                    <TextBlock  x:Name="CatalogsHeader"
+                                Text="{lex:Loc}"
+                                Style="{StaticResource MainMenuHeader}" />
                     <!-- Countries -->
                     <RadioButton x:Name="ButtonsCountries"
                                  GroupName="MainMenu"
-                                 ToolTip="Countries"
+                                 ToolTip="{lex:Loc Countries}"
                                  Template="{StaticResource MainMenuRadioButton}"
                                  IsChecked="False"
                                  Margin="1"
@@ -232,7 +238,7 @@
                                       Data="{StaticResource GeoCountries}"
                                       Width="24"
                                       Height="24" />
-                                <TextBlock Text="Countries"
+                                <TextBlock Text="{lex:Loc Countries}"
                                            Style="{StaticResource MainMenuTitle}" />
                             </StackPanel>
                         </RadioButton.Content>
@@ -241,7 +247,7 @@
                     <!-- Streets -->
                     <RadioButton x:Name="ButtonsStreets"
                                  GroupName="MainMenu"
-                                 ToolTip="Streets"
+                                 ToolTip="{lex:Loc Streets}"
                                  Template="{StaticResource MainMenuRadioButton}"
                                  IsChecked="False"
                                  Margin="1"
@@ -252,7 +258,7 @@
                                       Data="{StaticResource GeoStreet}"
                                       Width="24"
                                       Height="24" />
-                                <TextBlock Text="Streets"
+                                <TextBlock Text="{lex:Loc Streets}"
                                            Style="{StaticResource MainMenuTitle}" />
                             </StackPanel>
                         </RadioButton.Content>
@@ -261,7 +267,7 @@
                     <!-- Hotels -->
                     <RadioButton x:Name="ButtonsHotels"
                                  GroupName="MainMenu"
-                                 ToolTip="Hotels"
+                                 ToolTip="{lex:Loc Hotels}"
                                  Template="{StaticResource MainMenuRadioButton}"
                                  IsChecked="False"
                                  Margin="1"
@@ -272,7 +278,7 @@
                                       Data="{StaticResource GeoHotel}"
                                       Width="24"
                                       Height="24" />
-                                <TextBlock Text="Hotels"
+                                <TextBlock Text="{lex:Loc Hotels}"
                                            Style="{StaticResource MainMenuTitle}" />
                             </StackPanel>
                         </RadioButton.Content>
@@ -281,7 +287,7 @@
                     <!-- Populated Places -->
                     <RadioButton x:Name="ButtonsPopulatedPlaces"
                                  GroupName="MainMenu"
-                                 ToolTip="Populated Places"
+                                 ToolTip="{lex:Loc Places}"
                                  Template="{StaticResource MainMenuRadioButton}"
                                  IsChecked="False"
                                  Margin="1"
@@ -292,7 +298,7 @@
                                       Data="{StaticResource GeoPlace}"
                                       Width="24"
                                       Height="24" />
-                                <TextBlock Text="Places"
+                                <TextBlock Text="{lex:Loc Places}"
                                            Style="{StaticResource MainMenuTitle}" />
                             </StackPanel>
                         </RadioButton.Content>

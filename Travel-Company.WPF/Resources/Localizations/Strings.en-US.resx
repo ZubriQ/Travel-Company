@@ -120,11 +120,44 @@
   <data name="ButtonLogIn" xml:space="preserve">
     <value>Enter</value>
   </data>
+  <data name="CatalogsHeader" xml:space="preserve">
+    <value>Catalogs</value>
+  </data>
+  <data name="Clients" xml:space="preserve">
+    <value>Clients</value>
+  </data>
+  <data name="Countries" xml:space="preserve">
+    <value>Countries</value>
+  </data>
+  <data name="Employees" xml:space="preserve">
+    <value>Employees</value>
+  </data>
+  <data name="Groups" xml:space="preserve">
+    <value>Groups</value>
+  </data>
+  <data name="Hotels" xml:space="preserve">
+    <value>Hotels</value>
+  </data>
   <data name="LoginHeaderTextBlock" xml:space="preserve">
     <value>Login</value>
   </data>
+  <data name="PagesHeader" xml:space="preserve">
+    <value>Pages</value>
+  </data>
   <data name="PasswordTextBlockPlaceholder" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="Penalties" xml:space="preserve">
+    <value>Penalties</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>Places</value>
+  </data>
+  <data name="Routes" xml:space="preserve">
+    <value>Routes</value>
+  </data>
+  <data name="Streets" xml:space="preserve">
+    <value>Streets</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
