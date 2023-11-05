@@ -79,6 +79,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Available to add.
+        /// </summary>
+        public static string AvailableToAddText {
+            get {
+                return ResourceManager.GetString("AvailableToAddText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Birthdate.
         /// </summary>
         public static string Birthdate {
@@ -93,6 +102,24 @@ namespace Travel_Company.WPF.Resources.Localizations {
         public static string ButtonAdd {
             get {
                 return ResourceManager.GetString("ButtonAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add place.
+        /// </summary>
+        public static string ButtonAddPlace {
+            get {
+                return ResourceManager.GetString("ButtonAddPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add place to the route..
+        /// </summary>
+        public static string ButtonAddPlaceTooltip {
+            get {
+                return ResourceManager.GetString("ButtonAddPlaceTooltip", resourceCulture);
             }
         }
         
@@ -142,6 +169,24 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit selected.
+        /// </summary>
+        public static string ButtonEditSelected {
+            get {
+                return ResourceManager.GetString("ButtonEditSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit selected place from the route..
+        /// </summary>
+        public static string ButtonEditSelectedTooltip {
+            get {
+                return ResourceManager.GetString("ButtonEditSelectedTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fire.
         /// </summary>
         public static string ButtonFire {
@@ -160,6 +205,24 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New place.
+        /// </summary>
+        public static string ButtonNewPlace {
+            get {
+                return ResourceManager.GetString("ButtonNewPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a new place to the route..
+        /// </summary>
+        public static string ButtonNewPlaceTooltip {
+            get {
+                return ResourceManager.GetString("ButtonNewPlaceTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Penalties.
         /// </summary>
         public static string ButtonPenalties {
@@ -174,6 +237,42 @@ namespace Travel_Company.WPF.Resources.Localizations {
         public static string ButtonRemovePicture {
             get {
                 return ResourceManager.GetString("ButtonRemovePicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove selected.
+        /// </summary>
+        public static string ButtonRemoveSelected {
+            get {
+                return ResourceManager.GetString("ButtonRemoveSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove selected place from the route..
+        /// </summary>
+        public static string ButtonRemoveSelectedTooltip {
+            get {
+                return ResourceManager.GetString("ButtonRemoveSelectedTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save place.
+        /// </summary>
+        public static string ButtonSavePlace {
+            get {
+                return ResourceManager.GetString("ButtonSavePlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save сhanges of the place..
+        /// </summary>
+        public static string ButtonSavePlaceTooltip {
+            get {
+                return ResourceManager.GetString("ButtonSavePlaceTooltip", resourceCulture);
             }
         }
         
@@ -250,11 +349,29 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cost.
+        /// </summary>
+        public static string Cost {
+            get {
+                return ResourceManager.GetString("Cost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Countries.
         /// </summary>
         public static string Countries {
             get {
                 return ResourceManager.GetString("Countries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string Country {
+            get {
+                return ResourceManager.GetString("Country", resourceCulture);
             }
         }
         
@@ -295,11 +412,65 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Route.
+        /// </summary>
+        public static string CreateRouteHeader {
+            get {
+                return ResourceManager.GetString("CreateRouteHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Tourist Group.
+        /// </summary>
+        public static string CreateTouristGroupHeader {
+            get {
+                return ResourceManager.GetString("CreateTouristGroupHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current tourists in the group.
+        /// </summary>
+        public static string CurrentTouristsInTheGroupText {
+            get {
+                return ResourceManager.GetString("CurrentTouristsInTheGroupText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No records.
+        /// </summary>
+        public static string DataGridNoRecordsText {
+            get {
+                return ResourceManager.GetString("DataGridNoRecordsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tourist groups.
+        /// </summary>
+        public static string DataGridTouristGroups {
+            get {
+                return ResourceManager.GetString("DataGridTouristGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string Date {
             get {
                 return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Departure time.
+        /// </summary>
+        public static string DepartureTime {
+            get {
+                return ResourceManager.GetString("DepartureTime", resourceCulture);
             }
         }
         
@@ -340,11 +511,56 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Route.
+        /// </summary>
+        public static string EditRouteHeader {
+            get {
+                return ResourceManager.GetString("EditRouteHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Tourist Group.
+        /// </summary>
+        public static string EditTouristGroupHeader {
+            get {
+                return ResourceManager.GetString("EditTouristGroupHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employees.
         /// </summary>
         public static string Employees {
             get {
                 return ResourceManager.GetString("Employees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End.
+        /// </summary>
+        public static string End {
+            get {
+                return ResourceManager.GetString("End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End time.
+        /// </summary>
+        public static string EndTime {
+            get {
+                return ResourceManager.GetString("EndTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excursion program.
+        /// </summary>
+        public static string ExcursionProgram {
+            get {
+                return ResourceManager.GetString("ExcursionProgram", resourceCulture);
             }
         }
         
@@ -376,11 +592,29 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hotel.
+        /// </summary>
+        public static string Hotel {
+            get {
+                return ResourceManager.GetString("Hotel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hotels.
         /// </summary>
         public static string Hotels {
             get {
                 return ResourceManager.GetString("Hotels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initial stay time.
+        /// </summary>
+        public static string InitialStayTime {
+            get {
+                return ResourceManager.GetString("InitialStayTime", resourceCulture);
             }
         }
         
@@ -408,6 +642,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         public static string LoginHeaderTextBlock {
             get {
                 return ResourceManager.GetString("LoginHeaderTextBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
@@ -475,6 +718,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Place.
+        /// </summary>
+        public static string Place {
+            get {
+                return ResourceManager.GetString("Place", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Places.
         /// </summary>
         public static string Places {
@@ -489,6 +741,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         public static string Responsible {
             get {
                 return ResourceManager.GetString("Responsible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Route.
+        /// </summary>
+        public static string Route {
+            get {
+                return ResourceManager.GetString("Route", resourceCulture);
             }
         }
         
@@ -520,6 +781,24 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        public static string Start {
+            get {
+                return ResourceManager.GetString("Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start time.
+        /// </summary>
+        public static string StartTime {
+            get {
+                return ResourceManager.GetString("StartTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Street.
         /// </summary>
         public static string Street {
@@ -547,6 +826,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Populated places in the route.
+        /// </summary>
+        public static string TextPopulatedPlacesInTheRoute {
+            get {
+                return ResourceManager.GetString("TextPopulatedPlacesInTheRoute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show passports.
         /// </summary>
         public static string TextShowPassports {
@@ -561,6 +849,24 @@ namespace Travel_Company.WPF.Resources.Localizations {
         public static string TouristGroup {
             get {
                 return ResourceManager.GetString("TouristGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tourist Groups.
+        /// </summary>
+        public static string TouristGroups {
+            get {
+                return ResourceManager.GetString("TouristGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tourists.
+        /// </summary>
+        public static string Tourists {
+            get {
+                return ResourceManager.GetString("Tourists", resourceCulture);
             }
         }
         

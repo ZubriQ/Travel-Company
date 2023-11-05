@@ -6,6 +6,10 @@
              xmlns:local="clr-namespace:Travel_Company.WPF.Resources.Components"
              xmlns:groups="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Groups"
              d:DataContext="{d:DesignInstance Type=groups:GroupsUpdateViewModel}"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="ru-RU"
+             lex:ResxLocalizationProvider.DefaultAssembly="Travel-Company.WPF"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="800">
     <Grid Margin="15">
@@ -21,20 +25,20 @@
                       Grid.Row="1">
             <StackPanel Margin="1 0 5 0">
                 <!-- Inputs -->
-                <TextBlock Text="Group name"
+                <TextBlock Text="{lex:Loc Name}"
                            Style="{StaticResource ComponentTitle}" />
-                <local:Input ComponentName="Group name"
+                <local:Input ComponentName="{lex:Loc Name}"
                              Text="{Binding Group.Name, Mode=TwoWay}"
                              Margin="0 0 0 10" />
 
-                <TextBlock Text="Route"
+                <TextBlock Text="{lex:Loc Route}"
                            Style="{StaticResource ComponentTitle}" />
                 <ComboBox ItemsSource="{Binding Routes}"
                           SelectedItem="{Binding Group.Route}"
                           DisplayMemberPath="Name"
                           Margin="0 0 0 10" />
 
-                <TextBlock Text="Responsible person"
+                <TextBlock Text="{lex:Loc Responsible}"
                            Style="{StaticResource ComponentTitle}" />
                 <ComboBox ItemsSource="{Binding Employees}"
                           SelectedItem="{Binding Group.TourGuide}"
@@ -51,7 +55,7 @@
 
                     <!-- Current List -->
                     <StackPanel Grid.Column="0">
-                        <TextBlock Text="Tourists"
+                        <TextBlock Text="{lex:Loc Tourists}"
                                    Style="{StaticResource ComponentTitle}" />
                         <DataGrid Style="{DynamicResource DataGridStyle1}"
                                   CellStyle="{DynamicResource DataGridCellStyle1}"
@@ -63,7 +67,7 @@
                                   Margin="0 8 4 0">
                             <DataGrid.Columns>
                                 <!-- Fields -->
-                                <DataGridTemplateColumn Header="Current tourists in the group"
+                                <DataGridTemplateColumn Header="{lex:Loc CurrentTouristsInTheGroupText}"
                                                         IsReadOnly="True"
                                                         Width="auto">
                                     <DataGridTemplateColumn.CellTemplate>
@@ -109,7 +113,7 @@
                                   Margin="0 8 4 0">
                             <DataGrid.Columns>
                                 <!-- Fields -->
-                                <DataGridTemplateColumn Header="Available to add"
+                                <DataGridTemplateColumn Header="{lex:Loc AvailableToAdd}"
                                                         IsReadOnly="True"
                                                         Width="auto">
                                     <DataGridTemplateColumn.CellTemplate>
@@ -137,7 +141,7 @@
                             Margin="0 0 15 0"
                             Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:GroupForm}}, Path=RelayCommand}" />
                     <Button x:Name="ButtonCancel"
-                            Content="Cancel"
+                            Content="{lex:Loc ButtonCancel}"
                             Margin="0 0 15 0"
                             HorizontalAlignment="Left"
                             Command="{Binding CancelCommand}" />

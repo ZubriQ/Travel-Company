@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Core.Enums;
+using Travel_Company.WPF.Resources.Localizations;
 
 namespace Travel_Company.WPF.Resources.Components;
 
@@ -45,15 +46,15 @@ public partial class GroupForm : UserControl
 
     private void InitializeUpdating()
     {
-        TextBlockTitle.Text = "Edit Tourist Group";
-        ButtonProceed.Content = "Update";
+        TextBlockTitle.Text = LocalizedStrings.Instance["EditTouristGroupHeader"];
+        ButtonProceed.Content = LocalizedStrings.Instance["ButtonUpdate"];
         SetCommand("UpdateCommand");
     }
 
     private void InitializeInserting()
     {
-        TextBlockTitle.Text = "Add Tourist Group";
-        ButtonProceed.Content = "Create";
+        TextBlockTitle.Text = LocalizedStrings.Instance["CreateTouristGroupHeader"];
+        ButtonProceed.Content = LocalizedStrings.Instance["ButtonCreate"];
         SetCommand("CreateCommand");
     }
 

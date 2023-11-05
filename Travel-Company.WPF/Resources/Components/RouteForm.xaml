@@ -7,6 +7,10 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:routes="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Routes"
              d:DataContext="{d:DesignInstance Type=routes:RoutesUpdateViewModel}"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="ru-RU"
+             lex:ResxLocalizationProvider.DefaultAssembly="Travel-Company.WPF"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d" 
              d:DesignHeight="1150" d:DesignWidth="800">
     <UserControl.Resources>
@@ -33,13 +37,13 @@
                       Grid.Row="1">
             <StackPanel Margin="1 0 5 0">
                 <!-- Inputs -->
-                <TextBlock Text="Name"
+                <TextBlock Text="{lex:Loc Name}"
                            Style="{StaticResource ComponentTitle}" />
-                <local:Input ComponentName="Name"
+                <local:Input ComponentName="{lex:Loc Name}"
                              Text="{Binding Route.Name, Mode=TwoWay}"
                              Margin="0 0 0 10" />
 
-                <TextBlock Text="Start time"
+                <TextBlock Text="{lex:Loc StartTime}"
                            Style="{StaticResource ComponentTitle}" />
                 <DatePicker SelectedDate="{Binding Route.StartDatetime, Mode=TwoWay}"
                             DisplayDateStart="1/1/1900"
@@ -61,7 +65,7 @@
                     </DatePicker.Resources>
                 </DatePicker>
 
-                <TextBlock Text="End time"
+                <TextBlock Text="{lex:Loc EndTime}"
                            Style="{StaticResource ComponentTitle}" />
                 <DatePicker SelectedDate="{Binding Route.EndDatetime, Mode=TwoWay}"
                             DisplayDateStart="1/1/1900"
@@ -83,13 +87,13 @@
                     </DatePicker.Resources>
                 </DatePicker>
 
-                <TextBlock Text="Cost"
+                <TextBlock Text="{lex:Loc Cost}"
                            Style="{StaticResource ComponentTitle}" />
-                <local:Input ComponentName="Cost"
+                <local:Input ComponentName="{lex:Loc Cost}"
                              Text="{Binding Route.Cost, Mode=TwoWay}"
                              Margin="0 0 0 10" />
 
-                <TextBlock Text="Country"
+                <TextBlock Text="{lex:Loc Country}"
                            Style="{StaticResource ComponentTitle}" />
                 <ComboBox ItemsSource="{Binding Countries}"
                           SelectedItem="{Binding Route.Country}"
@@ -97,7 +101,7 @@
                           Margin="0 0 0 10" />
 
                 <!-- Places in the Route -->
-                <TextBlock Text="Populated places in the route"
+                <TextBlock Text="{lex:Loc TextPopulatedPlacesInTheRoute}"
                            Style="{StaticResource ComponentTitle}" />
                 <Border Padding="10"
                         Margin="5"
@@ -159,18 +163,18 @@
                         <DockPanel Margin="0 15 0 15">
                             <!-- State 1 - Not adding or editing -->
                             <DockPanel Visibility="{Binding Value, Source={StaticResource IsInitialCommandsVisibleKeyFrame}}">
-                                <Button Content="New place"
-                                        ToolTip="Add a new place to the route."
+                                <Button Content="{lex:Loc ButtonNewPlace}"
+                                        ToolTip="{lex:Loc ButtonNewPlaceTooltip}"
                                         Margin="0 0 15 0"
                                         Command="{Binding NewPlaceCommand}"
                                         Style="{StaticResource CommandButton}" />
-                                <Button Content="Edit selected"
-                                        ToolTip="Edit selected place from the route."
+                                <Button Content="{lex:Loc ButtonEditSelected}"
+                                        ToolTip="{lex:Loc ButtonEditSelectedTooltip}"
                                         Margin="0 0 15 0"
                                         Command="{Binding EditSelectedCommand}"
                                         Style="{StaticResource CommandButton}" />
-                                <Button Content="Remove selected"
-                                        ToolTip="Remove selected place from the route."
+                                <Button Content="{lex:Loc ButtonRemoveSelected}"
+                                        ToolTip="{lex:Loc ButtonRemoveSelectedTooltip}"
                                         Margin="0 0 15 0"
                                         HorizontalAlignment="Left"
                                         Command="{Binding RemoveSelectedCommand}"
@@ -179,18 +183,17 @@
 
                             <!-- State 2 - Adding or editing -->
                             <DockPanel Visibility="{Binding Value, Source={StaticResource IsSecondaryCommandsVisibleKeyFrame}}">
-                                <Button Content="Add place"
-                                        ToolTip="Edit selected place from the route."
+                                <Button Content="{lex:Loc ButtonAddPlace}"
+                                        ToolTip="{lex:Loc ButtonAddPlaceTooltip}"
                                         Margin="0 0 15 0"
                                         Command="{Binding AddPlaceCommand}"
                                         Style="{StaticResource CommandButton}" />
-                                <Button Content="Save place"
-                                        ToolTip="Edit selected place from the route."
+                                <Button Content="{lex:Loc ButtonSavePlace}"
+                                        ToolTip="{lex:Loc ButtonSavePlaceTooltip}"
                                         Margin="0 0 15 0"
                                         Command="{Binding SaveEditCommand}"
                                         Style="{StaticResource CommandButton}" />
-                                <Button Content="Cancel"
-                                        ToolTip="Edit selected place from the route."
+                                <Button Content="{lex:Loc ButtonCancel}"
                                         Margin="0 0 15 0"
                                         Command="{Binding CancelChangesCommand}"
                                         Style="{StaticResource CommandButton}"
@@ -198,7 +201,7 @@
                             </DockPanel>
                         </DockPanel>
 
-                        <TextBlock Text="Place"
+                        <TextBlock Text="{lex:Loc Place}"
                                    Style="{StaticResource ComponentTitle}" />
                         <ComboBox ItemsSource="{Binding Places}"
                                   SelectedItem="{Binding Path=PlaceToAddOrEdit.PopulatedPlace}"
@@ -206,7 +209,7 @@
                                   IsEnabled="{Binding Value, Source={StaticResource IsInputEnabledKeyFrame}}"
                                   Margin="0 0 0 10" />
 
-                        <TextBlock Text="Hotel"
+                        <TextBlock Text="{lex:Loc Hotel}"
                                    Style="{StaticResource ComponentTitle}" />
                         <ComboBox ItemsSource="{Binding Hotels}"
                                   SelectedItem="{Binding Path=PlaceToAddOrEdit.Hotel}"
@@ -214,14 +217,14 @@
                                   IsEnabled="{Binding Value, Source={StaticResource IsInputEnabledKeyFrame}}"
                                   Margin="0 0 0 10" />
 
-                        <TextBlock Text="Excursion program"
+                        <TextBlock Text="{lex:Loc ExcursionProgram}"
                                    Style="{StaticResource ComponentTitle}" />
-                        <local:Input ComponentName="Excursion program"
+                        <local:Input ComponentName="{lex:Loc ExcursionProgram}"
                                      Text="{Binding Path=PlaceToAddOrEdit.ExcursionProgram, Mode=TwoWay}"
                                      IsEnabled="{Binding Value, Source={StaticResource IsInputEnabledKeyFrame}}"
                                      Margin="0 0 0 10" />
 
-                        <TextBlock Text="Initial stay time"
+                        <TextBlock Text="{lex:Loc InitialStayTime}"
                                    Style="{StaticResource ComponentTitle}" />
                         <DatePicker SelectedDate="{Binding PlaceToAddOrEdit.StayStartDatetime, Mode=TwoWay}"
                                     DisplayDateStart="1/1/1900"
@@ -243,7 +246,7 @@
                             </DatePicker.Resources>
                         </DatePicker>
 
-                        <TextBlock Text="Departure time"
+                        <TextBlock Text="{lex:Loc DepartureTime}"
                                    Style="{StaticResource ComponentTitle}" />
                         <DatePicker SelectedDate="{Binding PlaceToAddOrEdit.StayEndDatetime, Mode=TwoWay}"
                                     DisplayDateStart="1/1/1900"
@@ -274,7 +277,7 @@
                             Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:RouteForm}}, Path=RelayCommand}"
                             IsEnabled="{Binding Value, Source={StaticResource IsCommandButtonEnabledKeyFrame}}" />
                     <Button x:Name="ButtonCancel"
-                            Content="Cancel"
+                            Content="{lex:Loc ButtonCancel}"
                             Margin="0 0 15 0"
                             HorizontalAlignment="Left"
                             Command="{Binding CancelCommand}"

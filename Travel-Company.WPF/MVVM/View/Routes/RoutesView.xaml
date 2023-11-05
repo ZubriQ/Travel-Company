@@ -7,6 +7,10 @@
              xmlns:component="clr-namespace:Travel_Company.WPF.Resources.Components"
              xmlns:routes="clr-namespace:Travel_Company.WPF.MVVM.ViewModel.Routes"
              d:DataContext="{d:DesignInstance Type=routes:RoutesViewModel}"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="ru-RU"
+             lex:ResxLocalizationProvider.DefaultAssembly="Travel-Company.WPF"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="15">
@@ -18,27 +22,27 @@
         </Grid.RowDefinitions>
         <!-- Page Header-->
         <TextBlock Grid.Row="0"
-                   Text="Routes"
+                   Text="{lex:Loc Routes}"
                    Style="{StaticResource PageHeader}" />
 
         <!-- Search Bar -->
         <Grid Grid.Row="1"
               Margin="5">
-            <component:SearchBar Placeholder="Search" />
+            <component:SearchBar Placeholder="{lex:Loc SearchBarDefaultPlaceholder}" />
         </Grid>
 
         <!-- Buttons -->
         <StackPanel Grid.Row="2">
             <DockPanel Margin="5">
-                <Button Content="Add"
+                <Button Content="{lex:Loc ButtonAdd}"
                         Margin="0 0 15 0"
                         Command="{Binding NavigateToInsertingCommand}"
                         Style="{StaticResource CommandButton}" />
-                <Button Content="Edit"
+                <Button Content="{lex:Loc ButtonEdit}"
                         Margin="0 0 15 0"
                         Command="{Binding NavigateToUpdatingCommand}"
                         Style="{StaticResource CommandButton}" />
-                <Button Content="Delete"
+                <Button Content="{lex:Loc ButtonDelete}"
                         HorizontalAlignment="Left"
                         Command="{Binding DeleteSelectedItemCommand}"
                         Style="{StaticResource FireRemoveButton}" />
@@ -65,7 +69,7 @@
                           HorizontalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <!-- Fields -->
-                        <DataGridTemplateColumn Header="Name"
+                        <DataGridTemplateColumn Header="{lex:Loc Name}"
                                                 IsReadOnly="True"
                                                 Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
@@ -83,27 +87,27 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTextColumn Header="Cost"
+                        <DataGridTextColumn Header="{lex:Loc Cost}"
                                             IsReadOnly="True"
                                             Width="auto"
                                             Binding="{Binding Path=Cost}" />
-                        <DataGridTextColumn Header="Country"
+                        <DataGridTextColumn Header="{lex:Loc Country}"
                                             IsReadOnly="True"
                                             Width="auto"
                                             Binding="{Binding Path=Country.Name}" />
-                        <DataGridTextColumn Header="Start"
+                        <DataGridTextColumn Header="{lex:Loc Start}"
                                             IsReadOnly="True"
                                             Width="auto"
                                             Binding="{Binding Path=StartDatetime, StringFormat=dd/MM/yyyy - hh:mm}" />
-                        <DataGridTextColumn Header="End"
+                        <DataGridTextColumn Header="{lex:Loc End}"
                                             IsReadOnly="True"
                                             Width="auto"
                                             Binding="{Binding Path=EndDatetime, StringFormat=dd/MM/yyyy - hh:mm}" />
-                        <DataGridTextColumn Header="Places"
+                        <DataGridTextColumn Header="{lex:Loc Places}"
                                             IsReadOnly="True"
                                             Width="auto"
                                             Binding="{Binding Path=RoutesPopulatedPlaces.Count}" />
-                        <DataGridTextColumn Header="Tourist groups"
+                        <DataGridTextColumn Header="{lex:Loc DataGridTouristGroups}"
                                             IsReadOnly="True"
                                             Width="auto"
                                             Binding="{Binding Path=TouristGroups.Count}" />
