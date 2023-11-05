@@ -120,6 +120,9 @@
   <data name="Amount" xml:space="preserve">
     <value>Amount</value>
   </data>
+  <data name="Arrive" xml:space="preserve">
+    <value>Arrive</value>
+  </data>
   <data name="ArrowButtonToLeft" xml:space="preserve">
     <value>Add selected tourist.</value>
   </data>
@@ -258,6 +261,9 @@
   <data name="Date" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="Departure" xml:space="preserve">
+    <value>Departure</value>
+  </data>
   <data name="DepartureTime" xml:space="preserve">
     <value>Departure time</value>
   </data>
@@ -347,6 +353,9 @@
   </data>
   <data name="Places" xml:space="preserve">
     <value>Places</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Program</value>
   </data>
   <data name="Responsible" xml:space="preserve">
     <value>Responsible</value>

@@ -122,7 +122,7 @@
                                   Margin="0 8 4 0">
                             <DataGrid.Columns>
                                 <!-- Fields -->
-                                <DataGridTemplateColumn Header="Place"
+                                <DataGridTemplateColumn Header="{lex:Loc Place}"
                                                         IsReadOnly="True"
                                                         Width="auto">
                                     <DataGridTemplateColumn.CellTemplate>
@@ -140,20 +140,20 @@
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
 
-                                <DataGridTextColumn Header="Hotel"
+                                <DataGridTextColumn Header="{lex:Loc Hotel}"
                                                     IsReadOnly="True"
                                                     Width="auto"
                                                     Binding="{Binding Path=Hotel.Name}" />
-                                <DataGridTextColumn Header="Program"
+                                <DataGridTextColumn Header="{lex:Loc Program}"
                                                     IsReadOnly="True"
                                                     Width="auto"
                                                     Binding="{Binding Path=ExcursionProgram}" 
                                                     MaxWidth="150"/>
-                                <DataGridTextColumn Header="Arrive"
+                                <DataGridTextColumn Header="{lex:Loc Arrive}"
                                                     IsReadOnly="True"
                                                     Width="auto"
                                                     Binding="{Binding Path=StayStartDatetime, StringFormat=dd/MM/yyyy - hh:mm}" />
-                                <DataGridTextColumn Header="Departure"
+                                <DataGridTextColumn Header="{lex:Loc Departure}"
                                                     IsReadOnly="True"
                                                     Width="auto"
                                                     Binding="{Binding Path=StayEndDatetime, StringFormat=dd/MM/yyyy - hh:mm}" />

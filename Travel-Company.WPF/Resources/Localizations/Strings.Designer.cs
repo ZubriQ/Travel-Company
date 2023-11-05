@@ -70,6 +70,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Arrive.
+        /// </summary>
+        public static string Arrive {
+            get {
+                return ResourceManager.GetString("Arrive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add selected tourist..
         /// </summary>
         public static string ArrowButtonToLeft {
@@ -484,6 +493,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Departure.
+        /// </summary>
+        public static string Departure {
+            get {
+                return ResourceManager.GetString("Departure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Departure time.
         /// </summary>
         public static string DepartureTime {
@@ -750,6 +768,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         public static string Places {
             get {
                 return ResourceManager.GetString("Places", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program.
+        /// </summary>
+        public static string Program {
+            get {
+                return ResourceManager.GetString("Program", resourceCulture);
             }
         }
         
