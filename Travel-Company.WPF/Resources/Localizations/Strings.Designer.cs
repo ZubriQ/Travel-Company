@@ -70,6 +70,24 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add selected tourist..
+        /// </summary>
+        public static string ArrowButtonToLeft {
+            get {
+                return ResourceManager.GetString("ArrowButtonToLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove selected tourist..
+        /// </summary>
+        public static string ArrowButtonToRight {
+            get {
+                return ResourceManager.GetString("ArrowButtonToRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Authority.
         /// </summary>
         public static string Authority {

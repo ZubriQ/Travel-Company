@@ -120,6 +120,12 @@
   <data name="Amount" xml:space="preserve">
     <value>Amount</value>
   </data>
+  <data name="ArrowButtonToLeft" xml:space="preserve">
+    <value>Add selected tourist.</value>
+  </data>
+  <data name="ArrowButtonToRight" xml:space="preserve">
+    <value>Remove selected tourist.</value>
+  </data>
   <data name="Authority" xml:space="preserve">
     <value>Authority</value>
   </data>

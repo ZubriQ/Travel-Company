@@ -120,6 +120,12 @@
   <data name="Amount" xml:space="preserve">
     <value>Сумма</value>
   </data>
+  <data name="ArrowButtonToLeft" xml:space="preserve">
+    <value>Добавить выбранного туриста</value>
+  </data>
+  <data name="ArrowButtonToRight" xml:space="preserve">
+    <value>Убрать выбранного туриста.</value>
+  </data>
   <data name="Authority" xml:space="preserve">
     <value>Кем выдан</value>
   </data>
