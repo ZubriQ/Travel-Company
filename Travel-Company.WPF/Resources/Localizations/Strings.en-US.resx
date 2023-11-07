@@ -171,6 +171,9 @@
   <data name="ButtonFire" xml:space="preserve">
     <value>Fire</value>
   </data>
+  <data name="ButtonHideFiredEmployees" xml:space="preserve">
+    <value>Hide fired</value>
+  </data>
   <data name="ButtonLogIn" xml:space="preserve">
     <value>Enter</value>
   </data>
@@ -197,6 +200,9 @@
   </data>
   <data name="ButtonSavePlaceTooltip" xml:space="preserve">
     <value>Save сhanges of the place.</value>
+  </data>
+  <data name="ButtonShowFiredEmployees" xml:space="preserve">
+    <value>Show fired</value>
   </data>
   <data name="ButtonUpdate" xml:space="preserve">
     <value>Update</value>
@@ -297,6 +303,9 @@
   <data name="ExcursionProgram" xml:space="preserve">
     <value>Excursion program</value>
   </data>
+  <data name="FiredDate" xml:space="preserve">
+    <value>Fired date</value>
+  </data>
   <data name="FirstName" xml:space="preserve">
     <value>First name</value>
   </data>
@@ -314,6 +323,9 @@
   </data>
   <data name="InitialStayTime" xml:space="preserve">
     <value>Initial stay time</value>
+  </data>
+  <data name="IsFired" xml:space="preserve">
+    <value>Is fired</value>
   </data>
   <data name="IssueDate" xml:space="preserve">
     <value>Issue date</value>

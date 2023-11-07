@@ -223,6 +223,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide fired.
+        /// </summary>
+        public static string ButtonHideFiredEmployees {
+            get {
+                return ResourceManager.GetString("ButtonHideFiredEmployees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter.
         /// </summary>
         public static string ButtonLogIn {
@@ -300,6 +309,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         public static string ButtonSavePlaceTooltip {
             get {
                 return ResourceManager.GetString("ButtonSavePlaceTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show fired.
+        /// </summary>
+        public static string ButtonShowFiredEmployees {
+            get {
+                return ResourceManager.GetString("ButtonShowFiredEmployees", resourceCulture);
             }
         }
         
@@ -601,6 +619,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fired date.
+        /// </summary>
+        public static string FiredDate {
+            get {
+                return ResourceManager.GetString("FiredDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First name.
         /// </summary>
         public static string FirstName {
@@ -651,6 +678,15 @@ namespace Travel_Company.WPF.Resources.Localizations {
         public static string InitialStayTime {
             get {
                 return ResourceManager.GetString("InitialStayTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is fired.
+        /// </summary>
+        public static string IsFired {
+            get {
+                return ResourceManager.GetString("IsFired", resourceCulture);
             }
         }
         

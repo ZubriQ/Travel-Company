@@ -13,6 +13,13 @@
              lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DiscreteObjectKeyFrame x:Key="IsHideFiredEmployeesButtonVisibleKeyFrame"
+                                Value="{Binding IsHideFiredEmployeesButtonVisible}" />
+        <DiscreteObjectKeyFrame x:Key="IsShowFiredEmployeesButtonVisibleKeyFrame"
+                                Value="{Binding IsShowFiredEmployeesButtonVisible}" />
+    </UserControl.Resources>
+
     <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -43,10 +50,25 @@
                         Margin="0 0 15 0"
                         Command="{Binding NavigateToEmployeesUpdateCommand}"
                         Style="{StaticResource CommandButton}" />
+                <Button Content="{lex:Loc ButtonDelete}"
+                        Margin="0 0 15 0"
+                        Command="{Binding DeleteSelectedEmployeeCommand}"
+                        Style="{StaticResource FireRemoveButton}" />
                 <Button Content="{lex:Loc ButtonFire}"
-                        HorizontalAlignment="Left"
+                        Margin="0 0 15 0"
                         Command="{Binding FireSelectedEmployeeCommand}"
                         Style="{StaticResource FireRemoveButton}" />
+                <Button Content="{lex:Loc ButtonShowFiredEmployees}"
+                        HorizontalAlignment="Left"
+                        Margin="0 0 15 0"
+                        Command="{Binding ShowFiredEmployeesCommand}"
+                        Style="{StaticResource CommandButton}"
+                        Visibility="{Binding Value, Source={StaticResource IsShowFiredEmployeesButtonVisibleKeyFrame}}"/>
+                <Button Content="{lex:Loc ButtonHideFiredEmployees}"
+                        HorizontalAlignment="Left"
+                        Command="{Binding HideFiredEmployeesCommand}"
+                        Style="{StaticResource CommandButton}"
+                        Visibility="{Binding Value, Source={StaticResource IsHideFiredEmployeesButtonVisibleKeyFrame}}" />
             </DockPanel>
             <Border Background="{StaticResource Primary8Brush}" 
                     Height="1" 
@@ -103,6 +125,16 @@
                                             IsReadOnly="True"
                                             Width="auto"
                                             Binding="{Binding Path=Salary}" />
+                        <DataGridTextColumn Header="{lex:Loc IsFired}"
+                                            IsReadOnly="True"
+                                            Width="auto"
+                                            Binding="{Binding Path=IsFiredWithText}"
+                                            Visibility="{Binding Value, Source={StaticResource IsHideFiredEmployeesButtonVisibleKeyFrame}}" />
+                        <DataGridTextColumn Header="{lex:Loc FiredDate}"
+                                            IsReadOnly="True"
+                                            Width="auto"
+                                            Binding="{Binding Path=FiredDate, StringFormat=dd/MM/yyyy}"
+                                            Visibility="{Binding Value, Source={StaticResource IsHideFiredEmployeesButtonVisibleKeyFrame}}"/>
                     </DataGrid.Columns>
                 </DataGrid>
 

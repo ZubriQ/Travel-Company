@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Data.Dto;
@@ -25,8 +26,8 @@ public sealed class EmployeesViewModel : Core.ViewModel
         }
     }
 
-    private List<TourGuide> _fetchedEmployees;
-    private List<TourGuide> _employees;
+    private List<TourGuide> _fetchedEmployees = null!;
+    private List<TourGuide> _employees = null!;
     public List<TourGuide> Employees
     {
         get => _employees;
@@ -60,13 +61,63 @@ public sealed class EmployeesViewModel : Core.ViewModel
         }
     }
 
+    private Visibility _isShowFiredEmployeesButtonVisible = Visibility.Visible;
+    public Visibility IsShowFiredEmployeesButtonVisible
+    {
+        get => _isShowFiredEmployeesButtonVisible;
+        set
+        {
+            _isShowFiredEmployeesButtonVisible = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private Visibility _isHideFiredEmployeesButtonVisible = Visibility.Collapsed;
+    public Visibility IsHideFiredEmployeesButtonVisible
+    {
+        get => _isHideFiredEmployeesButtonVisible;
+        set
+        {
+            _isHideFiredEmployeesButtonVisible = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public RelayCommand NavigateToEmployeesUpdateCommand { get; set; } = null!; 
+    public RelayCommand NavigateToEmployeesInsertCommand { get; set; } = null!;
+    public RelayCommand FireSelectedEmployeeCommand { get; set; } = null!;
+    public RelayCommand DeleteSelectedEmployeeCommand { get; set; } = null!;
+    public RelayCommand ShowFiredEmployeesCommand { get; set; } = null!;
+    public RelayCommand HideFiredEmployeesCommand { get; set; } = null!;
+
+    public EmployeesViewModel(IRepository<TourGuide, int> repository, INavigationService navigationService)
+    {
+        _employeesRepository = repository;
+        Navigation = navigationService;
+        UpdateWithNotFiredEmployees();
+        InitializeCommands();
+    }
+
     private void FilterEmployees()
     {
-        if (string.IsNullOrWhiteSpace(SearchText))
+        if (string.IsNullOrWhiteSpace(SearchText) && IsHideFiredEmployeesButtonVisible == Visibility.Collapsed)
         {
-            Employees = _fetchedEmployees.ToList();
+            Employees = _fetchedEmployees
+                .Where(e => e.IsFired == false)
+                .ToList();
         }
-        else
+        if (!string.IsNullOrWhiteSpace(SearchText) && IsHideFiredEmployeesButtonVisible == Visibility.Collapsed)
+        {
+            Employees = _fetchedEmployees
+                .Where(e => e.FullName.Contains(SearchText, StringComparison.OrdinalIgnoreCase) && e.IsFired == false)
+                .ToList();
+        }
+        if (string.IsNullOrWhiteSpace(SearchText) && IsHideFiredEmployeesButtonVisible == Visibility.Visible)
+        {
+            Employees = _fetchedEmployees
+                .ToList();
+        }
+        if (!string.IsNullOrWhiteSpace(SearchText) && IsHideFiredEmployeesButtonVisible == Visibility.Visible)
         {
             Employees = _fetchedEmployees
                 .Where(e => e.FullName.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
@@ -74,21 +125,8 @@ public sealed class EmployeesViewModel : Core.ViewModel
         }
     }
 
-    public RelayCommand NavigateToEmployeesUpdateCommand { get; set; }
-    public RelayCommand NavigateToEmployeesInsertCommand { get; set; }
-    public RelayCommand FireSelectedEmployeeCommand { get; set; }
-
-    public EmployeesViewModel(IRepository<TourGuide, int> repository, INavigationService navigationService)
+    private void InitializeCommands()
     {
-        _employeesRepository = repository;
-        _fetchedEmployees = _employeesRepository
-            .GetQuaryable()
-            .Include(e => e.Street)
-            .ToList();
-        Employees = _fetchedEmployees;
-
-        Navigation = navigationService;
-
         NavigateToEmployeesUpdateCommand = new RelayCommand(
             execute: _ =>
             {
@@ -102,11 +140,11 @@ public sealed class EmployeesViewModel : Core.ViewModel
             canExecute: _ => true);
 
         NavigateToEmployeesInsertCommand = new RelayCommand(
-           execute: _ =>
-           {
-               Navigation.NavigateTo<EmployeesCreateViewModel>();
-           },
-           canExecute: _ => true);
+                   execute: _ =>
+                   {
+                       Navigation.NavigateTo<EmployeesCreateViewModel>();
+                   },
+                   canExecute: _ => true);
 
         FireSelectedEmployeeCommand = new RelayCommand(
             execute: _ =>
@@ -116,8 +154,65 @@ public sealed class EmployeesViewModel : Core.ViewModel
                     SelectedTourGuide.IsFired = true;
                     SelectedTourGuide.FiredDate = DateTime.Now;
                     _employeesRepository.SaveChanges();
+
+                    if (IsHideFiredEmployeesButtonVisible == Visibility.Collapsed)
+                    {
+                        UpdateWithNotFiredEmployees();
+                    }
+                    else
+                    {
+                        UpdateWithAllEmployees();
+                    }
                 }
             },
             canExecute: _ => true);
+
+        DeleteSelectedEmployeeCommand = new RelayCommand(
+            execute: _ =>
+            {
+                if (SelectedTourGuide is not null && SelectedTourGuide.IsFired) // TODO: Check fired date
+                {
+                    _employeesRepository.Delete(SelectedTourGuide);
+                    _employeesRepository.SaveChanges();
+                }
+            },
+            canExecute: _ => true);
+
+        ShowFiredEmployeesCommand = new RelayCommand(
+            execute: _ =>
+            {
+                IsShowFiredEmployeesButtonVisible = Visibility.Collapsed;
+                IsHideFiredEmployeesButtonVisible = Visibility.Visible;
+                UpdateWithAllEmployees();
+            },
+            canExecute: _ => true);
+
+        HideFiredEmployeesCommand = new RelayCommand(
+            execute: _ =>
+            {
+                IsShowFiredEmployeesButtonVisible = Visibility.Visible;
+                IsHideFiredEmployeesButtonVisible = Visibility.Collapsed;
+                UpdateWithNotFiredEmployees();
+            },
+            canExecute: _ => true);
+    }
+
+    private void UpdateWithAllEmployees()
+    {
+        _fetchedEmployees = _employeesRepository
+            .GetQuaryable()
+            .Include(e => e.Street)
+            .ToList();
+        Employees = _fetchedEmployees;
+    }
+
+    private void UpdateWithNotFiredEmployees()
+    {
+        _fetchedEmployees = _employeesRepository
+            .GetQuaryable()
+            .Include(e => e.Street)
+            .Where(e => e.IsFired == false)
+            .ToList();
+        Employees = _fetchedEmployees;
     }
 }
