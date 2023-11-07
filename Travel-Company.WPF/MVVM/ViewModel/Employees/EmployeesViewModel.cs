@@ -170,7 +170,8 @@ public sealed class EmployeesViewModel : Core.ViewModel
         DeleteSelectedEmployeeCommand = new RelayCommand(
             execute: _ =>
             {
-                if (SelectedTourGuide is not null && SelectedTourGuide.IsFired) // TODO: Check fired date
+                if (SelectedTourGuide is not null && SelectedTourGuide.IsFired &&
+                    SelectedTourGuide.FiredDate < DateTime.Now.AddYears(-5))
                 {
                     _employeesRepository.Delete(SelectedTourGuide);
                     _employeesRepository.SaveChanges();

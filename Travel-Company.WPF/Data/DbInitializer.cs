@@ -232,7 +232,7 @@ public static class DbInitializer
                 Birthdate = AgeGenerator.GetRandomDate(),
                 Salary = 20000,
                 IsFired = true,
-                FiredDate = DateTime.Now,
+                FiredDate = DateTime.Now.AddYears(-5),
             },
             new TourGuide()
             {
