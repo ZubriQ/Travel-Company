@@ -32,6 +32,11 @@ public static class DbInitializer
         var tourists = SeedTourists(db, streets, groups);
         SeedPenalties(db, tourists, employees);
         SeedRoutesPopulatedPlaces(db, routes, places, hotels);
+
+        // Users
+        var appObjects = SeedObjects(db);
+        var users = SeedUsers(db);
+        SeedUserRights(db, users, appObjects);
     }
 
     #region Catalogs
@@ -528,7 +533,217 @@ public static class DbInitializer
 
     #region User Object UsersObjects
 
-    // TODO: Seed test user data
+    private static List<Models.Object> SeedObjects(TravelCompanyDbContext db)
+    {
+        if (db.Objects.Any())
+        {
+            return db.Objects.ToList();
+        }
+
+        var appObjects = new List<Models.Object>
+        {
+            new Models.Object()
+            {
+                Name = "Travel Company App",
+            },
+            new Models.Object()
+            {
+                Name = "Catalogs",
+            },
+            new Models.Object()
+            {
+                Name = "Employees",
+            },
+            new Models.Object()
+            {
+                Name = "Clients",
+            },
+            new Models.Object()
+            {
+                Name = "Routes",
+            },
+            new Models.Object()
+            {
+                Name = "Tourist Groups",
+            },
+            new Models.Object()
+            {
+                Name = "Penalties",
+            },
+        };
+        db.AddRange(appObjects);
+        db.SaveChanges();
+        return appObjects;
+    }
+
+    private static List<User> SeedUsers(TravelCompanyDbContext db)
+    {
+        if (db.Objects.Any())
+        {
+            return db.Users.ToList();
+        }
+
+        var users = new List<User>
+        {
+            new User()
+            {
+                Username = "ADMIN",
+                Password = "qwerty123",
+            },
+            new User()
+            {
+                Username = "EMPLOYEE",
+                Password = "qwerty123",
+            },
+        };
+        db.AddRange(users);
+        db.SaveChanges();
+        return users;
+    }
+
+    private static void SeedUserRights(
+        TravelCompanyDbContext db, List<User> users, List<Models.Object> appObjects)
+    {
+        if (db.Objects.Any())
+        {
+            return;
+        }
+
+        var usersObjects = new List<UsersObject>
+        {
+            // Admin
+            new UsersObject()
+            {
+                UserId = users.FirstOrDefault(u => u.Username == "ADMIN")!.Id,
+                ObjectId = appObjects.FirstOrDefault(u => u.Name == "Travel Company App")!.Id,
+                CanCreate = true,
+                CanRead = true,
+                CanUpdate = true,
+                CanDelete = true,
+            },
+            new UsersObject()
+            {
+                UserId = users.FirstOrDefault(u => u.Username == "ADMIN")!.Id,
+                ObjectId = appObjects.FirstOrDefault(u => u.Name == "Catalogs")!.Id,
+                CanCreate = true,
+                CanRead = true,
+                CanUpdate = true,
+                CanDelete = true,
+            },
+            new UsersObject()
+            {
+                UserId = users.FirstOrDefault(u => u.Username == "ADMIN")!.Id,
+                ObjectId = appObjects.FirstOrDefault(u => u.Name == "Employees")!.Id,
+                CanCreate = true,
+                CanRead = true,
+                CanUpdate = true,
+                CanDelete = true,
+            },
+            new UsersObject()
+            {
+                UserId = users.FirstOrDefault(u => u.Username == "ADMIN")!.Id,
+                ObjectId = appObjects.FirstOrDefault(u => u.Name == "Clients")!.Id,
+                CanCreate = true,
+                CanRead = true,
+                CanUpdate = true,
+                CanDelete = true,
+            },
+            new UsersObject()
+            {
+                UserId = users.FirstOrDefault(u => u.Username == "ADMIN")!.Id,
+                ObjectId = appObjects.FirstOrDefault(u => u.Name == "Routes")!.Id,
+                CanCreate = true,
+                CanRead = true,
+                CanUpdate = true,
+                CanDelete = true,
+            },
+            new UsersObject()
+            {
+                UserId = users.FirstOrDefault(u => u.Username == "ADMIN")!.Id,
+                ObjectId = appObjects.FirstOrDefault(u => u.Name == "Tourist Groups")!.Id,
+                CanCreate = true,
+                CanRead = true,
+                CanUpdate = true,
+                CanDelete = true,
+            },
+            new UsersObject()
+            {
+                UserId = users.FirstOrDefault(u => u.Username == "ADMIN")!.Id,
+                ObjectId = appObjects.FirstOrDefault(u => u.Name == "Penalties")!.Id,
+                CanCreate = true,
+                CanRead = true,
+                CanUpdate = true,
+                CanDelete = true,
+            },
+
+            // Employee
+            new UsersObject()
+            {
+                UserId = users.FirstOrDefault(u => u.Username == "EMPLOYEE")!.Id,
+                ObjectId = appObjects.FirstOrDefault(u => u.Name == "Travel Company App")!.Id,
+                CanCreate = true,
+                CanRead = true,
+                CanUpdate = true,
+                CanDelete = true,
+            },
+            new UsersObject()
+            {
+                UserId = users.FirstOrDefault(u => u.Username == "EMPLOYEE")!.Id,
+                ObjectId = appObjects.FirstOrDefault(u => u.Name == "Catalogs")!.Id,
+                CanCreate = true,
+                CanRead = true,
+                CanUpdate = true,
+                CanDelete = true,
+            },
+            new UsersObject()
+            {
+                UserId = users.FirstOrDefault(u => u.Username == "EMPLOYEE")!.Id,
+                ObjectId = appObjects.FirstOrDefault(u => u.Name == "Employees")!.Id,
+                CanCreate = false,
+                CanRead = false,
+                CanUpdate = false,
+                CanDelete = false,
+            },
+            new UsersObject()
+            {
+                UserId = users.FirstOrDefault(u => u.Username == "EMPLOYEE")!.Id,
+                ObjectId = appObjects.FirstOrDefault(u => u.Name == "Clients")!.Id,
+                CanCreate = true,
+                CanRead = true,
+                CanUpdate = true,
+                CanDelete = true,
+            },
+            new UsersObject()
+            {
+                UserId = users.FirstOrDefault(u => u.Username == "EMPLOYEE")!.Id,
+                ObjectId = appObjects.FirstOrDefault(u => u.Name == "Routes")!.Id,
+                CanCreate = true,
+                CanRead = true,
+                CanUpdate = true,
+                CanDelete = true,
+            },
+            new UsersObject()
+            {
+                UserId = users.FirstOrDefault(u => u.Username == "EMPLOYEE")!.Id,
+                ObjectId = appObjects.FirstOrDefault(u => u.Name == "Tourist Groups")!.Id,
+                CanCreate = true,
+                CanRead = true,
+                CanUpdate = true,
+                CanDelete = true,
+            },
+            new UsersObject()
+            {
+                UserId = users.FirstOrDefault(u => u.Username == "EMPLOYEE")!.Id,
+                ObjectId = appObjects.FirstOrDefault(u => u.Name == "Penalties")!.Id,
+                CanCreate = true,
+                CanRead = true,
+                CanUpdate = true,
+                CanDelete = true,
+            },
+        };
+        db.AddRange(usersObjects);
+        db.SaveChanges();
+    }
 
     #endregion
 }
