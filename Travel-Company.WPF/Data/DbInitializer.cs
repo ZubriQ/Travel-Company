@@ -578,7 +578,7 @@ public static class DbInitializer
 
     private static List<User> SeedUsers(TravelCompanyDbContext db)
     {
-        if (db.Objects.Any())
+        if (db.Users.Any())
         {
             return db.Users.ToList();
         }
@@ -604,7 +604,7 @@ public static class DbInitializer
     private static void SeedUserRights(
         TravelCompanyDbContext db, List<User> users, List<Models.Object> appObjects)
     {
-        if (db.Objects.Any())
+        if (db.UsersObjects.Any())
         {
             return;
         }
