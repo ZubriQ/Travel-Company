@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Travel_Company.WPF.Models;
 
@@ -14,8 +15,9 @@ public class AuthorizationService : IAuthorizationService
 
     public User? LogIn(string username, string password)
     {
-        return (_context.Users.FirstOrDefault(u => u.Username == username) is User user && user.Password == password)
-            ? user
-            : null;
+        return _context.Users
+            .Include(u => u.UsersObjects)
+            .ThenInclude(o => o.Object)
+            .FirstOrDefault(u => u.Username == username.ToUpper());
     }
 }

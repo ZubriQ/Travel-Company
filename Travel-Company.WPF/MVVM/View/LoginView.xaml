@@ -39,7 +39,7 @@
                   Margin="10">
                 <Button x:Name="ButtonLogIn"
                         Template="{StaticResource ButtonLogIn}"
-                        Command="{Binding Path=NavigateToEmployeesCommand}"
+                        Command="{Binding Path=LogInCommand}"
                         Content="{lex:Loc}" />
             </Grid>
             <Grid Margin="50">

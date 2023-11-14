@@ -1,5 +1,8 @@
-﻿using Travel_Company.WPF.Core;
+﻿using System.Linq;
+using Travel_Company.WPF.Core;
+using Travel_Company.WPF.Data.Dto;
 using Travel_Company.WPF.Models;
+using Travel_Company.WPF.MVVM.ViewModel.Clients;
 using Travel_Company.WPF.MVVM.ViewModel.Employees;
 using Travel_Company.WPF.Services.Authorization;
 using Travel_Company.WPF.Services.Navigation;
@@ -43,14 +46,15 @@ public sealed class LoginViewModel : Core.ViewModel
         }
     }
 
-    public RelayCommand NavigateToEmployeesCommand { get; set; }
+    public RelayCommand LogInCommand { get; set; }
 
-    public LoginViewModel(INavigationService navigationService, IAuthorizationService authorizationService)
+    public LoginViewModel(
+        INavigationService navigationService, IAuthorizationService authorizationService)
     {
         Navigation = navigationService;
         _authorizationService = authorizationService;
 
-        NavigateToEmployeesCommand = new RelayCommand(
+        LogInCommand = new RelayCommand(
             execute: _ =>
             {
                 HandleAuthorization();
@@ -63,13 +67,26 @@ public sealed class LoginViewModel : Core.ViewModel
         if (_authorizationService.LogIn(Username, Password) is User user)
         {
             SaveAuthorizedUserData(user);
-            Navigation.NavigateTo<EmployeesViewModel>();
+
+            var rights = user.UsersObjects.First(u => u.Object.Name == "Employees");
+
+            var message = new SuccessLoginMessage();
+            App.EventAggregator.Publish(message);
+
+            if (rights.CanRead)
+            {
+                Navigation.NavigateTo<EmployeesViewModel>();
+            }
+            else
+            {
+                Navigation.NavigateTo<ClientsViewModel>();
+            }
         }
     }
 
     private static void SaveAuthorizedUserData(User user)
     {
         App.Settings.User = user;
-        App.Settings.IsAuthorized = true;
+        App.Settings.UserName = user.Username;
     }
 }

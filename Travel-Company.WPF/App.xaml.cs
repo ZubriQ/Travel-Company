@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Globalization;
-using System.Reflection;
 using System.Windows;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data;

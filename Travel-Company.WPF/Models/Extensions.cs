@@ -1,5 +1,4 @@
-﻿using System;
-using WPFLocalizeExtension.Engine;
+﻿using WPFLocalizeExtension.Engine;
 
 namespace Travel_Company.WPF.Models;
 

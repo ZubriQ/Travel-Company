@@ -83,7 +83,7 @@ public sealed class EmployeesViewModel : Core.ViewModel
         }
     }
 
-    public RelayCommand NavigateToEmployeesUpdateCommand { get; set; } = null!; 
+    public RelayCommand NavigateToEmployeesUpdateCommand { get; set; } = null!;
     public RelayCommand NavigateToEmployeesInsertCommand { get; set; } = null!;
     public RelayCommand FireSelectedEmployeeCommand { get; set; } = null!;
     public RelayCommand DeleteSelectedEmployeeCommand { get; set; } = null!;

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
+﻿using System.Globalization;
 using System.Windows;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Core.Enums;
@@ -32,14 +30,11 @@ public sealed class MainViewModel : Core.ViewModel
     private Visibility _mainMenuVisibility;
     public Visibility MainMenuVisibility
     {
-        get { return _mainMenuVisibility; }
+        get => _mainMenuVisibility;
         set
         {
-            if (value != _mainMenuVisibility)
-            {
-                _mainMenuVisibility = value;
-                OnPropertyChanged(nameof(MainMenuVisibility));
-            }
+            _mainMenuVisibility = value;
+            OnPropertyChanged();
         }
     }
 
@@ -60,7 +55,7 @@ public sealed class MainViewModel : Core.ViewModel
     public MainViewModel(INavigationService service)
     {
         Navigation = service;
-        //MainMenuVisibility = Visibility.Collapsed;
+        MainMenuVisibility = Visibility.Collapsed;
         InitializePagesCommands();
         InitializeCatalogsCommands();
         SwitchLocalizationCommand = new RelayCommand(
@@ -77,6 +72,18 @@ public sealed class MainViewModel : Core.ViewModel
                 }
             },
             canExecute: _ => true);
+
+        if (!App.Settings.IsAuthorized)
+        {
+            App.EventAggregator.Subscribe<SuccessLoginMessage>(HandleStartupMessage);
+        }
+    }
+
+    private void HandleStartupMessage(SuccessLoginMessage message)
+    {
+        App.Settings.IsAuthorized = true;
+        App.EventAggregator.RemoveMessage<SuccessLoginMessage>();
+        MainMenuVisibility = Visibility.Visible;
     }
 
     private void InitializePagesCommands()
