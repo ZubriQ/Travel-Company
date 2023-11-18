@@ -20,12 +20,7 @@ public class AuthorizationService : IAuthorizationService
             .ThenInclude(o => o.Object)
             .FirstOrDefault(u => u.Username == username.ToUpper());
 
-        if (user is null)
-        {
-            return null;
-        }
-
-        return (user.Password == password)
+        return (user is not null && user.Password == password)
             ? user
             : null;
     }
