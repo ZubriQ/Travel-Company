@@ -15,9 +15,18 @@ public class AuthorizationService : IAuthorizationService
 
     public User? LogIn(string username, string password)
     {
-        return _context.Users
+        var user = _context.Users
             .Include(u => u.UsersObjects)
             .ThenInclude(o => o.Object)
             .FirstOrDefault(u => u.Username == username.ToUpper());
+
+        if (user is null)
+        {
+            return null;
+        }
+
+        return (user.Password == password)
+            ? user
+            : null;
     }
 }

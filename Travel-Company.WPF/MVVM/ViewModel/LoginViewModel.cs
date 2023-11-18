@@ -1,9 +1,11 @@
 ﻿using System.Linq;
+using System.Windows;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data.Dto;
 using Travel_Company.WPF.Models;
 using Travel_Company.WPF.MVVM.ViewModel.Clients;
 using Travel_Company.WPF.MVVM.ViewModel.Employees;
+using Travel_Company.WPF.Resources.Localizations;
 using Travel_Company.WPF.Services.Authorization;
 using Travel_Company.WPF.Services.Navigation;
 
@@ -80,6 +82,13 @@ public sealed class LoginViewModel : Core.ViewModel
             {
                 Navigation.NavigateTo<ClientsViewModel>();
             }
+        }
+        else
+        {
+            MessageBox.Show(
+                LocalizedStrings.Instance["InputErrorMessageBoxText"],
+                LocalizedStrings.Instance["InputErrorMessageBoxTitle"],
+                MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 
