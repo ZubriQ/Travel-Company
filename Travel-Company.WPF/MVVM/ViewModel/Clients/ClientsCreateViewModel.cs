@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data;
 using Travel_Company.WPF.Data.Base;
@@ -24,7 +25,11 @@ public class ClientsCreateViewModel : Core.ViewModel
         }
     }
 
-    private Client _client = new();
+    private Client _client = new()
+    {
+        Birthdate = DateTime.Now.AddYears(-18),
+        PassportIssueDate = DateTime.Now.AddYears(-18)
+    };
     public Client Client
     {
         get => _client;

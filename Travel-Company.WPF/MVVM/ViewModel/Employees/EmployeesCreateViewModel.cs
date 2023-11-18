@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Models;
@@ -22,7 +23,10 @@ public sealed class EmployeesCreateViewModel : Core.ViewModel
         }
     }
 
-    private TourGuide _employee = new();
+    private TourGuide _employee = new()
+    {
+        Birthdate = DateTime.Now.AddYears(-18)
+    };
     public TourGuide Employee
     {
         get => _employee;

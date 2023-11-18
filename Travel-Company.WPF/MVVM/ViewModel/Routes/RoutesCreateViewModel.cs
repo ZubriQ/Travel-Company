@@ -28,7 +28,11 @@ public class RoutesCreateViewModel : Core.ViewModel
         }
     }
 
-    private Route _route = new();
+    private Route _route = new()
+    {
+        StartDatetime = DateTime.Now,
+        EndDatetime = DateTime.Now.AddMonths(1),
+    };
     public Route Route
     {
         get => _route;
