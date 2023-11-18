@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 using Travel_Company.WPF.Core;
+using Travel_Company.WPF.Data;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Data.Dto;
 using Travel_Company.WPF.Models;
+using Travel_Company.WPF.Resources.Localizations;
 using Travel_Company.WPF.Services.Navigation;
 
 namespace Travel_Company.WPF.MVVM.ViewModel.Employees;
@@ -63,7 +66,14 @@ public sealed class EmployeesUpdateViewModel : Core.ViewModel
         UpdateEmployeeCommand = new RelayCommand(
             execute: _ =>
             {
-                // TODO: Data validation.
+                if (!Validator.ValidateTourGuide(Employee))
+                {
+                    MessageBox.Show(
+                        LocalizedStrings.Instance["InputErrorMessageBoxText"],
+                        LocalizedStrings.Instance["InputErrorMessageBoxTitle"],
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
                 _employeesRepository.Update(Employee);
                 _employeesRepository.SaveChanges();

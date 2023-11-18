@@ -238,7 +238,7 @@
     <value>Страна</value>
   </data>
   <data name="CreateCatalogHeader" xml:space="preserve">
-    <value>Создание объекта справочника</value>
+    <value>Создание Объекта Справочника</value>
   </data>
   <data name="CreateClientHeader" xml:space="preserve">
     <value>Создание Клиента</value>
@@ -323,6 +323,12 @@
   </data>
   <data name="InitialStayTime" xml:space="preserve">
     <value>Время заселения в гостиницу</value>
+  </data>
+  <data name="InputErrorMessageBoxText" xml:space="preserve">
+    <value>Неверно введены данные. Пожалуйста, проверьте введенные данные и повторите попытку снова.</value>
+  </data>
+  <data name="InputErrorMessageBoxTitle" xml:space="preserve">
+    <value>Ошибка ввода</value>
   </data>
   <data name="IsFired" xml:space="preserve">
     <value>Уволен</value>
@@ -415,7 +421,7 @@
     <value>Туристы</value>
   </data>
   <data name="UpdateCatalogHeader" xml:space="preserve">
-    <value>Редактирование объекта справочника</value>
+    <value>Редактирование Объекта Справочника</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Имя пользователя</value>

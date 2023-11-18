@@ -2,9 +2,11 @@
 using System.Windows;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Core.Enums;
+using Travel_Company.WPF.Data;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Data.Dto;
 using Travel_Company.WPF.Models;
+using Travel_Company.WPF.Resources.Localizations;
 using Travel_Company.WPF.Services.Navigation;
 
 namespace Travel_Company.WPF.MVVM.ViewModel.Catalogs;
@@ -126,7 +128,14 @@ public class CatalogsUpdateViewModel : Core.ViewModel
 
     private void HandleUpdate()
     {
-        // TODO: Validate input.
+        if (!Validator.ValidateCatalogItem(CatalogItem))
+        {
+            MessageBox.Show(
+                LocalizedStrings.Instance["InputErrorMessageBoxText"],
+                LocalizedStrings.Instance["InputErrorMessageBoxTitle"],
+                MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
 
         switch (_catalogType)
         {

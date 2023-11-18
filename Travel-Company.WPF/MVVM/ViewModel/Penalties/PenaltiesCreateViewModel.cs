@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using System.Windows;
 using Travel_Company.WPF.Core;
+using Travel_Company.WPF.Data;
 using Travel_Company.WPF.Data.Base;
 using Travel_Company.WPF.Models;
+using Travel_Company.WPF.Resources.Localizations;
 using Travel_Company.WPF.Services.Navigation;
 
 namespace Travel_Company.WPF.MVVM.ViewModel.Penalties;
@@ -90,7 +94,14 @@ public class PenaltiesCreateViewModel : Core.ViewModel
 
     private void HandleCreating()
     {
-        // TODO: Data validation.
+        if (!Validator.ValidatePenalty(Penalty))
+        {
+            MessageBox.Show(
+                LocalizedStrings.Instance["InputErrorMessageBoxText"],
+                LocalizedStrings.Instance["InputErrorMessageBoxTitle"],
+                MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
 
         _penaltiesRepository.Insert(Penalty);
         _penaltiesRepository.SaveChanges();

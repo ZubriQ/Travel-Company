@@ -682,6 +682,24 @@ namespace Travel_Company.WPF.Resources.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The input data is incorrect. Please check your input and try again..
+        /// </summary>
+        public static string InputErrorMessageBoxText {
+            get {
+                return ResourceManager.GetString("InputErrorMessageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input Error.
+        /// </summary>
+        public static string InputErrorMessageBoxTitle {
+            get {
+                return ResourceManager.GetString("InputErrorMessageBoxTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Is fired.
         /// </summary>
         public static string IsFired {

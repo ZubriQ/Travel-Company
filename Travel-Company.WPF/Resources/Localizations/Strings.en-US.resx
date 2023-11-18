@@ -324,6 +324,12 @@
   <data name="InitialStayTime" xml:space="preserve">
     <value>Initial stay time</value>
   </data>
+  <data name="InputErrorMessageBoxText" xml:space="preserve">
+    <value>The input data is incorrect. Please check your input and try again.</value>
+  </data>
+  <data name="InputErrorMessageBoxTitle" xml:space="preserve">
+    <value>Input Error</value>
+  </data>
   <data name="IsFired" xml:space="preserve">
     <value>Is fired</value>
   </data>
