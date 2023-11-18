@@ -1,8 +1,10 @@
 ﻿using System.Globalization;
+using System.Linq;
 using System.Windows;
 using Travel_Company.WPF.Core;
 using Travel_Company.WPF.Core.Enums;
 using Travel_Company.WPF.Data.Dto;
+using Travel_Company.WPF.Models;
 using Travel_Company.WPF.MVVM.ViewModel.Catalogs;
 using Travel_Company.WPF.MVVM.ViewModel.Clients;
 using Travel_Company.WPF.MVVM.ViewModel.Employees;
@@ -38,6 +40,17 @@ public sealed class MainViewModel : Core.ViewModel
         }
     }
 
+    private Visibility _isEmployeeButtonVisible;
+    public Visibility IsEmployeeButtonVisible
+    {
+        get => _isEmployeeButtonVisible;
+        set
+        {
+            _isEmployeeButtonVisible = value;
+            OnPropertyChanged();
+        }
+    }
+    
     // Pages
     public RelayCommand NavigateToEmployeesCommand { get; set; } = null!;
     public RelayCommand NavigateToClientsCommand { get; set; } = null!;
@@ -84,6 +97,16 @@ public sealed class MainViewModel : Core.ViewModel
         App.Settings.IsAuthorized = true;
         App.EventAggregator.RemoveMessage<SuccessLoginMessage>();
         MainMenuVisibility = Visibility.Visible;
+        SetupMainWindowBehavior();
+    }
+
+    private void SetupMainWindowBehavior()
+    {
+        var rights = App.Settings.User!.UsersObjects.First(u => u.Object.Name == "Employees");
+        if (!rights.CanRead)
+        {
+            IsEmployeeButtonVisible = Visibility.Collapsed;
+        }
     }
 
     private void InitializePagesCommands()

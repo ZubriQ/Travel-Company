@@ -68,11 +68,10 @@ public sealed class LoginViewModel : Core.ViewModel
         {
             SaveAuthorizedUserData(user);
 
-            var rights = user.UsersObjects.First(u => u.Object.Name == "Employees");
-
             var message = new SuccessLoginMessage();
             App.EventAggregator.Publish(message);
 
+            var rights = user.UsersObjects.First(u => u.Object.Name == "Employees");
             if (rights.CanRead)
             {
                 Navigation.NavigateTo<EmployeesViewModel>();
